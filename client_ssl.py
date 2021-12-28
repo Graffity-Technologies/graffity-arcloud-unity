@@ -42,12 +42,12 @@ async def generate_messages(
     # )
 
     # iPhone12 .builtInDualWideCamera
-    # cameraInfo = image_pb.CameraInfo(
-    #     pixelFocalLength=3000/2 if is_halfsize else 3000,
-    #     principalPointX=2000/2 if is_halfsize else 2000,
-    #     principalPointY=1500/2 if is_halfsize else 1500,
-    #     radialDistortion=0
-    # )
+    cameraInfo = image_pb.CameraInfo(
+        pixelFocalLength=3000/2 if is_halfsize else 3000,
+        principalPointX=2000/2 if is_halfsize else 2000,
+        principalPointY=1500/2 if is_halfsize else 1500,
+        radialDistortion=0
+    )
 
     # cameraInfo = image_pb.CameraInfo(
     #     pixelFocalLength=2304.000000,
@@ -56,29 +56,29 @@ async def generate_messages(
     #     radialDistortion=0
     # )
 
-    cameraInfo = image_pb.CameraInfo(
-        pixelFocalLength=4608.000000,
-        principalPointX=1920.000000,
-        principalPointY=1080.000000,
-        radialDistortion=0.000000
-    )
+    # cameraInfo = image_pb.CameraInfo(
+    #     pixelFocalLength=4608.000000,
+    #     principalPointX=1920.000000,
+    #     principalPointY=1080.000000,
+    #     radialDistortion=0.000000
+    # )
 
     print("cameraInfo", cameraInfo)
 
     query_images = query_images[0:num_images]
 
     # inside TDPK
-    # gpsPosition = image_pb.Position(
-    #     latitude=13.685685,
-    #     longitude=100.611000,
-    #     altitude=0.0
-    # )
-    # inside OneSiam Skywalk
     gpsPosition = image_pb.Position(
-        latitude=13.746103,
-        longitude=100.530739,
+        latitude=13.685685,
+        longitude=100.611000,
         altitude=0.0
     )
+    # inside OneSiam Skywalk
+    # gpsPosition = image_pb.Position(
+    #     latitude=13.746103,
+    #     longitude=100.530739,
+    #     altitude=0.0
+    # )
 
     for idx, img in enumerate(query_images):
         print(idx, img)

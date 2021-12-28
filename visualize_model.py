@@ -103,8 +103,7 @@ class Model:
             K[1, 1] = fy
             K[0, 2] = cx
             K[1, 2] = cy
-            print(
-                f'fx: {fx}, fy: {fy}, cx: {cx}, cy: {cy}, width: {cam.width}, height: {cam.height}, scale: {scale}')
+            # print(f'fx: {fx}, fy: {fy}, cx: {cx}, cy: {cy}, width: {cam.width}, height: {cam.height}, scale: {scale}')
             # create axis, plane and pyramed geometries that will be drawn
             cam_model = draw_camera(K, R, t, cam.width, cam.height, scale)
             frames.extend(cam_model)
@@ -130,8 +129,9 @@ class Model:
         R = R.T
         # fx: 1798.2926825734073, fy: 1798.2926825734073, cx: 960.0, cy: 540.0, width: 1920, height: 1080, scale: 0.25
         # fx: 3165.422982044238, fy: 3165.422982044238, cx: 1920.0, cy: 1080.0, width: 3840, height: 2160, scale: 0.25
-        # fx, fy, cx, cy, width, height, scale = 1812, 1812, 960, 540, 1920, 1080, 0.25
-        fx, fy, cx, cy, width, height, scale = 3000, 3000, 2000, 1500, 3840, 2160, 1.0
+        # fx, fy, cx, cy, width, height, scale = 1812, 1812, 960, 540, 1920, 1080, 1.00
+        # fx, fy, cx, cy, width, height, scale = 4608.000000, 4608.000000, 1920.000000, 1080.000000, 3840, 2160, 1.00 # Dataset
+        fx, fy, cx, cy, width, height, scale = 3000, 3000, 2000, 1500, 3840, 2160, 1.00
 
         # intrinsics
         K = np.identity(3)
@@ -227,6 +227,8 @@ def main():
                          for t in input('enter qvec: ').strip().split()])
     res_tvec = np.array([float(t)
                          for t in input('enter tvec: ').strip().split()])
+    # res_qvec = np.array([0.5268368055417589, -0.07133801019038029, -0.8060846236169967, -0.25996432100747624])
+    # res_tvec = np.array([1.2885455034702107, -0.7151003512219679, 1.9779605321465243])
     print(res_qvec, res_tvec)
 
     # read COLMAP model
