@@ -4,7 +4,7 @@ from client_ssl import main
 
 # REMINDER!! CHANGE CAMERA INTRINSIC
 
-image_dir_name = "IMG_2838/2"  # Dataset, IMG_2838/2
+image_dir_name = "IMG_2838/3"  # Dataset, IMG_2838/2
 image_path = f"images/TDPK/{image_dir_name}/540"
 num_images = 0
 image_type = "jpg"
