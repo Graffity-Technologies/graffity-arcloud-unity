@@ -146,12 +146,12 @@ async def main(
             print("Client received message: ", response.message)
             print("Client received worldCoor: ", response.worldCoor)
             print("Client received colmapCoor: ", response.colmapCoor)
-            # res.append(MessageToDict(response.colmapCoor))
+            res.append(MessageToDict(response.colmapCoor))
 
     print('---------------------------------------')
     print("Total Responses Time:", (time.time() - start_time_total), "seconds")
 
-    # return res
+    return res
 
 
 if __name__ == '__main__':

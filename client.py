@@ -1,5 +1,4 @@
 from __future__ import print_function
-import logging
 import time
 import cv2
 import grpc
@@ -10,16 +9,16 @@ import asyncio
 import protos.image.image_pb2 as image_pb
 import protos.image.image_pb2_grpc as image_pb_grpc
 
+from google.protobuf.json_format import MessageToDict
 from argparse import ArgumentParser
-
-# logging.basicConfig(level=logging.NOTSET)
 
 
 async def generate_messages(
-    num_images: int, 
+    num_images: int,
     image_path: str,
     image_type: str,
     is_halfsize: bool,
+    divider: int,
 ):
     query_images = []
 
@@ -37,34 +36,47 @@ async def generate_messages(
 
     # aachen
     # cameraInfo = image_pb.CameraInfo(
-    #     pixelFocalLength=1469.2, 
-    #     principalPointX=800, 
-    #     principalPointY=600, 
+    #     pixelFocalLength=1469.2,
+    #     principalPointX=800,
+    #     principalPointY=600,
     #     radialDistortion=-0.0353019
     # )
 
     # iPhone12 .builtInDualWideCamera
     cameraInfo = image_pb.CameraInfo(
-        pixelFocalLength=3000/2 if is_halfsize else 3000,
-        principalPointX=2000/2 if is_halfsize else 2000, 
-        principalPointY=1500/2 if is_halfsize else 1500, 
-        radialDistortion=0
+        pixelFocalLength=3000/2 if is_halfsize else 3000/divider,
+        principalPointX=2000/2 if is_halfsize else 2000/divider,
+        principalPointY=1500/2 if is_halfsize else 1500/divider,
+        radialDistortion=0/divider
     )
 
     # cameraInfo = image_pb.CameraInfo(
-    #     pixelFocalLength=2304.000000,  
-    #     principalPointX=960.000000, 
+    #     pixelFocalLength=2304.000000,
+    #     principalPointX=960.000000,
     #     principalPointY=540.000000,
     #     radialDistortion=0
     # )
 
+    # TDPK Dataset - Horizontal
     # cameraInfo = image_pb.CameraInfo(
-    #     pixelFocalLength=4608.000000, 
-    #     principalPointX=1920.000000, 
-    #     principalPointY= 1080.000000, 
+    #     pixelFocalLength=4608.000000/divider,
+    #     principalPointX=1920.000000/divider,
+    #     principalPointY=1080.000000/divider,
+    #     radialDistortion=0.000000/divider
+    # )
+
+    # # TDPK Dataset - Vertical
+    # cameraInfo = image_pb.CameraInfo(
+    #     pixelFocalLength=4608.000000,
+    #     principalPointX=1920.000000,
+    #     principalPointY=1080.000000,
     #     radialDistortion=0.000000
     # )
-    query_images = query_images[0:num_images]
+
+    print("cameraInfo", cameraInfo)
+
+    if num_images != 0:
+        query_images = query_images[0:num_images]
 
     # inside TDPK
     gpsPosition = image_pb.Position(
@@ -72,13 +84,12 @@ async def generate_messages(
         longitude=100.611000,
         altitude=0.0
     )
-    if 'onesiam_skywalk' in image_path:
-        # inside OneSiam Skywalk
-        gpsPosition = image_pb.Position(
-            latitude=13.746103,
-            longitude=100.530739,
-            altitude=0.0
-        )
+    # inside OneSiam Skywalk
+    # gpsPosition = image_pb.Position(
+    #     latitude=13.746103,
+    #     longitude=100.530739,
+    #     altitude=0.0
+    # )
 
     for idx, img in enumerate(query_images):
         print(idx, img)
@@ -97,16 +108,19 @@ async def generate_messages(
         yield msg
 
 
-
 async def main(
-    num_images: int, 
+    num_images: int,
     image_path: str,
     image_type: str,
     is_halfsize: bool,
+    divider: int,
 ):
+    res = []
     start_time_total = time.time()
 
-    async with grpc.aio.insecure_channel("localhost:50052") as channel:
+    host = 'localhost:50052'
+
+    async with grpc.aio.insecure_channel(host) as channel:
         stub = image_pb_grpc.ImageStub(channel)
 
         metadata = [
@@ -115,11 +129,12 @@ async def main(
 
         responses = stub.SendImage(
             generate_messages(
-                num_images, 
+                num_images,
                 image_path,
                 image_type,
-                is_halfsize = False if is_halfsize == 0 else True,
-            ), 
+                is_halfsize=False if is_halfsize == 0 else True,
+                divider=divider,
+            ),
             metadata=metadata
         )
 
@@ -127,9 +142,12 @@ async def main(
             print("Client received message: ", response.message)
             print("Client received worldCoor: ", response.worldCoor)
             print("Client received colmapCoor: ", response.colmapCoor)
-    
+            res.append(MessageToDict(response.colmapCoor))
+
     print('---------------------------------------')
     print("Total Responses Time:", (time.time() - start_time_total), "seconds")
+
+    return res
 
 
 if __name__ == '__main__':
@@ -137,7 +155,7 @@ if __name__ == '__main__':
     parser.add_argument(
         '--num_images',
         type=int,
-        default=1,
+        default=0,
         help='Number of Images to Process',
     )
 
@@ -158,8 +176,15 @@ if __name__ == '__main__':
     parser.add_argument(
         '--is_halfsize',
         type=int,
-        default=0,
+        default=1,
         help='Using subfix "_halfsize" of image for low memory GPU => 0 (False), 1 (True)',
+    )
+
+    parser.add_argument(
+        '--divider',
+        type=int,
+        default=1,
+        help='Divide camera parameter',
     )
 
     args = parser.parse_args()
