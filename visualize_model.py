@@ -130,8 +130,8 @@ class Model:
         # fx: 1798.2926825734073, fy: 1798.2926825734073, cx: 960.0, cy: 540.0, width: 1920, height: 1080, scale: 0.25
         # fx: 3165.422982044238, fy: 3165.422982044238, cx: 1920.0, cy: 1080.0, width: 3840, height: 2160, scale: 0.25
         # fx, fy, cx, cy, width, height, scale = 1812, 1812, 960, 540, 1920, 1080, 1.00
-        # fx, fy, cx, cy, width, height, scale = 4608.000000, 4608.000000, 1920.000000, 1080.000000, 3840, 2160, 1.00 # Dataset
-        fx, fy, cx, cy, width, height, scale = 3000, 3000, 2000, 1500, 3840, 2160, 1.00
+        fx, fy, cx, cy, width, height, scale = 4608.000000, 4608.000000, 1920.000000, 1080.000000, 3840, 2160, 1.00  # Dataset
+        # fx, fy, cx, cy, width, height, scale = 3000, 3000, 2000, 1500, 3840, 2160, 1.00 # Bank's iPhone12 4k
 
         # intrinsics
         K = np.identity(3)
