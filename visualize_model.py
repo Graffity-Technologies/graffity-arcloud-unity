@@ -223,12 +223,16 @@ def parse_args():
 def main():
     args = parse_args()
 
-    res_qvec = np.array([float(t)
-                         for t in input('enter qvec: ').strip().split()])
-    res_tvec = np.array([float(t)
-                         for t in input('enter tvec: ').strip().split()])
-    # res_qvec = np.array([0.5268368055417589, -0.07133801019038029, -0.8060846236169967, -0.25996432100747624])
-    # res_tvec = np.array([1.2885455034702107, -0.7151003512219679, 1.9779605321465243])
+    # res_qvec = np.array([float(t)
+    #                      for t in input('enter qvec: ').strip().split()])
+    # res_tvec = np.array([float(t)
+    #                      for t in input('enter tvec: ').strip().split()])
+
+    q_dict = {}
+    t_dict = {}
+    res_qvec = np.array([q_dict["qw"], q_dict["qx"],
+                        q_dict["qy"], q_dict["qz"]])
+    res_tvec = np.array([t_dict["tx"], t_dict["ty"], t_dict["tz"]])
     print(res_qvec, res_tvec)
 
     # read COLMAP model
