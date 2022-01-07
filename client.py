@@ -50,13 +50,6 @@ async def generate_messages(
         radialDistortion=0/divider
     )
 
-    # cameraInfo = image_pb.CameraInfo(
-    #     pixelFocalLength=2304.000000,
-    #     principalPointX=960.000000,
-    #     principalPointY=540.000000,
-    #     radialDistortion=0
-    # )
-
     # TDPK Dataset - Horizontal
     # cameraInfo = image_pb.CameraInfo(
     #     pixelFocalLength=4608.000000/divider,
@@ -73,7 +66,7 @@ async def generate_messages(
     #     radialDistortion=0.000000
     # )
 
-    print("cameraInfo", cameraInfo)
+    # print("cameraInfo", cameraInfo)
 
     if num_images != 0:
         query_images = query_images[0:num_images]
@@ -92,19 +85,19 @@ async def generate_messages(
     # )
 
     for idx, img in enumerate(query_images):
-        print(idx, img)
+        # print(idx, img)
         im = cv2.imread(img)
         is_success, im_buf_arr = cv2.imencode(".jpg", im)
         byte_im = im_buf_arr.tobytes()
 
         msg = image_pb.ImageRequest(
-            message='request-image-' + os.path.basename(img),
+            message=img, # os.path.basename(img)
             bytesImage=byte_im,
             cameraInfo=cameraInfo,
             gpsPosition=gpsPosition
         )
 
-        print("Client send: %s" % msg.message)
+        # print("Client send: %s" % msg.message)
         yield msg
 
 
@@ -139,12 +132,16 @@ async def main(
         )
 
         async for response in responses:
-            print("Client received message: ", response.message)
-            print("Client received worldCoor: ", response.worldCoor)
-            print("Client received colmapCoor: ", response.colmapCoor)
-            res.append(MessageToDict(response.colmapCoor))
+            # print(response.message)
+            # print("Client received worldCoor: ", response.worldCoor)
+            # print("Client received colmapCoor: ", response.colmapCoor)
+            res.append(
+                {
+                    response.message: MessageToDict(response.colmapCoor)
+                }
+            )
 
-    print('---------------------------------------')
+    print('   ')
     print("Total Responses Time:", (time.time() - start_time_total), "seconds")
 
     return res
