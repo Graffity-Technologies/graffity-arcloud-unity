@@ -3,8 +3,8 @@ import time
 import cv2
 import grpc
 import glob
-import os
-import asyncio
+import logging
+import sys
 
 import protos.image.image_pb2 as image_pb
 import protos.image.image_pb2_grpc as image_pb_grpc
@@ -12,8 +12,10 @@ import protos.image.image_pb2_grpc as image_pb_grpc
 from google.protobuf.json_format import MessageToDict
 from argparse import ArgumentParser
 
+_LOGGER = logging.getLogger(__name__)
 
-async def generate_messages(
+
+def generate_messages(
     num_images: int,
     image_path: str,
     image_type: str,
@@ -50,13 +52,6 @@ async def generate_messages(
         radialDistortion=0/divider
     )
 
-    # cameraInfo = image_pb.CameraInfo(
-    #     pixelFocalLength=2304.000000,
-    #     principalPointX=960.000000,
-    #     principalPointY=540.000000,
-    #     radialDistortion=0
-    # )
-
     # TDPK Dataset - Horizontal
     # cameraInfo = image_pb.CameraInfo(
     #     pixelFocalLength=4608.000000/divider,
@@ -92,13 +87,13 @@ async def generate_messages(
     # )
 
     for idx, img in enumerate(query_images):
-        print(idx, img)
+        # print(idx, img)
         im = cv2.imread(img)
         is_success, im_buf_arr = cv2.imencode(".jpg", im)
         byte_im = im_buf_arr.tobytes()
 
         msg = image_pb.ImageRequest(
-            message='request-image-' + os.path.basename(img),
+            message=img, # os.path.basename(img)
             bytesImage=byte_im,
             cameraInfo=cameraInfo,
             gpsPosition=gpsPosition
@@ -108,7 +103,7 @@ async def generate_messages(
         yield msg
 
 
-async def main(
+def main(
     num_images: int,
     image_path: str,
     image_type: str,
@@ -118,13 +113,9 @@ async def main(
     res = []
     start_time_total = time.time()
 
-    host = 'vps.graffity.services'
+    host = 'localhost:50052'
 
-    credentials = grpc.ssl_channel_credentials(
-        root_certificates=None, private_key=None, certificate_chain=None)
-
-    async with grpc.aio.secure_channel(host, credentials
-                                       ) as channel:
+    with grpc.insecure_channel(host) as channel:
         stub = image_pb_grpc.ImageStub(channel)
 
         metadata = [
@@ -142,19 +133,29 @@ async def main(
             metadata=metadata
         )
 
-        async for response in responses:
-            # print("Client received message: ", response.message)
+        for response in responses:
+            # print(response.message)
             # print("Client received worldCoor: ", response.worldCoor)
             # print("Client received colmapCoor: ", response.colmapCoor)
-            res.append(MessageToDict(response.colmapCoor))
+            res.append(
+                {
+                    response.message: MessageToDict(response.colmapCoor)
+                }
+            )
 
-    print('---------------------------------------')
+    print('   ')
     print("Total Responses Time:", (time.time() - start_time_total), "seconds")
 
     return res
 
 
 if __name__ == '__main__':
+    handler = logging.StreamHandler(sys.stdout)
+    formatter = logging.Formatter('[PID %(process)d] %(message)s')
+    handler.setFormatter(formatter)
+    _LOGGER.addHandler(handler)
+    _LOGGER.setLevel(logging.INFO)
+
     parser = ArgumentParser()
     parser.add_argument(
         '--num_images',
@@ -193,4 +194,4 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
-    asyncio.run(main(**args.__dict__))
+    main(**args.__dict__)
