@@ -4,7 +4,6 @@ import cv2
 import grpc
 import glob
 import os
-import asyncio
 
 import protos.image.image_pb2 as image_pb
 import protos.image.image_pb2_grpc as image_pb_grpc
@@ -12,8 +11,10 @@ import protos.image.image_pb2_grpc as image_pb_grpc
 from google.protobuf.json_format import MessageToDict
 from argparse import ArgumentParser
 
+host = 'vps.graffity.services'
 
-async def generate_messages(
+
+def generate_messages(
     num_images: int,
     image_path: str,
     image_type: str,
@@ -108,7 +109,7 @@ async def generate_messages(
         yield msg
 
 
-async def main(
+def main(
     num_images: int,
     image_path: str,
     image_type: str,
@@ -116,15 +117,11 @@ async def main(
     divider: int,
 ):
     res = []
-    start_time_total = time.time()
-
-    host = 'vps.graffity.services'
 
     credentials = grpc.ssl_channel_credentials(
         root_certificates=None, private_key=None, certificate_chain=None)
 
-    async with grpc.aio.secure_channel(host, credentials
-                                       ) as channel:
+    with grpc.secure_channel(host, credentials) as channel:
         stub = image_pb_grpc.ImageStub(channel)
 
         metadata = [
@@ -142,14 +139,16 @@ async def main(
             metadata=metadata
         )
 
-        async for response in responses:
+        start_time_total = time.time()
+        for response in responses:
+
             # print("Client received message: ", response.message)
             # print("Client received worldCoor: ", response.worldCoor)
             # print("Client received colmapCoor: ", response.colmapCoor)
             res.append(MessageToDict(response.colmapCoor))
 
-    print('---------------------------------------')
-    print("Total Responses Time:", (time.time() - start_time_total), "seconds")
+        print("Responses Time:", (time.time() - start_time_total), "seconds")
+        print('---------------------------------------')
 
     return res
 
@@ -193,4 +192,4 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
-    asyncio.run(main(**args.__dict__))
+    main(**args.__dict__)

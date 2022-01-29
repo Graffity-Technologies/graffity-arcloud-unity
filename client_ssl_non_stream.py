@@ -3,8 +3,7 @@ import time
 import cv2
 import grpc
 import glob
-import logging
-import sys
+import os
 
 import protos.image.image_pb2 as image_pb
 import protos.image.image_pb2_grpc as image_pb_grpc
@@ -12,8 +11,7 @@ import protos.image.image_pb2_grpc as image_pb_grpc
 from google.protobuf.json_format import MessageToDict
 from argparse import ArgumentParser
 
-_LOGGER = logging.getLogger(__name__)
-host = 'localhost:50052'
+host = 'vps.graffity.services'
 
 
 def generate_messages(
@@ -36,14 +34,6 @@ def generate_messages(
         else:
             if "halfsize" not in image:
                 query_images.append(image)
-
-    # aachen
-    # cameraInfo = image_pb.CameraInfo(
-    #     pixelFocalLength=1469.2,
-    #     principalPointX=800,
-    #     principalPointY=600,
-    #     radialDistortion=-0.0353019
-    # )
 
     # iPhone12 .builtInDualWideCamera
     cameraInfo = image_pb.CameraInfo(
@@ -69,10 +59,8 @@ def generate_messages(
     #     radialDistortion=0.000000
     # )
 
-    # print("cameraInfo", cameraInfo)
-
     if num_images != 0:
-        query_images = query_images[0:num_images]
+        query_images = query_images[0:1]
 
     # inside TDPK
     gpsPosition = image_pb.Position(
@@ -86,22 +74,20 @@ def generate_messages(
     #     longitude=100.530739,
     #     altitude=0.0
     # )
+    img = query_images[0]
+    im = cv2.imread(img)
+    is_success, im_buf_arr = cv2.imencode(".jpg", im)
+    byte_im = im_buf_arr.tobytes()
 
-    for idx, img in enumerate(query_images):
-        # print(idx, img)
-        im = cv2.imread(img)
-        is_success, im_buf_arr = cv2.imencode(".jpg", im)
-        byte_im = im_buf_arr.tobytes()
+    msg = image_pb.ImageRequest(
+        message='request-image-' + os.path.basename(img),
+        bytesImage=byte_im,
+        cameraInfo=cameraInfo,
+        gpsPosition=gpsPosition
+    )
 
-        msg = image_pb.ImageRequest(
-            message=img,  # os.path.basename(img)
-            bytesImage=byte_im,
-            cameraInfo=cameraInfo,
-            gpsPosition=gpsPosition
-        )
-
-        # print("Client send: %s" % msg.message)
-        yield msg
+    print("Client send: %s" % msg.message)
+    return msg
 
 
 def main(
@@ -114,14 +100,17 @@ def main(
     res = []
     start_time_total = time.time()
 
-    with grpc.insecure_channel(host) as channel:
+    credentials = grpc.ssl_channel_credentials(
+        root_certificates=None, private_key=None, certificate_chain=None)
+
+    with grpc.secure_channel(host, credentials) as channel:
         stub = image_pb_grpc.ImageStub(channel)
 
         metadata = [
             ('x-graff-api-key', 'KpN4I5l4G8gFB8HVx6Xd')
         ]
 
-        responses = stub.SendImage(
+        response = stub.SendImage(
             generate_messages(
                 num_images,
                 image_path,
@@ -132,41 +121,31 @@ def main(
             metadata=metadata
         )
 
-        for response in responses:
-            print(response.message)
-            # print("Client received worldCoor: ", response.worldCoor)
-            # print("Client received colmapCoor: ", response.colmapCoor)
-            res.append(
-                {
-                    response.message: MessageToDict(response.colmapCoor)
-                }
-            )
+        # for response in responses:
+        print("Client received message: ", response.message)
+        # print("Client received worldCoor: ", response.worldCoor)
+        # print("Client received colmapCoor: ", response.colmapCoor)
+        # res.append(MessageToDict(response.colmapCoor))
 
-    print('   ')
+    print('---------------------------------------')
     print("Total Responses Time:", (time.time() - start_time_total), "seconds")
 
-    return res
+    return response
 
 
 if __name__ == '__main__':
-    handler = logging.StreamHandler(sys.stdout)
-    formatter = logging.Formatter('[PID %(process)d] %(message)s')
-    handler.setFormatter(formatter)
-    _LOGGER.addHandler(handler)
-    _LOGGER.setLevel(logging.INFO)
-
     parser = ArgumentParser()
     parser.add_argument(
         '--num_images',
         type=int,
-        default=1,
+        default=0,
         help='Number of Images to Process',
     )
 
     parser.add_argument(
         '--image_path',
         type=str,
-        default='images/TDPK/IMG_2838/4/1080',
+        default='server/tests/query_images/true_digital_park',
         help='Path to Image Directory',
     )
 
@@ -180,7 +159,7 @@ if __name__ == '__main__':
     parser.add_argument(
         '--is_halfsize',
         type=int,
-        default=0,
+        default=1,
         help='Using subfix "_halfsize" of image for low memory GPU => 0 (False), 1 (True)',
     )
 

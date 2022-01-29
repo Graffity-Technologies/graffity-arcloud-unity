@@ -5,6 +5,8 @@ import grpc
 import glob
 import logging
 import sys
+import asyncio
+import os
 
 import protos.image.image_pb2 as image_pb
 import protos.image.image_pb2_grpc as image_pb_grpc
@@ -104,17 +106,18 @@ def generate_messages(
         yield msg
 
 
-def main(
+async def main(
     num_images: int,
     image_path: str,
     image_type: str,
     is_halfsize: bool,
     divider: int,
 ):
+    print("PID:", os.getpid())
     res = []
     start_time_total = time.time()
 
-    with grpc.insecure_channel(host) as channel:
+    async with grpc.aio.insecure_channel(host) as channel:
         stub = image_pb_grpc.ImageStub(channel)
 
         metadata = [
@@ -132,7 +135,7 @@ def main(
             metadata=metadata
         )
 
-        for response in responses:
+        async for response in responses:
             print(response.message)
             # print("Client received worldCoor: ", response.worldCoor)
             # print("Client received colmapCoor: ", response.colmapCoor)
@@ -193,4 +196,4 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
-    main(**args.__dict__)
+    asyncio.run(main(**args.__dict__))

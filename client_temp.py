@@ -1,29 +1,19 @@
-import argparse
-import atexit
-import logging
-import multiprocessing
-import operator
-import sys
-import glob
+from __future__ import print_function
 import time
+import cv2
+import grpc
+import glob
+import logging
+import sys
+
+import image_pb2 as image_pb
+import image_pb2_grpc as image_pb_grpc
+
+from google.protobuf.json_format import MessageToDict
 from argparse import ArgumentParser
 
-import grpc
-import cv2
-import protos.image.image_pb2 as image_pb
-import protos.image.image_pb2_grpc as image_pb_grpc
-from google.protobuf.json_format import MessageToDict
-
-_PROCESS_COUNT = 2
-_MAXIMUM_CANDIDATE = 10000
-
-# Each worker process initializes a single channel after forking.
-# It's regrettable, but to ensure that each subprocess only has to instantiate
-# a single channel to be reused across all RPCs, we use globals.
-_worker_channel_singleton = None
-_worker_stub_singleton = None
-
 _LOGGER = logging.getLogger(__name__)
+
 
 def generate_messages(
     num_images: int,
@@ -103,7 +93,7 @@ def generate_messages(
         byte_im = im_buf_arr.tobytes()
 
         msg = image_pb.ImageRequest(
-            message=img, # os.path.basename(img)
+            message=img,  # os.path.basename(img)
             bytesImage=byte_im,
             cameraInfo=cameraInfo,
             gpsPosition=gpsPosition
@@ -113,47 +103,50 @@ def generate_messages(
         yield msg
 
 
-def _shutdown_worker():
-    _LOGGER.info('Shutting worker process down.')
-    if _worker_channel_singleton is not None:
-        _worker_channel_singleton.stop()
+def main(
+    num_images: int,
+    image_path: str,
+    image_type: str,
+    is_halfsize: bool,
+    divider: int,
+):
+    res = []
+    start_time_total = time.time()
 
+    host = 'localhost:50052'
 
-def _initialize_worker(server_address):
-    global _worker_channel_singleton  # pylint: disable=global-statement
-    global _worker_stub_singleton  # pylint: disable=global-statement
-    _LOGGER.info('Initializing worker process.')
-    _worker_channel_singleton = grpc.insecure_channel(server_address)
-    _worker_stub_singleton = image_pb_grpc.ImageStub(
-        _worker_channel_singleton)
-    atexit.register(_shutdown_worker)
+    with grpc.insecure_channel(host) as channel:
+        stub = image_pb_grpc.ImageStub(channel)
 
+        metadata = [
+            ('x-graff-api-key', 'KpN4I5l4G8gFB8HVx6Xd')
+        ]
 
-def _run_worker_query(primality_candidate):
-    _LOGGER.info('Checking primality of %s.', primality_candidate)
-    return _worker_stub_singleton.check(
-        image_pb2.PrimeCandidate(candidate=primality_candidate))
+        responses = stub.SendImage(
+            generate_messages(
+                num_images,
+                image_path,
+                image_type,
+                is_halfsize=False if is_halfsize == 0 else True,
+                divider=divider,
+            ),
+            metadata=metadata
+        )
 
+        for response in responses:
+            # print(response.message)
+            # print("Client received worldCoor: ", response.worldCoor)
+            # print("Client received colmapCoor: ", response.colmapCoor)
+            res.append(
+                {
+                    response.message: MessageToDict(response.colmapCoor)
+                }
+            )
 
-def _calculate_primes(server_address):
-    worker_pool = multiprocessing.Pool(processes=_PROCESS_COUNT,
-                                       initializer=_initialize_worker,
-                                       initargs=(server_address,))
-    check_range = range(2, _MAXIMUM_CANDIDATE)
-    primality = worker_pool.map(_run_worker_query, check_range)
-    primes = zip(check_range, map(operator.attrgetter('isPrime'), primality))
-    return tuple(primes)
+    print('   ')
+    print("Total Responses Time:", (time.time() - start_time_total), "seconds")
 
-
-def main():
-    msg = 'Determine the primality of the first {} integers.'.format(
-        _MAXIMUM_CANDIDATE)
-    parser = argparse.ArgumentParser(description=msg)
-    parser.add_argument('server_address',
-                        help='The address of the server (e.g. localhost:50051)')
-    args = parser.parse_args()
-    primes = _calculate_primes(args.server_address)
-    print(primes)
+    return res
 
 
 if __name__ == '__main__':
@@ -162,4 +155,43 @@ if __name__ == '__main__':
     handler.setFormatter(formatter)
     _LOGGER.addHandler(handler)
     _LOGGER.setLevel(logging.INFO)
-    main()
+
+    parser = ArgumentParser()
+    parser.add_argument(
+        '--num_images',
+        type=int,
+        default=0,
+        help='Number of Images to Process',
+    )
+
+    parser.add_argument(
+        '--image_path',
+        type=str,
+        default='server/tests/query_images/true_digital_park',
+        help='Path to Image Directory',
+    )
+
+    parser.add_argument(
+        '--image_type',
+        type=str,
+        default='jpg',
+        help='Number of Images to Process',
+    )
+
+    parser.add_argument(
+        '--is_halfsize',
+        type=int,
+        default=1,
+        help='Using subfix "_halfsize" of image for low memory GPU => 0 (False), 1 (True)',
+    )
+
+    parser.add_argument(
+        '--divider',
+        type=int,
+        default=1,
+        help='Divide camera parameter',
+    )
+
+    args = parser.parse_args()
+
+    main(**args.__dict__)

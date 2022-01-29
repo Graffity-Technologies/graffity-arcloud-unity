@@ -6,7 +6,6 @@ import os
 import atexit
 import multiprocessing
 import glob
-import pickle
 
 import cv2
 import image_pb2 as image_pb
@@ -21,14 +20,14 @@ _worker_channel_singleton = None
 _worker_stub_singleton = None
 _PROCESS_COUNT = int(os.getenv("NUM_PROCESS", multiprocessing.cpu_count() / 4))
 
-# print('image_pb', image_pb.ImageRequest())
-# print('image_pb_grpc', image_pb_grpc)
+print('image_pb', image_pb.ImageRequest())
+print('image_pb_grpc', image_pb_grpc)
 
 
 def generate_messages(
-    image_request,
+    image_requests,
 ):
-    for idx, image in enumerate([image_request]):
+    for idx, image in enumerate(image_requests):
         # print(idx, img)
 
         msg = image_pb.ImageRequest(
@@ -45,8 +44,6 @@ def generate_messages(
 def _shutdown_worker():
     print("Shutting worker process down.")
     if _worker_channel_singleton is not None:
-        print('_worker_channel_singleton - _shutdown_worker',
-              _worker_channel_singleton)
         _worker_channel_singleton.stop()
 
 
@@ -61,9 +58,13 @@ def _initialize_worker(host):
 
 
 def _run_worker_query(
-    image_request
+    num_images: int,
+    image_path: str,
+    image_type: str,
+    is_halfsize: bool,
+    divider: int,
 ):
-    print("_run_worker_query")
+    print("Checking %s.", image_path)
 
     metadata = [("x-graff-api-key", "KpN4I5l4G8gFB8HVx6Xd")]
 
@@ -71,7 +72,11 @@ def _run_worker_query(
 
     return _worker_stub_singleton.SendImage(
         generate_messages(
-            image_request
+            num_images,
+            image_path,
+            image_type,
+            is_halfsize=False if is_halfsize == 0 else True,
+            divider=divider,
         ),
         metadata=metadata,
     )
@@ -92,21 +97,18 @@ def client(
     print("worker_pool", worker_pool)
     print('image_requests len', len(image_requests))
 
-    response = worker_pool.map(
-        _run_worker_query,
-        image_requests
-    )
+    responses = worker_pool.map(_run_worker_query, image_requests)
 
-    # for response in responses:
-    #     print(response.message)
-    #     # print("Client received worldCoor: ", response.worldCoor)
-    #     # print("Client received colmapCoor: ", response.colmapCoor)
-    #     results.append(response)
+    for response in responses:
+        print(response.message)
+        # print("Client received worldCoor: ", response.worldCoor)
+        # print("Client received colmapCoor: ", response.colmapCoor)
+        results.append(response)
 
     print("   ")
     print("Total Responses Time:", (time.time() - start_time_total), "seconds")
 
-    return response
+    return results
 
 
 def main(
@@ -165,9 +167,7 @@ def main(
 
         print("append image: %s" % msg.message)
 
-    result = client(image_requests=image_requests)
-
-    print(result)
+    client(image_requests=image_requests)
 
 
 if __name__ == "__main__":
