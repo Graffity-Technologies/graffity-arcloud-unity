@@ -3,11 +3,15 @@ syntax = "proto3";
 package image;
 
 service Image {
-  rpc SendImage (stream ImageRequest) returns (stream ImageResponse) {}
+  rpc SendImage (ImageRequest) returns (ImageResponse) {}
+}
+
+service ImageStream {
+  rpc SendStreamImage (stream ImageRequest) returns (stream ImageResponse) {}
 }
 
 message ImageRequest {
-  string message = 1;
+  string message = 1;/ึภ
   bytes bytesImage = 2;
   Position gpsPosition = 3;
   CameraInfo cameraInfo = 4;
