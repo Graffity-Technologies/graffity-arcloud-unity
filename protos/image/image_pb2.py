@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x0bimage.proto\x12\x05image\"\x80\x01\n\x0cImageRequest\x12\x0f\n\x07message\x18\x01 \x01(\t\x12\x12\n\nbytesImage\x18\x02 \x01(\x0c\x12$\n\x0bgpsPosition\x18\x03 \x01(\x0b\x32\x0f.image.Position\x12%\n\ncameraInfo\x18\x04 \x01(\x0b\x32\x11.image.CameraInfo\"\x8a\x01\n\rImageResponse\x12\x0f\n\x07message\x18\x01 \x01(\t\x12\x10\n\x08\x61\x63\x63uracy\x18\x02 \x01(\x02\x12)\n\tworldCoor\x18\x03 \x01(\x0b\x32\x16.image.WorldCoordinate\x12+\n\ncolmapCoor\x18\x04 \x01(\x0b\x32\x17.image.ColmapCoordinate\"A\n\x08Position\x12\x10\n\x08latitude\x18\x01 \x01(\x01\x12\x11\n\tlongitude\x18\x02 \x01(\x01\x12\x10\n\x08\x61ltitude\x18\x03 \x01(\x01\"f\n\x0fWorldCoordinate\x12\x10\n\x08latitude\x18\x01 \x01(\x01\x12\x11\n\tlongitude\x18\x02 \x01(\x01\x12\x10\n\x08\x61ltitude\x18\x03 \x01(\x01\x12\r\n\x05utm_x\x18\x04 \x01(\x01\x12\r\n\x05utm_y\x18\x05 \x01(\x01\"\x8a\x01\n\x10\x43olmapCoordinate\x12\n\n\x02qw\x18\x01 \x01(\x01\x12\n\n\x02qx\x18\x02 \x01(\x01\x12\n\n\x02qy\x18\x03 \x01(\x01\x12\n\n\x02qz\x18\x04 \x01(\x01\x12\n\n\x02tx\x18\x05 \x01(\x01\x12\n\n\x02ty\x18\x06 \x01(\x01\x12\n\n\x02tz\x18\x07 \x01(\x01\x12\n\n\x02px\x18\x08 \x01(\x01\x12\n\n\x02py\x18\t \x01(\x01\x12\n\n\x02pz\x18\n \x01(\x01\"r\n\nCameraInfo\x12\x18\n\x10pixelFocalLength\x18\x01 \x01(\x02\x12\x17\n\x0fprincipalPointX\x18\x02 \x01(\x02\x12\x17\n\x0fprincipalPointY\x18\x03 \x01(\x02\x12\x18\n\x10radialDistortion\x18\x04 \x01(\x02\x32\x41\n\x05Image\x12\x38\n\tSendImage\x12\x13.image.ImageRequest\x1a\x14.image.ImageResponse\"\x00\x32K\n\x0bImageStream\x12<\n\tSendImage\x12\x13.image.ImageRequest\x1a\x14.image.ImageResponse\"\x00(\x01\x30\x01\x62\x06proto3'
+  serialized_pb=b'\n\x0bimage.proto\x12\x05image\"\x80\x01\n\x0cImageRequest\x12\x0f\n\x07message\x18\x01 \x01(\t\x12\x12\n\nbytesImage\x18\x02 \x01(\x0c\x12$\n\x0bgpsPosition\x18\x03 \x01(\x0b\x32\x0f.image.Position\x12%\n\ncameraInfo\x18\x04 \x01(\x0b\x32\x11.image.CameraInfo\"\x8a\x01\n\rImageResponse\x12\x0f\n\x07message\x18\x01 \x01(\t\x12\x10\n\x08\x61\x63\x63uracy\x18\x02 \x01(\x02\x12)\n\tworldCoor\x18\x03 \x01(\x0b\x32\x16.image.WorldCoordinate\x12+\n\ncolmapCoor\x18\x04 \x01(\x0b\x32\x17.image.ColmapCoordinate\"f\n\x14\x41vailableAreaRequest\x12$\n\x0bgpsPosition\x18\x01 \x01(\x0b\x32\x0f.image.Position\x12\x13\n\x0bmaxDistance\x18\x02 \x01(\x05\x12\x13\n\x0bminDistance\x18\x03 \x01(\x05\"c\n\x15\x41vailableAreaResponse\x12\x0f\n\x07message\x18\x01 \x01(\t\x12\x13\n\x0bisAvailable\x18\x02 \x01(\x08\x12$\n\x0bgpsPosition\x18\x03 \x01(\x0b\x32\x0f.image.Position\"A\n\x08Position\x12\x10\n\x08latitude\x18\x01 \x01(\x01\x12\x11\n\tlongitude\x18\x02 \x01(\x01\x12\x10\n\x08\x61ltitude\x18\x03 \x01(\x01\"f\n\x0fWorldCoordinate\x12\x10\n\x08latitude\x18\x01 \x01(\x01\x12\x11\n\tlongitude\x18\x02 \x01(\x01\x12\x10\n\x08\x61ltitude\x18\x03 \x01(\x01\x12\r\n\x05utm_x\x18\x04 \x01(\x01\x12\r\n\x05utm_y\x18\x05 \x01(\x01\"\x8a\x01\n\x10\x43olmapCoordinate\x12\n\n\x02qw\x18\x01 \x01(\x01\x12\n\n\x02qx\x18\x02 \x01(\x01\x12\n\n\x02qy\x18\x03 \x01(\x01\x12\n\n\x02qz\x18\x04 \x01(\x01\x12\n\n\x02tx\x18\x05 \x01(\x01\x12\n\n\x02ty\x18\x06 \x01(\x01\x12\n\n\x02tz\x18\x07 \x01(\x01\x12\n\n\x02px\x18\x08 \x01(\x01\x12\n\n\x02py\x18\t \x01(\x01\x12\n\n\x02pz\x18\n \x01(\x01\"r\n\nCameraInfo\x12\x18\n\x10pixelFocalLength\x18\x01 \x01(\x02\x12\x17\n\x0fprincipalPointX\x18\x02 \x01(\x02\x12\x17\n\x0fprincipalPointY\x18\x03 \x01(\x02\x12\x18\n\x10radialDistortion\x18\x04 \x01(\x02\x32\x41\n\x05Image\x12\x38\n\tSendImage\x12\x13.image.ImageRequest\x1a\x14.image.ImageResponse\"\x00\x32Q\n\x0bImageStream\x12\x42\n\x0fSendStreamImage\x12\x13.image.ImageRequest\x1a\x14.image.ImageResponse\"\x00(\x01\x30\x01\x32\x62\n\rAvailableArea\x12Q\n\x12\x43heckAvailableArea\x12\x1b.image.AvailableAreaRequest\x1a\x1c.image.AvailableAreaResponse\"\x00\x62\x06proto3'
 )
 
 
@@ -131,6 +131,98 @@ _IMAGERESPONSE = _descriptor.Descriptor(
 )
 
 
+_AVAILABLEAREAREQUEST = _descriptor.Descriptor(
+  name='AvailableAreaRequest',
+  full_name='image.AvailableAreaRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='gpsPosition', full_name='image.AvailableAreaRequest.gpsPosition', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='maxDistance', full_name='image.AvailableAreaRequest.maxDistance', index=1,
+      number=2, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='minDistance', full_name='image.AvailableAreaRequest.minDistance', index=2,
+      number=3, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=294,
+  serialized_end=396,
+)
+
+
+_AVAILABLEAREARESPONSE = _descriptor.Descriptor(
+  name='AvailableAreaResponse',
+  full_name='image.AvailableAreaResponse',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='message', full_name='image.AvailableAreaResponse.message', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='isAvailable', full_name='image.AvailableAreaResponse.isAvailable', index=1,
+      number=2, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='gpsPosition', full_name='image.AvailableAreaResponse.gpsPosition', index=2,
+      number=3, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=398,
+  serialized_end=497,
+)
+
+
 _POSITION = _descriptor.Descriptor(
   name='Position',
   full_name='image.Position',
@@ -172,8 +264,8 @@ _POSITION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=294,
-  serialized_end=359,
+  serialized_start=499,
+  serialized_end=564,
 )
 
 
@@ -232,8 +324,8 @@ _WORLDCOORDINATE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=361,
-  serialized_end=463,
+  serialized_start=566,
+  serialized_end=668,
 )
 
 
@@ -327,8 +419,8 @@ _COLMAPCOORDINATE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=466,
-  serialized_end=604,
+  serialized_start=671,
+  serialized_end=809,
 )
 
 
@@ -380,16 +472,20 @@ _CAMERAINFO = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=606,
-  serialized_end=720,
+  serialized_start=811,
+  serialized_end=925,
 )
 
 _IMAGEREQUEST.fields_by_name['gpsPosition'].message_type = _POSITION
 _IMAGEREQUEST.fields_by_name['cameraInfo'].message_type = _CAMERAINFO
 _IMAGERESPONSE.fields_by_name['worldCoor'].message_type = _WORLDCOORDINATE
 _IMAGERESPONSE.fields_by_name['colmapCoor'].message_type = _COLMAPCOORDINATE
+_AVAILABLEAREAREQUEST.fields_by_name['gpsPosition'].message_type = _POSITION
+_AVAILABLEAREARESPONSE.fields_by_name['gpsPosition'].message_type = _POSITION
 DESCRIPTOR.message_types_by_name['ImageRequest'] = _IMAGEREQUEST
 DESCRIPTOR.message_types_by_name['ImageResponse'] = _IMAGERESPONSE
+DESCRIPTOR.message_types_by_name['AvailableAreaRequest'] = _AVAILABLEAREAREQUEST
+DESCRIPTOR.message_types_by_name['AvailableAreaResponse'] = _AVAILABLEAREARESPONSE
 DESCRIPTOR.message_types_by_name['Position'] = _POSITION
 DESCRIPTOR.message_types_by_name['WorldCoordinate'] = _WORLDCOORDINATE
 DESCRIPTOR.message_types_by_name['ColmapCoordinate'] = _COLMAPCOORDINATE
@@ -409,6 +505,20 @@ ImageResponse = _reflection.GeneratedProtocolMessageType('ImageResponse', (_mess
   # @@protoc_insertion_point(class_scope:image.ImageResponse)
   })
 _sym_db.RegisterMessage(ImageResponse)
+
+AvailableAreaRequest = _reflection.GeneratedProtocolMessageType('AvailableAreaRequest', (_message.Message,), {
+  'DESCRIPTOR' : _AVAILABLEAREAREQUEST,
+  '__module__' : 'image_pb2'
+  # @@protoc_insertion_point(class_scope:image.AvailableAreaRequest)
+  })
+_sym_db.RegisterMessage(AvailableAreaRequest)
+
+AvailableAreaResponse = _reflection.GeneratedProtocolMessageType('AvailableAreaResponse', (_message.Message,), {
+  'DESCRIPTOR' : _AVAILABLEAREARESPONSE,
+  '__module__' : 'image_pb2'
+  # @@protoc_insertion_point(class_scope:image.AvailableAreaResponse)
+  })
+_sym_db.RegisterMessage(AvailableAreaResponse)
 
 Position = _reflection.GeneratedProtocolMessageType('Position', (_message.Message,), {
   'DESCRIPTOR' : _POSITION,
@@ -447,8 +557,8 @@ _IMAGE = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=722,
-  serialized_end=787,
+  serialized_start=927,
+  serialized_end=992,
   methods=[
   _descriptor.MethodDescriptor(
     name='SendImage',
@@ -473,12 +583,12 @@ _IMAGESTREAM = _descriptor.ServiceDescriptor(
   index=1,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=789,
-  serialized_end=864,
+  serialized_start=994,
+  serialized_end=1075,
   methods=[
   _descriptor.MethodDescriptor(
-    name='SendImage',
-    full_name='image.ImageStream.SendImage',
+    name='SendStreamImage',
+    full_name='image.ImageStream.SendStreamImage',
     index=0,
     containing_service=None,
     input_type=_IMAGEREQUEST,
@@ -490,5 +600,31 @@ _IMAGESTREAM = _descriptor.ServiceDescriptor(
 _sym_db.RegisterServiceDescriptor(_IMAGESTREAM)
 
 DESCRIPTOR.services_by_name['ImageStream'] = _IMAGESTREAM
+
+
+_AVAILABLEAREA = _descriptor.ServiceDescriptor(
+  name='AvailableArea',
+  full_name='image.AvailableArea',
+  file=DESCRIPTOR,
+  index=2,
+  serialized_options=None,
+  create_key=_descriptor._internal_create_key,
+  serialized_start=1077,
+  serialized_end=1175,
+  methods=[
+  _descriptor.MethodDescriptor(
+    name='CheckAvailableArea',
+    full_name='image.AvailableArea.CheckAvailableArea',
+    index=0,
+    containing_service=None,
+    input_type=_AVAILABLEAREAREQUEST,
+    output_type=_AVAILABLEAREARESPONSE,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+])
+_sym_db.RegisterServiceDescriptor(_AVAILABLEAREA)
+
+DESCRIPTOR.services_by_name['AvailableArea'] = _AVAILABLEAREA
 
 # @@protoc_insertion_point(module_scope)

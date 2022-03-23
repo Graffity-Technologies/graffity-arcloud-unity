@@ -63,9 +63,15 @@ def generate_messages(
         query_images = query_images[0:1]
 
     # inside TDPK
+    # gpsPosition = image_pb.Position(
+    #     latitude=13.685685,
+    #     longitude=100.611000,
+    #     altitude=0.0
+    # )
+    # Bank Room
     gpsPosition = image_pb.Position(
-        latitude=13.685685,
-        longitude=100.611000,
+        latitude=13.579003,
+        longitude=100.109626,
         altitude=0.0
     )
     # inside OneSiam Skywalk
@@ -124,7 +130,7 @@ def main(
         # for response in responses:
         print("Client received message: ", response.message)
         # print("Client received worldCoor: ", response.worldCoor)
-        # print("Client received colmapCoor: ", response.colmapCoor)
+        print("Client received colmapCoor: ", response.colmapCoor)
         # res.append(MessageToDict(response.colmapCoor))
 
     print('---------------------------------------')

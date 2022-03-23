@@ -15,10 +15,10 @@ class ImageStub(object):
             channel: A grpc.Channel.
         """
         self.SendImage = channel.unary_unary(
-            '/image.Image/SendImage',
-            request_serializer=image__pb2.ImageRequest.SerializeToString,
-            response_deserializer=image__pb2.ImageResponse.FromString,
-        )
+                '/image.Image/SendImage',
+                request_serializer=image__pb2.ImageRequest.SerializeToString,
+                response_deserializer=image__pb2.ImageResponse.FromString,
+                )
 
 
 class ImageServicer(object):
@@ -33,38 +33,37 @@ class ImageServicer(object):
 
 def add_ImageServicer_to_server(servicer, server):
     rpc_method_handlers = {
-        'SendImage': grpc.unary_unary_rpc_method_handler(
-            servicer.SendImage,
-            request_deserializer=image__pb2.ImageRequest.FromString,
-            response_serializer=image__pb2.ImageResponse.SerializeToString,
-        ),
+            'SendImage': grpc.unary_unary_rpc_method_handler(
+                    servicer.SendImage,
+                    request_deserializer=image__pb2.ImageRequest.FromString,
+                    response_serializer=image__pb2.ImageResponse.SerializeToString,
+            ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-        'image.Image', rpc_method_handlers)
+            'image.Image', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
 
+
  # This class is part of an EXPERIMENTAL API.
-
-
 class Image(object):
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
     def SendImage(request,
-                  target,
-                  options=(),
-                  channel_credentials=None,
-                  call_credentials=None,
-                  insecure=False,
-                  compression=None,
-                  wait_for_ready=None,
-                  timeout=None,
-                  metadata=None):
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
         return grpc.experimental.unary_unary(request, target, '/image.Image/SendImage',
-                                             image__pb2.ImageRequest.SerializeToString,
-                                             image__pb2.ImageResponse.FromString,
-                                             options, channel_credentials,
-                                             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+            image__pb2.ImageRequest.SerializeToString,
+            image__pb2.ImageResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
 
 class ImageStreamStub(object):
@@ -76,17 +75,17 @@ class ImageStreamStub(object):
         Args:
             channel: A grpc.Channel.
         """
-        self.SendImage = channel.stream_stream(
-            '/image.ImageStream/SendImage',
-            request_serializer=image__pb2.ImageRequest.SerializeToString,
-            response_deserializer=image__pb2.ImageResponse.FromString,
-        )
+        self.SendStreamImage = channel.stream_stream(
+                '/image.ImageStream/SendStreamImage',
+                request_serializer=image__pb2.ImageRequest.SerializeToString,
+                response_deserializer=image__pb2.ImageResponse.FromString,
+                )
 
 
 class ImageStreamServicer(object):
     """Missing associated documentation comment in .proto file."""
 
-    def SendImage(self, request_iterator, context):
+    def SendStreamImage(self, request_iterator, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -95,35 +94,95 @@ class ImageStreamServicer(object):
 
 def add_ImageStreamServicer_to_server(servicer, server):
     rpc_method_handlers = {
-        'SendImage': grpc.stream_stream_rpc_method_handler(
-            servicer.SendImage,
-            request_deserializer=image__pb2.ImageRequest.FromString,
-            response_serializer=image__pb2.ImageResponse.SerializeToString,
-        ),
+            'SendStreamImage': grpc.stream_stream_rpc_method_handler(
+                    servicer.SendStreamImage,
+                    request_deserializer=image__pb2.ImageRequest.FromString,
+                    response_serializer=image__pb2.ImageResponse.SerializeToString,
+            ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-        'image.ImageStream', rpc_method_handlers)
+            'image.ImageStream', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
 
+
  # This class is part of an EXPERIMENTAL API.
-
-
 class ImageStream(object):
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
-    def SendImage(request_iterator,
-                  target,
-                  options=(),
-                  channel_credentials=None,
-                  call_credentials=None,
-                  insecure=False,
-                  compression=None,
-                  wait_for_ready=None,
-                  timeout=None,
-                  metadata=None):
-        return grpc.experimental.stream_stream(request_iterator, target, '/image.ImageStream/SendImage',
-                                               image__pb2.ImageRequest.SerializeToString,
-                                               image__pb2.ImageResponse.FromString,
-                                               options, channel_credentials,
-                                               insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+    def SendStreamImage(request_iterator,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.stream_stream(request_iterator, target, '/image.ImageStream/SendStreamImage',
+            image__pb2.ImageRequest.SerializeToString,
+            image__pb2.ImageResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+
+class AvailableAreaStub(object):
+    """Missing associated documentation comment in .proto file."""
+
+    def __init__(self, channel):
+        """Constructor.
+
+        Args:
+            channel: A grpc.Channel.
+        """
+        self.CheckAvailableArea = channel.unary_unary(
+                '/image.AvailableArea/CheckAvailableArea',
+                request_serializer=image__pb2.AvailableAreaRequest.SerializeToString,
+                response_deserializer=image__pb2.AvailableAreaResponse.FromString,
+                )
+
+
+class AvailableAreaServicer(object):
+    """Missing associated documentation comment in .proto file."""
+
+    def CheckAvailableArea(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+
+def add_AvailableAreaServicer_to_server(servicer, server):
+    rpc_method_handlers = {
+            'CheckAvailableArea': grpc.unary_unary_rpc_method_handler(
+                    servicer.CheckAvailableArea,
+                    request_deserializer=image__pb2.AvailableAreaRequest.FromString,
+                    response_serializer=image__pb2.AvailableAreaResponse.SerializeToString,
+            ),
+    }
+    generic_handler = grpc.method_handlers_generic_handler(
+            'image.AvailableArea', rpc_method_handlers)
+    server.add_generic_rpc_handlers((generic_handler,))
+
+
+ # This class is part of an EXPERIMENTAL API.
+class AvailableArea(object):
+    """Missing associated documentation comment in .proto file."""
+
+    @staticmethod
+    def CheckAvailableArea(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/image.AvailableArea/CheckAvailableArea',
+            image__pb2.AvailableAreaRequest.SerializeToString,
+            image__pb2.AvailableAreaResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

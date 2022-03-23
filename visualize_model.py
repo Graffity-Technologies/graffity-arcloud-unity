@@ -228,8 +228,17 @@ def main():
     # res_tvec = np.array([float(t)
     #                      for t in input('enter tvec: ').strip().split()])
 
-    q_dict = {}
-    t_dict = {}
+    q_dict = {
+        "qw": 0.2674699743140002,
+        "qx": 0.016563741073967426,
+        "qy": 0.941245916036931,
+        "qz": 0.20552756716776904
+    }
+    t_dict = {
+        "tx": -1.5195787497233195,
+        "ty": 0.8617002165880185,
+        "tz": 0.08689273706526615
+    }
     res_qvec = np.array([q_dict["qw"], q_dict["qx"],
                         q_dict["qy"], q_dict["qz"]])
     res_tvec = np.array([t_dict["tx"], t_dict["ty"], t_dict["tz"]])

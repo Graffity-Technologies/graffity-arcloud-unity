@@ -5,6 +5,10 @@ confs = [
         "res": "1080",
         "divider": 2,
     },
+    # {
+    #     "res": "540",
+    #     "divider": 4,
+    # },
 ]
 
 poses = None
@@ -12,8 +16,8 @@ poses = None
 
 def loc():
     for conf in confs:
-        image_dir_name = "IMG_2838/2/" + conf["res"]
-        image_path = f"images/TDPK/{image_dir_name}"
+        image_dir_name = conf["res"]  # "IMG_2838/2/" +
+        image_path = f"images/BankRoom/{image_dir_name}"
         num_images = 1
         image_type = "jpg"
         is_half = False
