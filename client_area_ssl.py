@@ -19,18 +19,18 @@ def main():
         ]
 
         # Bank Room
-        gpsPosition = image_pb.Position(
-            latitude=13.579003,
-            longitude=100.109626,
-            altitude=0.0
-        )
-
-        # inside TDPK
         # gpsPosition = image_pb.Position(
-        #     latitude=13.685685,
-        #     longitude=100.611000,
+        #     latitude=13.579003,
+        #     longitude=100.109626,
         #     altitude=0.0
         # )
+
+        # inside TDPK
+        gpsPosition = image_pb.Position(
+            latitude=13.685685,
+            longitude=100.611000,
+            altitude=0.0
+        )
 
         # inside OneSiam Skywalk
         # gpsPosition = image_pb.Position(

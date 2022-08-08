@@ -26,14 +26,15 @@ def generate_messages(
     for image in glob.iglob(
         f'{image_path}/' + '**/*.' + image_type, recursive=True
     ):
-        if (is_halfsize):
-            if "halfsize" in image:
-                query_images.append(image)
-            else:
-                continue
-        else:
-            if "halfsize" not in image:
-                query_images.append(image)
+        query_images.append(image)
+        # if (is_halfsize):
+        #     if "halfsize" in image:
+        #         query_images.append(image)
+        #     else:
+        #         continue
+        # else:
+        #     if "halfsize" not in image:
+        #         query_images.append(image)
 
     # iPhone12 .builtInDualWideCamera
     cameraInfo = image_pb.CameraInfo(
@@ -144,7 +145,7 @@ if __name__ == '__main__':
     parser.add_argument(
         '--num_images',
         type=int,
-        default=0,
+        default=1,
         help='Number of Images to Process',
     )
 
