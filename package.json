@@ -1,0 +1,28 @@
+{
+    "name": "com.graffity.unity.arcloud",
+    "version": "4.1.10",
+    "displayName": "Graffity ARCloud",
+    "description": "ARCloud SDK in Unity Package",
+    "unity": "2019.4",
+    "unityRelease": "",
+    "documentationUrl": "https://developers.graffity.tech/",
+    "changelogUrl": "https://developers.graffity.tech/",
+    "licensesUrl": "https://developers.graffity.tech/",
+    "dependencies": {
+        "com.unity.xr.arfoundation": "4.1.10",
+        "com.unity.xr.arcore": "4.1.10",
+        "com.unity.xr.arkit": "4.1.10"
+    },
+    "keywords": [
+        "AR Cloud",
+        "AR Navigation"
+    ],
+    "author": {
+        "name": "Graffity Technologies Co., Ltd.",
+        "email": "contact@graffity.in",
+        "url": "https://graffity.in"
+    },
+    "bugs": {
+        "url": "https://github.com/Graffity-Technologies/graffity-arcloud-unity/issues"
+    }
+}
