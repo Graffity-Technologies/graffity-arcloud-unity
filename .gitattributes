@@ -1,1 +1,6 @@
-Plugins/** filter=lfs diff=lfs merge=lfs -text
+**/Google.Protobuf/** filter=lfs diff=lfs merge=lfs -text
+**/Grpc.Core/** filter=lfs diff=lfs merge=lfs -text
+**/Grpc.Core.Api/** filter=lfs diff=lfs merge=lfs -text
+**/System.Buffers/** filter=lfs diff=lfs merge=lfs -text
+**/System.Memory/** filter=lfs diff=lfs merge=lfs -text
+**/System.Runtime.CompilerServices.Unsafe/** filter=lfs diff=lfs merge=lfs -text
