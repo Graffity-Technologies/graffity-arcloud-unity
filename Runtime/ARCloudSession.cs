@@ -133,7 +133,7 @@ namespace UnityEngine.Graffity.ARCloud
             Status = ARCloudSessionStatus.Initialized;
         }
 
-        public void StartLocalize()
+        public void StartLocalize(LocalizeStrategy strategy = LocalizeStrategy.LAST_POINT_DIFF_MEDPRECISION)
         {
             if (Status != ARCloudSessionStatus.Initialized)
                 throw new ARCloudException("ARCloudSession not initialized");
@@ -141,7 +141,7 @@ namespace UnityEngine.Graffity.ARCloud
             if (currentLocalizeTask != null)
                 currentLocalizeTask.state = LocalizeTaskState.Expire;
                 
-            currentLocalizeTask = new LocalizeTask();
+            currentLocalizeTask = new LocalizeTask(strategy);
         }
 
         internal void AdjustOriginPose(Vector3 translation, Vector3 Scale, Quaternion Rotation)
