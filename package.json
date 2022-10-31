@@ -9,7 +9,9 @@
   "licensesUrl": "https://developers.graffity.tech/",
   "dependencies": {
     "com.unity.xr.arfoundation": "4.1.12",
-    "com.unity.xr.arsubsystems": "4.1.12"
+    "com.unity.xr.arsubsystems": "4.1.12",
+    "com.unity.xr.arcore": "4.1.12",
+    "com.unity.xr.arkit": "4.1.12"
   },
   "keywords": [
     "AR Cloud",
