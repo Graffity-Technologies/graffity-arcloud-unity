@@ -7,6 +7,7 @@ namespace UnityEngine.Graffity.ARCloud
     public class ApiCredConfig : ScriptableObject
     {
         public string graffApiKey;
+        public string accessToken;
     }
 }
 
