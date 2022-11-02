@@ -123,6 +123,12 @@ namespace UnityEngine.Graffity.ARCloud
 
             refModelPositionGps = referencePositionGps;
 
+            var accessToken = apiCredConfig.accessToken;
+            if (!await AccessTokenController.IsValidAccessToken(accessToken))
+            {
+                throw new ARCloudExceptionNotAvailable("Access token not valid");
+            }
+            
             grpcManager.ConnectServers();
             
             if (!await grpcManager.ValidateConnections())
@@ -217,7 +223,13 @@ namespace UnityEngine.Graffity.ARCloud
             return solveTransformation;
             
         }
-        
+
+        [ContextMenu("Test Validate Access Token")]
+        void TestAccessToken()
+        {
+            AccessTokenController.TestAccessToken();
+        }
+
     }
 
     public enum ARCloudSessionStatus
