@@ -15,7 +15,7 @@ internal class JsonSerializationOption : ISerializationOption
         }
         catch (Exception ex)
         {
-            Debug.LogError($"Could not parse response {jsonString}. {ex.Message}");
+            // Debug.LogError($"Could not parse response {jsonString}. {ex.Message}");
             return default;
         }
     }

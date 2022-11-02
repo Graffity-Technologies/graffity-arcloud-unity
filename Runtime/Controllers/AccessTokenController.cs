@@ -2,11 +2,11 @@ using System.Threading.Tasks;
 
 namespace UnityEngine.Graffity.ARCloud
 {
-    internal static class AccessTokenController
+    public static class AccessTokenController
     {
         const string GraffityConsoleBackendURL = "https://console-backend-xoeyqjvd6q-as.a.run.app"; // "http://localhost:8080";
 
-        internal static async Task<bool> IsValidAccessToken(string rawToken)
+        public static async Task<bool> IsValidAccessToken(string rawToken)
         {
             var url = GraffityConsoleBackendURL + "/api/v1/access-token/validate";
 
@@ -30,7 +30,7 @@ namespace UnityEngine.Graffity.ARCloud
             }
         }
 
-        internal async static void TestAccessToken()
+        public async static void TestAccessToken()
         {
             var a = await IsValidAccessToken("sk.SEMwSGpWZURsbFBocVBTZ3FYWC1LZkFrQlA5ZkdHM09SR1k2ZVZGeHNvWlpQQldNc3Z0T0pUT2JlWTZJUnhxcmNlSERvLUdmcDgzR1hsSzRyUGVFLWJSUkJaVmRzTW1W");
             Debug.Log(a);
