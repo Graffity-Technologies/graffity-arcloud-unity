@@ -1,0 +1,55 @@
+﻿syntax = "proto3";
+package solver;
+
+service StatusCheck {
+  rpc Check (Empty) returns (CheckResponse) {}
+}
+
+message Empty {
+}
+
+message CheckResponse {
+  string message = 1;
+  bool status = 2;
+}
+
+service Solver {
+  rpc Solve (SolveRequest) returns (SolveResponse);
+}
+
+message SolveRequest {
+  string message = 1;
+  repeated Coordinate arCoordinate = 2;
+  repeated Coordinate vpsCoordinate = 3;
+  Transformation refTransform = 4;
+}
+
+message SolveResponse {
+  string message = 1;
+  Transformation transform = 2;
+}
+
+message Coordinate {
+  Vec3 position = 1;
+  Vec4 rotation = 2;
+}
+
+message Transformation {
+  Vec3 translation = 1;
+  Vec3 scale = 2;
+  Vec4 rotation = 3;
+}
+
+message Vec3 {
+  double x = 1;
+  double y = 2;
+  double z = 3;
+}
+
+message Vec4 {
+  double x = 1;
+  double y = 2;
+  double z = 3;
+  double w = 4;
+
+}
