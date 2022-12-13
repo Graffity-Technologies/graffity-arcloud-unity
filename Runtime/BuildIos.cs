@@ -34,6 +34,9 @@ class BuildIos: IPostprocessBuildWithReport
             target = pbxProject.GetUnityFrameworkTargetGuid();
             pbxProject.SetBuildProperty(target, "ENABLE_BITCODE", "NO");
 
+            // libz.tbd for grpc ios build
+            pbxProject.AddFrameworkToProject(target, "libz.tbd", false);
+
             pbxProject.WriteToFile(projectPath);
         }
     }

@@ -3,36 +3,44 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Graffity.ARCloud;
 using UnityEngine.UI;
+using UnityEngine.Video;
 using UnityEngine.XR.ARFoundation;
 
 public class ARCloudSampleView : MonoBehaviour
 {
-    public Button InitButton;
+    [SerializeField]
     public Button StartARButton;
-    public Text StatusText;
+    [SerializeField]
+    public Text statusText;
+    [SerializeField]
     public ARSessionOrigin arSessionOrigin;
+    [SerializeField]
+    public VideoPlayer arGuidelinePlayer;
 
     private void Start()
     {
-        InitButton.onClick.AddListener(() =>
+        StartARButton.onClick.AddListener(async () =>
         {
-            ARCloudSession.instance.Init(new PositionGps()
+            await ARCloudSession.instance.Init(new PositionGps()
             {
                 Latitude = 0.0,
                 Longitude = 0.0,
                 Altitude = 0.0
             });
-        });
-        StartARButton.onClick.AddListener(() =>
-        {
+
             ARCloudSession.instance.StartLocalize(LocalizeStrategy.LAST_POINT_DIFF_MEDPRECISION);
         });
     }
 
     private void Update()
     {
-        StatusText.text =
-            $"localizeState: {ARCloudSession.instance.localizeState}\n" +
-            $"localizeProgress: {ARCloudSession.instance.localizeProgress * 100}%\n";
+        statusText.text = $"A process of {ARCloudSession.instance.localizeProgress * 100}% complete\nPlease walk a bit while scanning";
+
+        if (ARCloudSession.instance.localizeProgress == 1.0)
+        {
+            arGuidelinePlayer.Stop();
+            arGuidelinePlayer.gameObject.SetActive(false);
+            statusText.enabled = false;
+        }
     }
 }
