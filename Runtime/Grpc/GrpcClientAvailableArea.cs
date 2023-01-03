@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Grpc.Core;
-using Image;
+using Vpsimage;
 
 namespace UnityEngine.Graffity.ARCloud
 {

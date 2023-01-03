@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package image;
+package vpsimage;
 
 service Image {
   rpc SendImage (ImageRequest) returns (ImageResponse) {}

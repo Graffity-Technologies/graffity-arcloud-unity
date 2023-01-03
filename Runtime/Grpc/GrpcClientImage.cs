@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Image;
+using Vpsimage;
 
 namespace UnityEngine.Graffity.ARCloud
 {
@@ -13,8 +13,8 @@ namespace UnityEngine.Graffity.ARCloud
         
         public override async Task<object> SendGrpcAsync<TRequest>(TRequest info)
         {
-            var client = new Image.Image.ImageClient(grpcChannel);
-            var reply = await client.SendImageAsync(info as ImageRequest, headers:grpcHeader, deadline: DateTime.UtcNow.AddSeconds(10));
+            var client = new Vpsimage.Image.ImageClient(grpcChannel);
+            var reply = await client.SendImageAsync(info as ImageRequest, headers:grpcHeader, deadline: DateTime.UtcNow.AddSeconds(20));
             return reply;
         }
     }

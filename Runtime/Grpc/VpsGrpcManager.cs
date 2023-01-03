@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Grpc.Core;
-using Image;
+using Vpsimage;
 using Solver;
 using UnityEngine;
 using UnityEngine.Graffity.ARCloud;
@@ -11,13 +11,16 @@ namespace UnityEngine.Graffity.ARCloud
 {
     public class VpsGrpcManager
     {
+        //TODO not expose image client or refractor vpsGrpcManager
         private GrpcClientAvailableArea availableAreaClient;
-        private GrpcClientImage imageClient;
+        public GrpcClientImage imageClient;
         private GrpcClientSolver solverClient;
         private GrpcClientSolverCheck solverCheckClient;
+        private ApiCredConfig apiCredConfig;
 
         public VpsGrpcManager(ApiCredConfig apiCredConfig)
         {
+            this.apiCredConfig = apiCredConfig;
             availableAreaClient = new GrpcClientAvailableArea(VpsGrpcConstant.IMAGE_HOST_NAME, apiCredConfig.consoleAccessToken);
             imageClient = new GrpcClientImage(VpsGrpcConstant.IMAGE_HOST_NAME, apiCredConfig.consoleAccessToken);
 // #if UNITY_EDITOR
@@ -27,8 +30,16 @@ namespace UnityEngine.Graffity.ARCloud
 //             solverClient = new GrpcClientSolver("192.168.1.101", apiCredConfig.graffApiKey);
 //             solverCheckClient = new GrpcClientSolverCheck("192.168.1.101", apiCredConfig.graffApiKey);
 // #else
-            solverClient = new GrpcClientSolver(VpsGrpcConstant.SOLVER_HOST_NAME, apiCredConfig.consoleAccessToken);
-            solverCheckClient = new GrpcClientSolverCheck(VpsGrpcConstant.SOLVER_HOST_NAME, apiCredConfig.consoleAccessToken);
+            var solverHost = apiCredConfig._useCustomSolverServer
+                ? apiCredConfig._customSolverHost
+                : VpsGrpcConstant.SOLVER_HOST_NAME;
+            
+            
+            if (apiCredConfig._useCustomSolverServer)
+                Debug.LogWarning($"Use custom solver host: {apiCredConfig._customSolverHost}");
+            
+            solverClient = new GrpcClientSolver(solverHost, apiCredConfig.consoleAccessToken);
+            solverCheckClient = new GrpcClientSolverCheck(solverHost, apiCredConfig.consoleAccessToken);
 // #endif
         }
 
@@ -36,8 +47,11 @@ namespace UnityEngine.Graffity.ARCloud
         {
             availableAreaClient.ConnectServer();
             imageClient.ConnectServer();
-            solverClient.ConnectServer();
-            solverCheckClient.ConnectServer();
+
+            var isSolverConnectionSecure = !apiCredConfig._useCustomSolverServer || apiCredConfig._isSecure;
+            
+            solverClient.ConnectServer(secure:isSolverConnectionSecure);
+            solverCheckClient.ConnectServer(secure:isSolverConnectionSecure);
         }
 
         public async Task<bool> ValidateConnections()
@@ -167,7 +181,6 @@ namespace UnityEngine.Graffity.ARCloud
             catch (Exception e)
             {
                 onErrorCb?.Invoke(e);
-                Debug.Log(e);
             }
         }
 

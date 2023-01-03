@@ -3,14 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Google.Protobuf;
-using Image;
+using Vpsimage;
 
 namespace UnityEngine.Graffity.ARCloud
 {
     internal class LocalizeTask
     {
-        private const float UPDATE_DISTANCE_THRESH = 0.25f;
+        private const float UPDATE_DISTANCE_THRESH = 0.2f;
+        private const float UPDATE_ROT_THRESH = Mathf.PI/5;
         private const int MAX_PENDING_REQUEST = 4;
+
+        private LocalizeStrategy strategy;
         
         internal Dictionary<long, PosePair> localizeData;
         private long _lastKey;
@@ -18,11 +21,17 @@ namespace UnityEngine.Graffity.ARCloud
         internal int requirePoint;
         internal LocalizeTaskState state;
         private Vector3 lastArPosition;
+        private Quaternion lastArRotation;
+        private string solverGuideMessage;
+
+        private int missPoint;
 
         public float progress => (float)localizeData.Count / requirePoint;
+        public string progressMessage => $"{localizeData.Count} / {requirePoint} : {pendingRequestCount} x {missPoint}";
 
-        public LocalizeTask(LocalizeStrategy strategy = LocalizeStrategy.LAST_POINT_DIFF_HIGHPRECISION)
+        public LocalizeTask(LocalizeStrategy strategy)
         {
+            this.strategy = strategy;
             localizeData = new Dictionary<long, PosePair>();
             _lastKey = -1;
             pendingRequestCount = 0;
@@ -37,6 +46,10 @@ namespace UnityEngine.Graffity.ARCloud
                 case LocalizeStrategy.LAST_POINT_DIFF_HIGHPRECISION:
                     requirePoint = 50;
                     break;
+                case LocalizeStrategy.ANGLE_SOLVER:
+                    requirePoint = 10;
+                    solverGuideMessage = "ANGLE_SOLVER";
+                    break;
                 default:
                     requirePoint = 10;
                     break;
@@ -44,7 +57,8 @@ namespace UnityEngine.Graffity.ARCloud
             this.requirePoint = requirePoint;
             state = LocalizeTaskState.CollectingPoint;
             lastArPosition = Vector3.negativeInfinity;
-            
+            lastArRotation = Quaternion.identity;
+
         }
         
         internal bool ShouldAddPoint()
@@ -58,19 +72,31 @@ namespace UnityEngine.Graffity.ARCloud
             if (lastArPosition == Vector3.negativeInfinity)
                 return true;
             
-            var arLocalPosition = ARCloudSession.instance.cameraManager.transform.position;
+            // global position ensure user canvas scale
+            var arLocalPosition = ARCloudSession.instance.cameraManager.transform.localPosition;
+            var arLocalRotation = ARCloudSession.instance.cameraManager.transform.localRotation;
             
             var localDist = Vector3.Distance(arLocalPosition, lastArPosition);
             if (localDist >= UPDATE_DISTANCE_THRESH)
                 return true;
+
+            if (strategy == LocalizeStrategy.ANGLE_SOLVER)
+            {
+                var localRotDist = Quaternion.Dot(lastArRotation, arLocalRotation);
+                if (localRotDist >= UPDATE_ROT_THRESH)
+                    return true;
+            }
             
             return false;
         }
+        
+        
 
-        internal async void AddPoint(Pose arPose, Task<ImageResponse> vpsReqTask)
+        internal async Task AddPoint(Pose arPose, Task<ImageResponse> vpsReqTask)
         {
             var key = HiResDateTime.UtcNowTicks;
             lastArPosition = arPose.Position;
+            lastArRotation = arPose.Rotation;
             
             // TODO
             ImageResponse response;
@@ -81,20 +107,36 @@ namespace UnityEngine.Graffity.ARCloud
             }
             catch (Exception e)
             {
-                Debug.Log(e);
+                // Debug.Log(e);
+                missPoint += 1;
+                Debug.LogWarning($"miss point exception {e}");
                 return;
             }
             finally
             {
                 pendingRequestCount -= 1;
             }
-            
+
             if (response == null)
+            {
+                Debug.LogWarning("miss point response null");
+                missPoint += 1;
                 return;
+            }
+            
             if (!response.IsInitialized())
+            {
+                Debug.LogWarning("miss point response not initialized");
+                missPoint += 1;
                 return;
+            }
             if (response.Accuracy == 0f)
+            {
+                Debug.LogWarning("miss point response accuracy 0");
+                missPoint += 1;
                 return;
+            }
+            
             var vpsPose = new Pose()
             {
                 Position = new Vector3(
@@ -115,8 +157,12 @@ namespace UnityEngine.Graffity.ARCloud
             });
             
             _lastKey = key;
-
-            if (localizeData.Count >= requirePoint)
+            if (strategy == LocalizeStrategy.ANGLE_SOLVER)
+            {
+                ARCloudSession.instance.AdjustOriginPose(vpsPose.Position, new Vector3(1,1,1), vpsPose.Rotation);
+                state = LocalizeTaskState.Expire;
+            }
+            else if (localizeData.Count >= requirePoint)
             {
                 state = LocalizeTaskState.CollectingPointFinish;
                 
@@ -135,6 +181,7 @@ namespace UnityEngine.Graffity.ARCloud
 
                 state = LocalizeTaskState.Expire;
             }
+            
         }
     }
 
@@ -142,7 +189,8 @@ namespace UnityEngine.Graffity.ARCloud
     {
         LAST_POINT_DIFF,
         LAST_POINT_DIFF_MEDPRECISION,
-        LAST_POINT_DIFF_HIGHPRECISION
+        LAST_POINT_DIFF_HIGHPRECISION,
+        ANGLE_SOLVER
     }
 
     internal enum LocalizeTaskState

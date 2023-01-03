@@ -8,6 +8,10 @@ namespace UnityEngine.Graffity.ARCloud
     public class ApiCredConfig : ScriptableObject
     {
         public string consoleAccessToken;
+        
+        internal bool _isSecure = true;
+        internal bool _useCustomSolverServer = false;
+        internal string _customSolverHost = "";
 
         [ContextMenu("Validate Access Token")]
         async void TestAccessToken()
