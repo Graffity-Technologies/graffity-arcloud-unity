@@ -14,24 +14,24 @@ namespace UnityEngine.Graffity.ARCloud
     public class ARCloudSession : MonoBehaviour
     {
         public static ARCloudSession instance { get; protected set; }
-        
+
         public ApiCredConfig apiCredConfig;
-        
-        [SerializeField] 
+
+        [SerializeField]
         private Transform refPointCloudTf;
 
         public ARCloudSessionStatus Status { get; private set; }
         public VpsGrpcManager grpcManager;
         internal ARCameraManager cameraManager;
         private ARSessionOrigin arSessionOrigin;
-        
+
         private PositionGps refModelPositionGps;
         private CameraInfo cameraInfo;
-        
+
         // Localization Task Field
         // public float LocalizeProgress;
         private LocalizeTask currentLocalizeTask;
-        
+
         public String localizeState => currentLocalizeTask != null ? currentLocalizeTask.state.ToString() : "Deleted";
         public float localizeProgress => currentLocalizeTask?.progress ?? 0f;
         public string localizeProgressMessage => currentLocalizeTask?.progressMessage ?? "N/A";
@@ -93,17 +93,17 @@ namespace UnityEngine.Graffity.ARCloud
                                 // throw new ARCloudException("Cannot get image");
                                 return;
                             }
-            
-                            var byteImage =await  XrImageToPngByteString(image);
+
+                            var byteImage = await XrImageToPngByteString(image);
                             image.Dispose();
 
                             if (byteImage is null)
                                 return;
-                            
+
                             var sendImageTask = SendImageAsync(byteImage);
                             await currentLocalizeTask.AddPoint(arPose, sendImageTask);
                             sendImageTask.Dispose();
-                            
+
                             Debug.Log("");
                         }
                         break;
@@ -129,7 +129,7 @@ namespace UnityEngine.Graffity.ARCloud
             {
                 throw new ARCloudExceptionNotAvailable("Cannot get cameraIntrinsics");
             }
-            
+
             cameraInfo = new CameraInfo()
             {
                 PixelFocalLength = (cameraIntrinsics.focalLength.x + cameraIntrinsics.focalLength.y) / 2,
@@ -146,14 +146,14 @@ namespace UnityEngine.Graffity.ARCloud
             {
                 throw new ARCloudExceptionNotAvailable("Access token not valid");
             }
-            
+
             grpcManager.ConnectServers();
-            
+
             if (!await grpcManager.ValidateConnections())
             {
                 throw new ARCloudExceptionNotAvailable("Server connection is not valid");
             }
-            
+
             Status = ARCloudSessionStatus.Initialized;
         }
 
@@ -164,7 +164,7 @@ namespace UnityEngine.Graffity.ARCloud
 
             if (currentLocalizeTask != null)
                 currentLocalizeTask.state = LocalizeTaskState.Expire;
-                
+
             currentLocalizeTask = new LocalizeTask(strategy);
         }
 
@@ -207,37 +207,41 @@ namespace UnityEngine.Graffity.ARCloud
 
             };
         }
-        
+
         public async Task<ImageResponse> SendImageAsync(ByteString byteImage)
         {
-            
+
             // ImageResponse imageResponse = null;
             // NativeGallery.SaveImageToGallery(byteImage.ToByteArray(), "GraffityTest", $"img{arSessionOrigin.transform.position}.png",
             //     (success, path) => Debug.Log("Media save result: " + success + " " + path));
             try
             {
-                return await grpcManager.imageClient.SendGrpcAsync(new ImageRequest{BytesImage = byteImage,
-                    GpsPosition = (Position)refModelPositionGps, CameraInfo = cameraInfo}) as ImageResponse;
+                return await grpcManager.imageClient.SendGrpcAsync(new ImageRequest
+                {
+                    BytesImage = byteImage,
+                    GpsPosition = (Position)refModelPositionGps,
+                    CameraInfo = cameraInfo
+                }) as ImageResponse;
             }
             catch (Exception e)
             {
                 Debug.LogError($"Send image raise Exception: {e.Message} {e.StackTrace}");
                 return null;
             }
-            
-                
-                // , (response) =>
-                // {
-                //     imageResponse = response;
-                //     // NativeGallery.SaveImageToGallery(buffer, "GraffityTest", $"img{arSessionOrigin.transform.position}.png",
-                //     //     (success, path) => Debug.Log("Media save result: " + success + " " + path));
-                // },
-                // (e) =>
-                // {
-                //     // NativeGallery.SaveImageToGallery(buffer, "GraffityTest", $"img-FAIL-{arSessionOrigin.transform.position}.png",
-                //     //     (success, path) => Debug.Log("Media save result: " + success + " " + path));
-                //     Debug.Log($"Send image fail {e.Message}");
-                // });
+
+
+            // , (response) =>
+            // {
+            //     imageResponse = response;
+            //     // NativeGallery.SaveImageToGallery(buffer, "GraffityTest", $"img{arSessionOrigin.transform.position}.png",
+            //     //     (success, path) => Debug.Log("Media save result: " + success + " " + path));
+            // },
+            // (e) =>
+            // {
+            //     // NativeGallery.SaveImageToGallery(buffer, "GraffityTest", $"img-FAIL-{arSessionOrigin.transform.position}.png",
+            //     //     (success, path) => Debug.Log("Media save result: " + success + " " + path));
+            //     Debug.Log($"Send image fail {e.Message}");
+            // });
         }
 
         public async Task<bool> MockStartLocalizeAsync(List<Pose> arPoses, List<Pose> vpsPoses)
@@ -246,12 +250,12 @@ namespace UnityEngine.Graffity.ARCloud
             AdjustOriginPose(solveTf.Translation, solveTf.Scale, solveTf.Rotation);
             return true;
         }
-        
-        internal async Task<SolveTransformation> RequestSolveTransformationAsync(ICollection<Pose> arPoses, ICollection<Pose> vpsPoses, string message=null)
+
+        internal async Task<SolveTransformation> RequestSolveTransformationAsync(ICollection<Pose> arPoses, ICollection<Pose> vpsPoses, string message = null)
         {
             if (Status != ARCloudSessionStatus.Initialized)
                 throw new ARCloudException("ARCloudSession not initialized");
-            
+
             var request = new SolveRequest()
             {
                 RefTransform = new Transformation()
@@ -263,7 +267,7 @@ namespace UnityEngine.Graffity.ARCloud
             };
             request.ArCoordinate.AddRange(arPoses.Select(p => p.ToCoordinate()));
             request.VpsCoordinate.AddRange(vpsPoses.Select(p => p.ToCoordinate()));
-            if (message is not null)
+            if (string.IsNullOrEmpty(message))
                 request.Message = message;
 
             var response = await grpcManager.RequestSolveAsync(request);
@@ -274,7 +278,7 @@ namespace UnityEngine.Graffity.ARCloud
                 Rotation = response.Transform.Rotation.ToVec4()
             };
             return solveTransformation;
-            
+
         }
 
         [ContextMenu("Test Validate Access Token")]
@@ -291,7 +295,7 @@ namespace UnityEngine.Graffity.ARCloud
         Initialized,
         Expired
     }
-    
+
     internal enum ARCloudLocalizeStatus
     {
         NotActive,
