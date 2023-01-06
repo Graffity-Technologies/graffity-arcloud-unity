@@ -69,7 +69,7 @@ namespace UnityEngine.Graffity.ARCloud
             }, (err) =>
                 {
                     Debug.Log("Image server validate response is not valid");
-                    throw new ARCloudException("Image server validate response is not valid");
+                    // throw new ARCloudException("Image server validate response is not valid");
                 }
                 );
             var checkSolverTask = SolverStatusCheckAsync(new Empty(),
@@ -145,6 +145,12 @@ namespace UnityEngine.Graffity.ARCloud
             var response = availableAreaClient.SendGrpc(info);
             return response as AvailableAreaResponse;
         }
+
+        public async Task<AvailableAreaResponse> CheckAvailableAreaAsync(AvailableAreaRequest info)
+        {
+            var response = await availableAreaClient.SendGrpcAsync(info);
+            return response as AvailableAreaResponse;
+        }
         
         public async Task CheckAvailableAreaAsync(AvailableAreaRequest info, 
             Action<AvailableAreaResponse> onSuccessCb, 
@@ -158,10 +164,12 @@ namespace UnityEngine.Graffity.ARCloud
             catch (RpcException rpcException)
             {
                 onErrorCb?.Invoke(rpcException);
+                throw;
             }
             catch (Exception e)
             {
                 onErrorCb?.Invoke(e);
+                throw;
             }
         }
         
