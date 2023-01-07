@@ -122,7 +122,7 @@ namespace UnityEngine.Graffity.ARCloud
                 MaxDistance = 1000,
                 MinDistance = 0
             };
-            
+
             return grpcManager.CheckAvailableArea(request).IsAvailable;
         }
 
@@ -294,7 +294,7 @@ namespace UnityEngine.Graffity.ARCloud
             request.ArCoordinate.AddRange(arPoses.Select(p => p.ToCoordinate()));
             request.VpsCoordinate.AddRange(vpsPoses.Select(p => p.ToCoordinate()));
             if (string.IsNullOrEmpty(message))
-                request.Message = message;
+                request.Message = "";
 
             var response = await grpcManager.RequestSolveAsync(request);
             var solveTransformation = new SolveTransformation()
