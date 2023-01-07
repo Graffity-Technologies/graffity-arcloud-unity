@@ -1,7 +1,7 @@
 .DS_Store
 videos/*
 models/*
-images/*
+images/
 *.pkl
 
 # Byte-compiled / optimized / DLL files
