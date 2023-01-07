@@ -105,7 +105,7 @@ def generate_messages(
             gpsPosition=gpsPosition
         )
 
-        # print("Client send: %s" % msg.message)
+        print("Client send: %s" % msg.message)
         yield msg
 
 
@@ -165,7 +165,7 @@ if __name__ == '__main__':
     parser.add_argument(
         '--image_path',
         type=str,
-        default='server/tests/query_images/true_digital_park',
+        default='images/TDPK/IMG_2839',
         help='Path to Image Directory',
     )
 
@@ -179,7 +179,7 @@ if __name__ == '__main__':
     parser.add_argument(
         '--is_halfsize',
         type=int,
-        default=1,
+        default=0,
         help='Using subfix "_halfsize" of image for low memory GPU => 0 (False), 1 (True)',
     )
 

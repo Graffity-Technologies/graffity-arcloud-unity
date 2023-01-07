@@ -5,10 +5,10 @@ import grpc
 import glob
 import os
 
-# import protos.image.image_pb2 as image_pb
-# import protos.image.image_pb2_grpc as image_pb_grpc
-import protos.vpsimage.vpsimage_pb2 as vpsimage_pb
-import protos.vpsimage.vpsimage_pb2_grpc as vpsimage_pb_grpc
+import protos.image.image_pb2 as image_pb
+import protos.image.image_pb2_grpc as image_pb_grpc
+# import protos.vpsimage.vpsimage_pb2 as vpsimage_pb
+# import protos.vpsimage.vpsimage_pb2_grpc as vpsimage_pb_grpc
 
 from google.protobuf.json_format import MessageToDict
 from argparse import ArgumentParser
@@ -39,7 +39,7 @@ def generate_messages(
         #         query_images.append(image)
 
     # Flap's iPhone12 Unity
-    # cameraInfo = vpsimage_pb.CameraInfo(
+    # cameraInfo = image_pb.CameraInfo(
     #     pixelFocalLength=473.183258 if is_halfsize else 3000/divider,
     #     principalPointX=321.801971 if is_halfsize else 2000/divider,
     #     principalPointY=238.419632 if is_halfsize else 1500/divider,
@@ -47,15 +47,15 @@ def generate_messages(
     # )
 
     # iPhone12 .builtInDualWideCamera
-    # cameraInfo = vpsimage_pb.CameraInfo(
-    #     pixelFocalLength=3000/divider,
-    #     principalPointX=2000/divider,
-    #     principalPointY=1500/divider,
-    #     radialDistortion=0/divider
-    # )
+    cameraInfo = image_pb.CameraInfo(
+        pixelFocalLength=3000/divider,
+        principalPointX=2000/divider,
+        principalPointY=1500/divider,
+        radialDistortion=0/divider
+    )
 
     # Unity Test
-    # cameraInfo = vpsimage_pb.CameraInfo(
+    # cameraInfo = image_pb.CameraInfo(
     #     pixelFocalLength=1533.91833,
     #     principalPointX=957.7629,
     #     principalPointY=714.0067,
@@ -65,7 +65,7 @@ def generate_messages(
     # )
 
     # Dataset - Horizontal
-    # cameraInfo = vpsimage_pb.CameraInfo(
+    # cameraInfo = image_pb.CameraInfo(
     #     pixelFocalLength=4608.000000/divider,
     #     principalPointX=1920.000000/divider,
     #     principalPointY=1080.000000/divider,
@@ -73,15 +73,15 @@ def generate_messages(
     # )
 
     # Dataset - Vertical
-    cameraInfo = vpsimage_pb.CameraInfo(
-        pixelFocalLength=4608.000000,
-        principalPointX=1080.000000,
-        principalPointY=1920.000000,
-        radialDistortion=0.000000
-    )
+    # cameraInfo = image_pb.CameraInfo(
+    #     pixelFocalLength=4608.000000,
+    #     principalPointX=1080.000000,
+    #     principalPointY=1920.000000,
+    #     radialDistortion=0.000000
+    # )
 
     # Dataset Tops Club Rama 2 v1-60fps (W-1080,H-1920)
-    # cameraInfo = vpsimage_pb.CameraInfo(
+    # cameraInfo = image_pb.CameraInfo(
     #     pixelFocalLength=2304.000000,
     #     principalPointX=540.000000,
     #     principalPointY=960.000000,
@@ -89,7 +89,7 @@ def generate_messages(
     # )
 
     # Dataset Alibaba Singapore
-    # cameraInfo = vpsimage_pb.CameraInfo(
+    # cameraInfo = image_pb.CameraInfo(
     #     pixelFocalLength=1152.000000,
     #     principalPointX=480.000000,
     #     principalPointY=270.000000,
@@ -102,78 +102,70 @@ def generate_messages(
         query_images = query_images[0:num_images]
 
     # inside TDPK
-    # gpsPosition = vpsimage_pb.Position(
+    # gpsPosition = image_pb.Position(
     #     latitude=13.685685,
     #     longitude=100.611000,
     #     altitude=0.0
     # )
     # Flap Room
-    # gpsPosition = vpsimage_pb.Position(
+    # gpsPosition = image_pb.Position(
     #     latitude=13.605449,
     #     longitude=100.639991,
     #     altitude=0.0
     # )
     # Bank Room
-    # gpsPosition = vpsimage_pb.Position(
+    # gpsPosition = image_pb.Position(
     #     latitude=13.579003,
     #     longitude=100.109626,
     #     altitude=0.0
     # )
     # inside OneSiam Skywalk
-    # gpsPosition = vpsimage_pb.Position(
+    # gpsPosition = image_pb.Position(
     #     latitude=13.746103,
     #     longitude=100.530739,
     #     altitude=0.0
     # )
     # inside Silom Edge
-    # gpsPosition = vpsimage_pb.Position(
-    #     latitude=13.729508407345941,
-    #     longitude=100.53591335616113,
-    #     altitude=0.0
-    # )
+    gpsPosition = image_pb.Position(
+        latitude=13.729508407345941,
+        longitude=100.53591335616113,
+        altitude=0.0
+    )
     # inside QSNCC
-    # gpsPosition = vpsimage_pb.Position(
+    # gpsPosition = image_pb.Position(
     #     latitude=13.724525383113425,
     #     longitude=100.55904048093257,
     #     altitude=0.0
     # )
     # Cyberrex Office
-    # gpsPosition = vpsimage_pb.Position(
+    # gpsPosition = image_pb.Position(
     #     latitude=13.688635327050685,
     #     longitude=100.62911668707221,
     #     altitude=0.0
     # )
     # Tops Club Rama 2
-    # gpsPosition = vpsimage_pb.Position(
+    # gpsPosition = image_pb.Position(
     #     latitude=13.665226831773348,
     #     longitude=100.43660298445566,
     #     altitude=0.0
     # )
     # Alibaba SG
-    # gpsPosition = vpsimage_pb.Position(
+    # gpsPosition = image_pb.Position(
     #     latitude=1.2978958785356183,
     #     longitude=103.85017626563776,
     #     altitude=0.0
     # )
-    # Las Vegas CES
-    gpsPosition = vpsimage_pb.Position(
-        latitude=36.130631,
-        longitude=-115.150971,
-        altitude=0.0
-    )
     img = query_images[0]
-    start_img_time = time.time()
     im = cv2.imread(img)
     is_success, im_buf_arr = cv2.imencode(".jpg", im)
     byte_im = im_buf_arr.tobytes()
 
-    msg = vpsimage_pb.VpsImageRequest(
+    msg = image_pb.ImageRequest(
         message='request-image-' + os.path.basename(img),
         bytesImage=byte_im,
         cameraInfo=cameraInfo,
         gpsPosition=gpsPosition
     )
-    print("Read Image Time:", (time.time() - start_img_time), "seconds")
 
     print("Client send: %s" % msg.message)
     return msg
@@ -193,13 +185,13 @@ def main(
         root_certificates=None, private_key=None, certificate_chain=None)
 
     with grpc.secure_channel(host, credentials) as channel:
-        stub = vpsimage_pb_grpc.VpsImageStub(channel)
+        stub = image_pb_grpc.ImageStub(channel)
 
         metadata = [
             ('x-graff-api-key', 'sk.LVA0eDNKc2ZTaTlQUmRSbmVEV0FycG5SRzFIMDZkbUxKTmZpYlZTcklLZ0V0eW1kdmVEYVZGWnBhM3VaOWpVdW9Za2E2dVcyS2VqVnBfMlJmTTNsRUVKbnVDRGd0cktY')
         ]
 
-        response = stub.SendVpsImage(
+        response = stub.SendImage(
             generate_messages(
                 num_images,
                 image_path,
@@ -235,7 +227,7 @@ if __name__ == '__main__':
     parser.add_argument(
         '--image_path',
         type=str,
-        default='images/CES',
+        default='images/JustCo',
         help='Path to Image Directory',
     )
 

@@ -113,6 +113,7 @@ class Model:
             self.__vis.add_geometry(i)
 
     def create_window(self):
+        # open3d.visualization.webrtc_server.enable_webrtc()
         self.__vis = open3d.visualization.Visualizer()
         self.__vis.create_window()
 
@@ -122,16 +123,11 @@ class Model:
         self.__vis.run()
         self.__vis.destroy_window()
 
-    def process_ext_pose(self, qvec, tvec):
+    def process_ext_pose(self, qvec, tvec, fx, fy, cx, cy, width, height, scale):
         R = qvec2rotmat(qvec)
         t = tvec
         t = -R.T @ t
         R = R.T
-        # fx: 1798.2926825734073, fy: 1798.2926825734073, cx: 960.0, cy: 540.0, width: 1920, height: 1080, scale: 0.25
-        # fx: 3165.422982044238, fy: 3165.422982044238, cx: 1920.0, cy: 1080.0, width: 3840, height: 2160, scale: 0.25
-        # fx, fy, cx, cy, width, height, scale = 1812, 1812, 960, 540, 1920, 1080, 1.00
-        fx, fy, cx, cy, width, height, scale = 4608.000000, 4608.000000, 1920.000000, 1080.000000, 3840, 2160, 1.00  # Dataset
-        # fx, fy, cx, cy, width, height, scale = 3000, 3000, 2000, 1500, 3840, 2160, 1.00 # Bank's iPhone12 4k
 
         # intrinsics
         K = np.identity(3)
@@ -228,17 +224,66 @@ def main():
     # res_tvec = np.array([float(t)
     #                      for t in input('enter tvec: ').strip().split()])
 
+    # 4281
+    # q_dict = {
+    #     "qw": 0.17629979255288242,
+    #     "qx": 0.618798653548496,
+    #     "qy": 0.6228191641375148,
+    #     "qz": -0.44508751756865444
+    # }
+    # t_dict = {
+    #     "tx": -33.27913582177968,
+    #     "ty": 73.89801065768263,
+    #     "tz": 95.61998827099922
+    # }
+    # TSC images/TSC_IMG_4914.png
+    # q_dict = {
+    #     "qw": -0.1201637135141186,
+    #     "qx": 0.04262010629602899,
+    #     "qy": 0.991506372490534,
+    #     "qz": -0.025677262402273554
+    # }
+    # t_dict = {
+    #     "tx": -0.4939350195674772,
+    #     "ty": 0.2984812026372995,
+    #     "tz": 5.065224013845427
+    # }
+    # TSC images/TSC_IMG_4915.png
     q_dict = {
-        "qw": -0.3083564921125905,
-        "qx": 0.6221880046106916,
-        "qy": 0.584693301224246,
-        "qz": 0.4194426113237375
+        "qw": 0.2202093730525025,
+        "qx": 0.10453592618489893,
+        "qy": 0.9522990861156951,
+        "qz": -0.18359336246090524
     }
     t_dict = {
-        "tx": -0.762676548647402,
-        "ty": 0.15676071638297642,
-        "tz": 2.2033988278732553
+        "tx": -24.432575518920114,
+        "ty": 9.953610085477942,
+        "tz": 50.647971053099134
     }
+    # Unity horizon
+    # q_dict = {
+    #     "qw": 0.19947459180679766,
+    #     "qx": 0.16782883306926488,
+    #     "qy": -0.614401047447399,
+    #     "qz": 0.7446843109060772
+    # }
+    # t_dict = {
+    #     "tx": -3.524800729086278,
+    #     "ty": 2.1055243534638515,
+    #     "tz": 11.912750584504566
+    # }
+    # images/JustCo/IMG_4429.jpg
+    # q_dict = {
+    #     "qw": 0.6841639691050488,
+    #     "qx": 0.721617291318632,
+    #     "qy": -0.08757127640975618,
+    #     "qz": 0.059324698030017824
+    # }
+    # t_dict = {
+    #     "tx": -0.5741692848546434,
+    #     "ty": 0.1928940234412658,
+    #     "tz": -2.224292965510377
+    # }
     res_qvec = np.array([q_dict["qw"], q_dict["qx"],
                         q_dict["qy"], q_dict["qz"]])
     res_tvec = np.array([t_dict["tx"], t_dict["ty"], t_dict["tz"]])
@@ -257,7 +302,32 @@ def main():
     model.add_points()
     model.add_cameras(scale=0.05)
 
-    model.process_ext_pose(res_qvec, res_tvec)
+    scale = 1.0
+
+    # fx: 1798.2926825734073, fy: 1798.2926825734073, cx: 960.0, cy: 540.0, width: 1920, height: 1080, scale: 0.25
+    # fx: 3165.422982044238, fy: 3165.422982044238, cx: 1920.0, cy: 1080.0, width: 3840, height: 2160, scale: 0.25
+    # fx, fy, cx, cy, width, height, scale = 1812, 1812, 960, 540, 1920, 1080, 1.00
+    # fx, fy, cx, cy, width, height = 4608.000000, 4608.000000, 1920.000000, 1080.000000, 3840, 2160  # Dataset
+
+    # Dataset Tops Club Rama 2 v1-60fps
+    # fx, fy, cx, cy, width, height = 2304.000000, 2304.000000, 540.000000, 960.000000, 1080, 1920
+
+    # Dataset Alibaba SG
+    # fx, fy, cx, cy, width, height = 1152.000000, 1152.000000, 480.000000, 270.000000, 960, 540
+
+    # Flap's Iphone 12 Unity
+    # fx, fy, cx, cy, width, height = 473.183258, 473.183258, 321.801971, 238.419632, 640, 480
+
+    # Bank's iPhone12 4k
+    # fx, fy, cx, cy, width, height = 3000, 3000, 2000, 1500, 3024, 4032
+    fx, fy, cx, cy, width, height = 750.0, 750.0, 500.0, 375.0, 756, 1008
+
+    # Unity
+    # fx, fy, cx, cy, width, height = 1533.91833, 1533.91833, 957.7629, 714.0067, 1920, 1440
+    # fx, fy, cx, cy, width, height = 1533.91833, 1533.91833, 714.0067, 957.7629, 1440, 1920
+
+    model.process_ext_pose(res_qvec, res_tvec, fx, fy,
+                           cx, cy, width, height, scale)
 
     model.show()
 
