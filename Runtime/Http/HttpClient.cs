@@ -15,13 +15,14 @@ internal class HttpClient
 
     internal async Task<TResultType> Post<TResultType>(string url, string jsonBody)
     {
+        UnityWebRequest www = new UnityWebRequest(url, "POST");
+        byte[] rawBody = Encoding.UTF8.GetBytes(jsonBody);
+        www.uploadHandler = new UploadHandlerRaw(rawBody);
+        www.downloadHandler = new DownloadHandlerBuffer();
+
+        TResultType result;
         try
         {
-            UnityWebRequest www = new UnityWebRequest(url, "POST");
-            byte[] rawBody = Encoding.UTF8.GetBytes(jsonBody);
-            www.uploadHandler = new UploadHandlerRaw(rawBody);
-            www.downloadHandler = new DownloadHandlerBuffer();
-
             // using var www = UnityWebRequest.Post(url, data);
 
             www.SetRequestHeader("Content-Type", _serializationOption.ContentType);
@@ -36,14 +37,15 @@ internal class HttpClient
             if (www.result != UnityWebRequest.Result.Success) // Network Error
                 Debug.LogError($"Failed: {www.error}");
 
-            var result = _serializationOption.Deserialize<TResultType>(www.downloadHandler.text);
-
-            return result;
+            result = _serializationOption.Deserialize<TResultType>(www.downloadHandler.text);
         }
         catch (Exception ex)
         {
             Debug.LogError($"{nameof(Post)} failed: {ex.Message}");
-            return default;
+            result = default;
         }
+
+        www.Dispose();
+        return result;
     }
 }

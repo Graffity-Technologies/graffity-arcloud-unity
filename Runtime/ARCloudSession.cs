@@ -114,6 +114,32 @@ namespace UnityEngine.Graffity.ARCloud
             }
         }
 
+        public bool CheckIsAreaAvailable(PositionGps positionGps)
+        {
+            var request = new AvailableAreaRequest
+            {
+                GpsPosition = (Position)positionGps,
+                MaxDistance = 1000,
+                MinDistance = 0
+            };
+            
+            return grpcManager.CheckAvailableArea(request).IsAvailable;
+        }
+
+        public async Task<bool> CheckIsAreaAvailableAsync(PositionGps positionGps)
+        {
+            var request = new AvailableAreaRequest
+            {
+                GpsPosition = (Position)positionGps,
+                MaxDistance = 1000,
+                MinDistance = 0
+            };
+
+            var response = await grpcManager.CheckAvailableAreaAsync(request);
+            return response.IsAvailable;
+
+        }
+
         public async Task Init(PositionGps referencePositionGps)
         {
 #if UNITY_EDITOR
