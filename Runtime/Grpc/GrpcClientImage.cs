@@ -14,7 +14,7 @@ namespace UnityEngine.Graffity.ARCloud
         public override async Task<object> SendGrpcAsync<TRequest>(TRequest info)
         {
             var client = new Vpsimage.Image.ImageClient(grpcChannel);
-            var reply = await client.SendImageAsync(info as ImageRequest, headers: grpcHeader, deadline: DateTime.UtcNow.AddSeconds(60));
+            var reply = await client.SendImageAsync(info as ImageRequest, headers: grpcHeader, deadline: DateTime.UtcNow.AddSeconds(300));
             return reply;
         }
     }
