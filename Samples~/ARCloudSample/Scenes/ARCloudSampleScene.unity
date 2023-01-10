@@ -384,7 +384,7 @@ PrefabInstance:
     - target: {fileID: 8980549144392899874, guid: f2dff0008f9a34f7ba15be6b6e1b446c,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: -4216948427090074523, guid: f2dff0008f9a34f7ba15be6b6e1b446c,
@@ -1232,7 +1232,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1864589715}
   m_Layer: 0
-  m_Name: PointCloudReference
+  m_Name: ReferencePointCloud
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

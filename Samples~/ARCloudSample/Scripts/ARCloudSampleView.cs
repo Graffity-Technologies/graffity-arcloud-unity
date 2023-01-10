@@ -19,8 +19,12 @@ public class ARCloudSampleView : MonoBehaviour
 
     private void Start()
     {
+        arGuidelinePlayer.gameObject.SetActive(false);
+        statusText.enabled = false;
         StartARButton.onClick.AddListener(async () =>
         {
+            arGuidelinePlayer.gameObject.SetActive(true);
+            statusText.enabled = true;
             await ARCloudSession.instance.Init(new PositionGps()
             {
                 Latitude = 0.0,
@@ -36,7 +40,7 @@ public class ARCloudSampleView : MonoBehaviour
     {
         statusText.text = $"A process of {ARCloudSession.instance.localizeProgress * 100}% complete\nPlease walk a bit while scanning";
 
-        if (ARCloudSession.instance.localizeProgress == 1.0)
+        if (ARCloudSession.instance.localizeProgress >= 1.0)
         {
             arGuidelinePlayer.Stop();
             arGuidelinePlayer.gameObject.SetActive(false);
