@@ -1,0 +1,35 @@
+{
+  "name": "com.graffity.unity.arcloud",
+  "version": "0.2.8",
+  "displayName": "Graffity ARCloud",
+  "description": "ARCloud SDK in Unity Package",
+  "unity": "2019.4",
+  "documentationUrl": "https://developers.graffity.tech/",
+  "changelogUrl": "https://developers.graffity.tech/",
+  "licensesUrl": "https://developers.graffity.tech/",
+  "dependencies": {
+    "com.unity.xr.arfoundation": "4.1.13",
+    "com.unity.xr.arsubsystems": "4.1.13",
+    "com.unity.xr.arcore": "4.1.13",
+    "com.unity.xr.arkit": "4.1.13"
+  },
+  "keywords": [
+    "AR Cloud",
+    "AR Navigation"
+  ],
+  "author": {
+    "name": "Graffity Technologies Co., Ltd.",
+    "email": "contact@graffity.tech",
+    "url": "https://graffity.tech"
+  },
+  "bugs": {
+    "url": "https://github.com/Graffity-Technologies/graffity-arcloud-unity/issues"
+  },
+  "samples": [
+    {
+      "displayName": "AR Cloud Sample",
+      "description": "Contains sample of ARCloud scene, config, and setup",
+      "path": "Samples~/ARCloudSample"
+    }
+  ]
+}
