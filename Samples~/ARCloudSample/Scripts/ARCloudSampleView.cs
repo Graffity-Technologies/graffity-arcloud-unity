@@ -9,21 +9,24 @@ using UnityEngine.XR.ARFoundation;
 public class ARCloudSampleView : MonoBehaviour
 {
     [SerializeField]
-    public Button StartARButton;
+    public Button startARButton;
     [SerializeField]
     public Text statusText;
     [SerializeField]
     public ARSessionOrigin arSessionOrigin;
     [SerializeField]
     public VideoPlayer arGuidelinePlayer;
+    [SerializeField]
+    public GameObject arContents;
 
     private void Start()
     {
+        arContents.SetActive(false);
         arGuidelinePlayer.gameObject.SetActive(false);
         statusText.enabled = false;
-        StartARButton.onClick.AddListener(async () =>
+        startARButton.onClick.AddListener(async () =>
         {
-            StartARButton.gameObject.SetActive(false);
+            startARButton.gameObject.SetActive(false);
             arGuidelinePlayer.gameObject.SetActive(true);
             statusText.enabled = true;
             await ARCloudSession.instance.Init(new PositionGps()
@@ -43,6 +46,7 @@ public class ARCloudSampleView : MonoBehaviour
 
         if (ARCloudSession.instance.localizeProgress >= 1.0)
         {
+            arContents.SetActive(true);
             arGuidelinePlayer.Stop();
             arGuidelinePlayer.gameObject.SetActive(false);
             statusText.enabled = false;
