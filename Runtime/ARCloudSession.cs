@@ -293,8 +293,8 @@ namespace UnityEngine.Graffity.ARCloud
             };
             request.ArCoordinate.AddRange(arPoses.Select(p => p.ToCoordinate()));
             request.VpsCoordinate.AddRange(vpsPoses.Select(p => p.ToCoordinate()));
-            if (string.IsNullOrEmpty(message))
-                request.Message = "";
+            if (!string.IsNullOrEmpty(message))
+                request.Message = message;
 
             var response = await grpcManager.RequestSolveAsync(request);
             var solveTransformation = new SolveTransformation()

@@ -9,7 +9,7 @@ namespace UnityEngine.Graffity.ARCloud
 {
     internal class LocalizeTask
     {
-        private const float UPDATE_DISTANCE_THRESH = 0.2f;
+        private const float UPDATE_DISTANCE_THRESH = 0.5f;
         private const float UPDATE_ROT_THRESH = Mathf.PI/5;
         private const int MAX_PENDING_REQUEST = 4;
 
@@ -22,12 +22,12 @@ namespace UnityEngine.Graffity.ARCloud
         internal LocalizeTaskState state;
         private Vector3 lastArPosition;
         private Quaternion lastArRotation;
-        private string solverGuideMessage;
+        private string solverGuideMessage = null;
 
         private int missPoint;
 
         public float progress => (float)localizeData.Count / requirePoint;
-        public string progressMessage => $"{localizeData.Count} / {requirePoint} : {pendingRequestCount} x {missPoint}";
+        public string progressMessage => $"{localizeData.Count} / {requirePoint} : {pendingRequestCount} x {missPoint} || {strategy.ToString()}";
 
         public LocalizeTask(LocalizeStrategy strategy)
         {
@@ -157,12 +157,7 @@ namespace UnityEngine.Graffity.ARCloud
             });
             
             _lastKey = key;
-            if (strategy == LocalizeStrategy.ANGLE_SOLVER)
-            {
-                ARCloudSession.instance.AdjustOriginPose(vpsPose.Position, new Vector3(1,1,1), vpsPose.Rotation);
-                state = LocalizeTaskState.Expire;
-            }
-            else if (localizeData.Count >= requirePoint)
+            if (localizeData.Count >= requirePoint)
             {
                 state = LocalizeTaskState.CollectingPointFinish;
                 
@@ -171,7 +166,8 @@ namespace UnityEngine.Graffity.ARCloud
                 
                 var solveTf = await ARCloudSession.instance.RequestSolveTransformationAsync(
                     keys.Select(k => localizeData[k].AR).ToList(), 
-                    keys.Select(k => localizeData[k].VPS).ToList()
+                    keys.Select(k => localizeData[k].VPS).ToList(),
+                    solverGuideMessage
                 );
 
                 if (state != LocalizeTaskState.Expire)
