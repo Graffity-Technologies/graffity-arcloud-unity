@@ -1,5 +1,10 @@
 syntax = "proto3";
 
+option go_package = "github.com/Graffity-Technologies/visual-positioning-services/protos/vpsimage";
+option java_multiple_files = true;
+option java_package = "io.grpc.graffity.vpsimage";
+option java_outer_classname = "VPSImageProto";
+
 package vpsimage;
 
 service Image {
@@ -19,6 +24,13 @@ message ImageRequest {
   bytes bytesImage = 2;
   Position gpsPosition = 3;
   CameraInfo cameraInfo = 4;
+  string id = 5;
+  string platform = 6;
+}
+
+message LocalizeRequest {
+  ImageRequest ImageRequest = 1;
+  string accessTokenDatabaseId = 2;
 }
 
 message ImageResponse {
@@ -26,6 +38,41 @@ message ImageResponse {
   float accuracy = 2;
   WorldCoordinate worldCoor = 3;
   ColmapCoordinate colmapCoor = 4;
+  string id = 5;
+}
+
+message ServiceTimeLog {
+  float featureExtraction = 1;
+  float imageRetrieval = 2;
+  float featureMatching = 3;
+  float sfm = 4;
+  float timeSum = 5;
+}
+
+message RetrievalLog{
+  string          path = 1;
+  repeated string retrievalList = 2;
+  repeated float  retrievalScore = 3;
+}
+
+message ServiceLog{
+  ServiceTimeLog  serviceTime = 1;
+  RetrievalLog    retrievalLog = 2;
+}
+
+message LocalizeResponse {
+  ImageResponse imageResponse = 1;
+  ServiceLog    serviceLog = 2;
+}
+
+message ImageLog {
+  ImageRequest  request = 1;
+  ImageResponse response = 2;
+  float         responseTimeInSecond = 3;
+  int32         timestamp = 4;
+  string        accessTokenDatabaseId = 5;
+  ServiceLog    serviceLog = 6;
+  bytes         metrics = 7;
 }
 
 message AvailableAreaRequest {
@@ -67,10 +114,12 @@ message ColmapCoordinate {
   double pz = 10;
 }
 
-
 message CameraInfo {
   float pixelFocalLength = 1;
   float principalPointX = 2; // or optical center
   float principalPointY = 3; // or optical center
   float radialDistortion = 4;
+
+  float pixelFocalLengthX = 5; // in case X & Y is not equal
+  float pixelFocalLengthY = 6; // in case X & Y is not equal
 }

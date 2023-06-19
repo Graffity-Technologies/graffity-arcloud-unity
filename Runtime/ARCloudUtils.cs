@@ -13,6 +13,7 @@ namespace UnityEngine.Graffity.ARCloud
 {
     public static class ARCloudUtils
     {
+
         public static unsafe void XrImageToPngBytes(ref XRCpuImage image, out byte[] outBuffer)
         {
             var conversionParams = new XRCpuImage.ConversionParams
@@ -25,7 +26,7 @@ namespace UnityEngine.Graffity.ARCloud
                 // Flip across the vertical axis (mirror image).
                 transformation = XRCpuImage.Transformation.MirrorY
             };
-            
+
             var size = image.GetConvertedDataSize(conversionParams);
             var buffer = new NativeArray<byte>(size, Allocator.Temp);
 
@@ -42,15 +43,16 @@ namespace UnityEngine.Graffity.ARCloud
             buffer.Dispose();
             outBuffer = texture.EncodeToPNG();
         }
-        
-        public static async Task<ByteString> XrImageToPngByteString(XRCpuImage image)
+
+        public static async Task<ByteString> XrImageToPngByteString(XRCpuImage image, int downSizeFactor)
         {
             var conversionParams = new XRCpuImage.ConversionParams
             {
                 // Get the entire image.
                 inputRect = new RectInt(0, 0, image.width, image.height),
                 // Can Downsample here.
-                outputDimensions = new Vector2Int(image.width, image.height),
+                // https://docs.unity3d.com/Packages/com.unity.xr.arfoundation@4.1/manual/cpu-camera-image.html
+                outputDimensions = new Vector2Int(image.width / downSizeFactor, image.height / downSizeFactor),
                 // outputFormat = TextureFormat.RGBA32,
                 outputFormat = TextureFormat.RGBA32,
                 // Flip across the vertical axis (mirror image).
@@ -67,29 +69,29 @@ namespace UnityEngine.Graffity.ARCloud
                 imageConvertRequest.Dispose();
                 return null;
             }
-            
+
             // var buffer = imageConvertRequest.GetData<byte>();
             // var byteArray = ImageConversion.EncodeNativeArrayToPNG(buffer,
             //     GraphicsFormat.R8G8B8A8_SRGB, (uint)image.width, (uint)image.height, 0).ToArray();
             // var result = ByteString.CopyFrom(byteArray);
-            
+
             var buffer = imageConvertRequest.GetData<byte>();
-            
+
             var texture = new Texture2D(
                 conversionParams.outputDimensions.x,
                 conversionParams.outputDimensions.y,
                 conversionParams.outputFormat,
                 false);
-            
+
             texture.LoadRawTextureData(buffer);
             texture.Apply();
             var result = ByteString.CopyFrom(texture.EncodeToPNG());
             Texture2D.Destroy(texture);
-            
+
             imageConvertRequest.Dispose();
             return result;
         }
-        
+
         public static unsafe Texture2D XrImageToTexture(ref XRCpuImage image)
         {
             var conversionParams = new XRCpuImage.ConversionParams
@@ -102,7 +104,7 @@ namespace UnityEngine.Graffity.ARCloud
                 // Flip across the vertical axis (mirror image).
                 transformation = XRCpuImage.Transformation.MirrorY
             };
-            
+
             var size = image.GetConvertedDataSize(conversionParams);
             var buffer = new NativeArray<byte>(size, Allocator.Temp);
 
@@ -121,7 +123,7 @@ namespace UnityEngine.Graffity.ARCloud
         }
     }
 
-    
+
     internal static class HiResDateTime
     {
         private static long lastTimeStamp = DateTime.UtcNow.Ticks;
@@ -156,7 +158,7 @@ namespace UnityEngine.Graffity.ARCloud
             };
         }
     }
-    
+
     public static class QuaternionARCloudExtension
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -171,7 +173,7 @@ namespace UnityEngine.Graffity.ARCloud
             };
         }
     }
-    
+
     public static class Vec3Extension
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]

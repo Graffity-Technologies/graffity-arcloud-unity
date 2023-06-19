@@ -64,18 +64,6 @@ namespace Vpsimage {
       get { return global::Vpsimage.VpsimageReflection.Descriptor.Services[0]; }
     }
 
-    /// <summary>Base class for server-side implementations of Image</summary>
-    [grpc::BindServiceMethod(typeof(Image), "BindService")]
-    public abstract partial class ImageBase
-    {
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual global::System.Threading.Tasks.Task<global::Vpsimage.ImageResponse> SendImage(global::Vpsimage.ImageRequest request, grpc::ServerCallContext context)
-      {
-        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
-      }
-
-    }
-
     /// <summary>Client for Image</summary>
     public partial class ImageClient : grpc::ClientBase<ImageClient>
     {
@@ -129,25 +117,6 @@ namespace Vpsimage {
       {
         return new ImageClient(configuration);
       }
-    }
-
-    /// <summary>Creates service definition that can be registered with a server</summary>
-    /// <param name="serviceImpl">An object implementing the server-side handling logic.</param>
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    public static grpc::ServerServiceDefinition BindService(ImageBase serviceImpl)
-    {
-      return grpc::ServerServiceDefinition.CreateBuilder()
-          .AddMethod(__Method_SendImage, serviceImpl.SendImage).Build();
-    }
-
-    /// <summary>Register service method with a service binder with or without implementation. Useful when customizing the service binding logic.
-    /// Note: this method is part of an experimental API that can change or be removed without any prior notice.</summary>
-    /// <param name="serviceBinder">Service methods will be bound by calling <c>AddMethod</c> on this object.</param>
-    /// <param name="serviceImpl">An object implementing the server-side handling logic.</param>
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    public static void BindService(grpc::ServiceBinderBase serviceBinder, ImageBase serviceImpl)
-    {
-      serviceBinder.AddMethod(__Method_SendImage, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Vpsimage.ImageRequest, global::Vpsimage.ImageResponse>(serviceImpl.SendImage));
     }
 
   }
@@ -207,18 +176,6 @@ namespace Vpsimage {
       get { return global::Vpsimage.VpsimageReflection.Descriptor.Services[1]; }
     }
 
-    /// <summary>Base class for server-side implementations of ImageStream</summary>
-    [grpc::BindServiceMethod(typeof(ImageStream), "BindService")]
-    public abstract partial class ImageStreamBase
-    {
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual global::System.Threading.Tasks.Task SendStreamImage(grpc::IAsyncStreamReader<global::Vpsimage.ImageRequest> requestStream, grpc::IServerStreamWriter<global::Vpsimage.ImageResponse> responseStream, grpc::ServerCallContext context)
-      {
-        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
-      }
-
-    }
-
     /// <summary>Client for ImageStream</summary>
     public partial class ImageStreamClient : grpc::ClientBase<ImageStreamClient>
     {
@@ -262,25 +219,6 @@ namespace Vpsimage {
       {
         return new ImageStreamClient(configuration);
       }
-    }
-
-    /// <summary>Creates service definition that can be registered with a server</summary>
-    /// <param name="serviceImpl">An object implementing the server-side handling logic.</param>
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    public static grpc::ServerServiceDefinition BindService(ImageStreamBase serviceImpl)
-    {
-      return grpc::ServerServiceDefinition.CreateBuilder()
-          .AddMethod(__Method_SendStreamImage, serviceImpl.SendStreamImage).Build();
-    }
-
-    /// <summary>Register service method with a service binder with or without implementation. Useful when customizing the service binding logic.
-    /// Note: this method is part of an experimental API that can change or be removed without any prior notice.</summary>
-    /// <param name="serviceBinder">Service methods will be bound by calling <c>AddMethod</c> on this object.</param>
-    /// <param name="serviceImpl">An object implementing the server-side handling logic.</param>
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    public static void BindService(grpc::ServiceBinderBase serviceBinder, ImageStreamBase serviceImpl)
-    {
-      serviceBinder.AddMethod(__Method_SendStreamImage, serviceImpl == null ? null : new grpc::DuplexStreamingServerMethod<global::Vpsimage.ImageRequest, global::Vpsimage.ImageResponse>(serviceImpl.SendStreamImage));
     }
 
   }
@@ -340,18 +278,6 @@ namespace Vpsimage {
       get { return global::Vpsimage.VpsimageReflection.Descriptor.Services[2]; }
     }
 
-    /// <summary>Base class for server-side implementations of AvailableArea</summary>
-    [grpc::BindServiceMethod(typeof(AvailableArea), "BindService")]
-    public abstract partial class AvailableAreaBase
-    {
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual global::System.Threading.Tasks.Task<global::Vpsimage.AvailableAreaResponse> CheckAvailableArea(global::Vpsimage.AvailableAreaRequest request, grpc::ServerCallContext context)
-      {
-        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
-      }
-
-    }
-
     /// <summary>Client for AvailableArea</summary>
     public partial class AvailableAreaClient : grpc::ClientBase<AvailableAreaClient>
     {
@@ -405,25 +331,6 @@ namespace Vpsimage {
       {
         return new AvailableAreaClient(configuration);
       }
-    }
-
-    /// <summary>Creates service definition that can be registered with a server</summary>
-    /// <param name="serviceImpl">An object implementing the server-side handling logic.</param>
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    public static grpc::ServerServiceDefinition BindService(AvailableAreaBase serviceImpl)
-    {
-      return grpc::ServerServiceDefinition.CreateBuilder()
-          .AddMethod(__Method_CheckAvailableArea, serviceImpl.CheckAvailableArea).Build();
-    }
-
-    /// <summary>Register service method with a service binder with or without implementation. Useful when customizing the service binding logic.
-    /// Note: this method is part of an experimental API that can change or be removed without any prior notice.</summary>
-    /// <param name="serviceBinder">Service methods will be bound by calling <c>AddMethod</c> on this object.</param>
-    /// <param name="serviceImpl">An object implementing the server-side handling logic.</param>
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    public static void BindService(grpc::ServiceBinderBase serviceBinder, AvailableAreaBase serviceImpl)
-    {
-      serviceBinder.AddMethod(__Method_CheckAvailableArea, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Vpsimage.AvailableAreaRequest, global::Vpsimage.AvailableAreaResponse>(serviceImpl.CheckAvailableArea));
     }
 
   }

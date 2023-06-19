@@ -94,11 +94,46 @@ namespace UnityEngine.Graffity.ARCloud
                                 return;
                             }
 
-                            var byteImage = await XrImageToPngByteString(image);
+                            // normally XRCpuImage ratio is 4:3 so scale down to 640:480
+                            var downSizeImageFactor = image.height / 480;
+                            if (image.width < image.height)
+                            {
+                                downSizeImageFactor = image.width / 480;
+                            }
+                            if (downSizeImageFactor < 1) // Downsample only so shouldn't more than 1 https://docs.unity3d.com/Packages/com.unity.xr.arfoundation@4.2/manual/cpu-camera-image.html
+                            {
+                                downSizeImageFactor = 1;
+                            }
+                            Debug.Log($"downSizeImageFactor: {downSizeImageFactor}");
+                            var byteImage = await XrImageToPngByteString(image, downSizeImageFactor);
                             image.Dispose();
 
                             if (byteImage is null)
                                 return;
+
+#if UNITY_EDITOR
+                            cameraInfo = new CameraInfo()
+                            {
+                                PixelFocalLength = 200,
+                                PrincipalPointX = 320,
+                                PrincipalPointY = 240,
+                                RadialDistortion = 0
+                            };
+#else
+                            if (!cameraManager.TryGetIntrinsics(out XRCameraIntrinsics cameraIntrinsics))
+                            {
+                                throw new ARCloudExceptionNotAvailable("Cannot get cameraIntrinsics");
+                            }
+
+                            cameraInfo = new CameraInfo()
+                            {
+                                PixelFocalLength = ((cameraIntrinsics.focalLength.x + cameraIntrinsics.focalLength.y) / 2) / downSizeImageFactor,
+                                PrincipalPointX = cameraIntrinsics.principalPoint.x / downSizeImageFactor,
+                                PrincipalPointY = cameraIntrinsics.principalPoint.y / downSizeImageFactor,
+                                RadialDistortion = 0
+                            };
+#endif
+                            Debug.Log(cameraInfo);
 
                             var sendImageTask = SendImageAsync(byteImage);
                             await currentLocalizeTask.AddPoint(arPose, sendImageTask);
@@ -142,29 +177,6 @@ namespace UnityEngine.Graffity.ARCloud
 
         public async Task Init(PositionGps referencePositionGps)
         {
-#if UNITY_EDITOR
-            cameraInfo = new CameraInfo()
-            {
-                PixelFocalLength = 200,
-                PrincipalPointX = 320,
-                PrincipalPointY = 240,
-                RadialDistortion = 0
-            };
-#else
-            if (!cameraManager.TryGetIntrinsics(out XRCameraIntrinsics cameraIntrinsics))
-            {
-                throw new ARCloudExceptionNotAvailable("Cannot get cameraIntrinsics");
-            }
-
-            cameraInfo = new CameraInfo()
-            {
-                PixelFocalLength = (cameraIntrinsics.focalLength.x + cameraIntrinsics.focalLength.y) / 2,
-                PrincipalPointX = cameraIntrinsics.principalPoint.x,
-                PrincipalPointY = cameraIntrinsics.principalPoint.y,
-                RadialDistortion = 0
-            };
-#endif
-            Debug.Log(cameraInfo);
             refModelPositionGps = referencePositionGps;
 
             var accessToken = apiCredConfig.consoleAccessToken;
@@ -244,9 +256,11 @@ namespace UnityEngine.Graffity.ARCloud
             {
                 return await grpcManager.imageClient.SendGrpcAsync(new ImageRequest
                 {
+                    Message = "Send image to VPS from Unity",
                     BytesImage = byteImage,
                     GpsPosition = (Position)refModelPositionGps,
-                    CameraInfo = cameraInfo
+                    CameraInfo = cameraInfo,
+                    Platform = "UNITY",
                 }) as ImageResponse;
             }
             catch (Exception e)
