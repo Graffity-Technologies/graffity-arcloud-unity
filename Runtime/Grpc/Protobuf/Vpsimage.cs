@@ -28,62 +28,40 @@ namespace Vpsimage {
             "CgdtZXNzYWdlGAEgASgJEhIKCmJ5dGVzSW1hZ2UYAiABKAwSJwoLZ3BzUG9z",
             "aXRpb24YAyABKAsyEi52cHNpbWFnZS5Qb3NpdGlvbhIoCgpjYW1lcmFJbmZv",
             "GAQgASgLMhQudnBzaW1hZ2UuQ2FtZXJhSW5mbxIKCgJpZBgFIAEoCRIQCghw",
-            "bGF0Zm9ybRgGIAEoCSJeCg9Mb2NhbGl6ZVJlcXVlc3QSLAoMSW1hZ2VSZXF1",
-            "ZXN0GAEgASgLMhYudnBzaW1hZ2UuSW1hZ2VSZXF1ZXN0Eh0KFWFjY2Vzc1Rv",
-            "a2VuRGF0YWJhc2VJZBgCIAEoCSKcAQoNSW1hZ2VSZXNwb25zZRIPCgdtZXNz",
-            "YWdlGAEgASgJEhAKCGFjY3VyYWN5GAIgASgCEiwKCXdvcmxkQ29vchgDIAEo",
-            "CzIZLnZwc2ltYWdlLldvcmxkQ29vcmRpbmF0ZRIuCgpjb2xtYXBDb29yGAQg",
-            "ASgLMhoudnBzaW1hZ2UuQ29sbWFwQ29vcmRpbmF0ZRIKCgJpZBgFIAEoCSJ6",
-            "Cg5TZXJ2aWNlVGltZUxvZxIZChFmZWF0dXJlRXh0cmFjdGlvbhgBIAEoAhIW",
-            "Cg5pbWFnZVJldHJpZXZhbBgCIAEoAhIXCg9mZWF0dXJlTWF0Y2hpbmcYAyAB",
-            "KAISCwoDc2ZtGAQgASgCEg8KB3RpbWVTdW0YBSABKAIiSwoMUmV0cmlldmFs",
-            "TG9nEgwKBHBhdGgYASABKAkSFQoNcmV0cmlldmFsTGlzdBgCIAMoCRIWCg5y",
-            "ZXRyaWV2YWxTY29yZRgDIAMoAiJpCgpTZXJ2aWNlTG9nEi0KC3NlcnZpY2VU",
-            "aW1lGAEgASgLMhgudnBzaW1hZ2UuU2VydmljZVRpbWVMb2cSLAoMcmV0cmll",
-            "dmFsTG9nGAIgASgLMhYudnBzaW1hZ2UuUmV0cmlldmFsTG9nImwKEExvY2Fs",
-            "aXplUmVzcG9uc2USLgoNaW1hZ2VSZXNwb25zZRgBIAEoCzIXLnZwc2ltYWdl",
-            "LkltYWdlUmVzcG9uc2USKAoKc2VydmljZUxvZxgCIAEoCzIULnZwc2ltYWdl",
-            "LlNlcnZpY2VMb2ci6QEKCEltYWdlTG9nEicKB3JlcXVlc3QYASABKAsyFi52",
-            "cHNpbWFnZS5JbWFnZVJlcXVlc3QSKQoIcmVzcG9uc2UYAiABKAsyFy52cHNp",
-            "bWFnZS5JbWFnZVJlc3BvbnNlEhwKFHJlc3BvbnNlVGltZUluU2Vjb25kGAMg",
-            "ASgCEhEKCXRpbWVzdGFtcBgEIAEoBRIdChVhY2Nlc3NUb2tlbkRhdGFiYXNl",
-            "SWQYBSABKAkSKAoKc2VydmljZUxvZxgGIAEoCzIULnZwc2ltYWdlLlNlcnZp",
-            "Y2VMb2cSDwoHbWV0cmljcxgHIAEoDCJpChRBdmFpbGFibGVBcmVhUmVxdWVz",
-            "dBInCgtncHNQb3NpdGlvbhgBIAEoCzISLnZwc2ltYWdlLlBvc2l0aW9uEhMK",
-            "C21heERpc3RhbmNlGAIgASgFEhMKC21pbkRpc3RhbmNlGAMgASgFImYKFUF2",
-            "YWlsYWJsZUFyZWFSZXNwb25zZRIPCgdtZXNzYWdlGAEgASgJEhMKC2lzQXZh",
-            "aWxhYmxlGAIgASgIEicKC2dwc1Bvc2l0aW9uGAMgASgLMhIudnBzaW1hZ2Uu",
-            "UG9zaXRpb24iQQoIUG9zaXRpb24SEAoIbGF0aXR1ZGUYASABKAESEQoJbG9u",
-            "Z2l0dWRlGAIgASgBEhAKCGFsdGl0dWRlGAMgASgBImYKD1dvcmxkQ29vcmRp",
-            "bmF0ZRIQCghsYXRpdHVkZRgBIAEoARIRCglsb25naXR1ZGUYAiABKAESEAoI",
-            "YWx0aXR1ZGUYAyABKAESDQoFdXRtX3gYBCABKAESDQoFdXRtX3kYBSABKAEi",
-            "igEKEENvbG1hcENvb3JkaW5hdGUSCgoCcXcYASABKAESCgoCcXgYAiABKAES",
-            "CgoCcXkYAyABKAESCgoCcXoYBCABKAESCgoCdHgYBSABKAESCgoCdHkYBiAB",
-            "KAESCgoCdHoYByABKAESCgoCcHgYCCABKAESCgoCcHkYCSABKAESCgoCcHoY",
-            "CiABKAEiqAEKCkNhbWVyYUluZm8SGAoQcGl4ZWxGb2NhbExlbmd0aBgBIAEo",
-            "AhIXCg9wcmluY2lwYWxQb2ludFgYAiABKAISFwoPcHJpbmNpcGFsUG9pbnRZ",
-            "GAMgASgCEhgKEHJhZGlhbERpc3RvcnRpb24YBCABKAISGQoRcGl4ZWxGb2Nh",
-            "bExlbmd0aFgYBSABKAISGQoRcGl4ZWxGb2NhbExlbmd0aFkYBiABKAIyRwoF",
-            "SW1hZ2USPgoJU2VuZEltYWdlEhYudnBzaW1hZ2UuSW1hZ2VSZXF1ZXN0Ghcu",
-            "dnBzaW1hZ2UuSW1hZ2VSZXNwb25zZSIAMlcKC0ltYWdlU3RyZWFtEkgKD1Nl",
-            "bmRTdHJlYW1JbWFnZRIWLnZwc2ltYWdlLkltYWdlUmVxdWVzdBoXLnZwc2lt",
-            "YWdlLkltYWdlUmVzcG9uc2UiACgBMAEyaAoNQXZhaWxhYmxlQXJlYRJXChJD",
-            "aGVja0F2YWlsYWJsZUFyZWESHi52cHNpbWFnZS5BdmFpbGFibGVBcmVhUmVx",
-            "dWVzdBofLnZwc2ltYWdlLkF2YWlsYWJsZUFyZWFSZXNwb25zZSIAQnoKGWlv",
-            "LmdycGMuZ3JhZmZpdHkudnBzaW1hZ2VCDVZQU0ltYWdlUHJvdG9QAVpMZ2l0",
-            "aHViLmNvbS9HcmFmZml0eS1UZWNobm9sb2dpZXMvdmlzdWFsLXBvc2l0aW9u",
-            "aW5nLXNlcnZpY2VzL3Byb3Rvcy92cHNpbWFnZWIGcHJvdG8z"));
+            "bGF0Zm9ybRgGIAEoCSKwAQoNSW1hZ2VSZXNwb25zZRIPCgdtZXNzYWdlGAEg",
+            "ASgJEhAKCGFjY3VyYWN5GAIgASgCEiwKCXdvcmxkQ29vchgDIAEoCzIZLnZw",
+            "c2ltYWdlLldvcmxkQ29vcmRpbmF0ZRIuCgpjb2xtYXBDb29yGAQgASgLMhou",
+            "dnBzaW1hZ2UuQ29sbWFwQ29vcmRpbmF0ZRIKCgJpZBgFIAEoCRISCgpjb3Zh",
+            "cmlhbmNlGAYgAygBImkKFEF2YWlsYWJsZUFyZWFSZXF1ZXN0EicKC2dwc1Bv",
+            "c2l0aW9uGAEgASgLMhIudnBzaW1hZ2UuUG9zaXRpb24SEwoLbWF4RGlzdGFu",
+            "Y2UYAiABKAUSEwoLbWluRGlzdGFuY2UYAyABKAUiZgoVQXZhaWxhYmxlQXJl",
+            "YVJlc3BvbnNlEg8KB21lc3NhZ2UYASABKAkSEwoLaXNBdmFpbGFibGUYAiAB",
+            "KAgSJwoLZ3BzUG9zaXRpb24YAyABKAsyEi52cHNpbWFnZS5Qb3NpdGlvbiJB",
+            "CghQb3NpdGlvbhIQCghsYXRpdHVkZRgBIAEoARIRCglsb25naXR1ZGUYAiAB",
+            "KAESEAoIYWx0aXR1ZGUYAyABKAEiZgoPV29ybGRDb29yZGluYXRlEhAKCGxh",
+            "dGl0dWRlGAEgASgBEhEKCWxvbmdpdHVkZRgCIAEoARIQCghhbHRpdHVkZRgD",
+            "IAEoARINCgV1dG1feBgEIAEoARINCgV1dG1feRgFIAEoASKKAQoQQ29sbWFw",
+            "Q29vcmRpbmF0ZRIKCgJxdxgBIAEoARIKCgJxeBgCIAEoARIKCgJxeRgDIAEo",
+            "ARIKCgJxehgEIAEoARIKCgJ0eBgFIAEoARIKCgJ0eRgGIAEoARIKCgJ0ehgH",
+            "IAEoARIKCgJweBgIIAEoARIKCgJweRgJIAEoARIKCgJwehgKIAEoASKoAQoK",
+            "Q2FtZXJhSW5mbxIYChBwaXhlbEZvY2FsTGVuZ3RoGAEgASgCEhcKD3ByaW5j",
+            "aXBhbFBvaW50WBgCIAEoAhIXCg9wcmluY2lwYWxQb2ludFkYAyABKAISGAoQ",
+            "cmFkaWFsRGlzdG9ydGlvbhgEIAEoAhIZChFwaXhlbEZvY2FsTGVuZ3RoWBgF",
+            "IAEoAhIZChFwaXhlbEZvY2FsTGVuZ3RoWRgGIAEoAjJHCgVJbWFnZRI+CglT",
+            "ZW5kSW1hZ2USFi52cHNpbWFnZS5JbWFnZVJlcXVlc3QaFy52cHNpbWFnZS5J",
+            "bWFnZVJlc3BvbnNlIgAyVwoLSW1hZ2VTdHJlYW0SSAoPU2VuZFN0cmVhbUlt",
+            "YWdlEhYudnBzaW1hZ2UuSW1hZ2VSZXF1ZXN0GhcudnBzaW1hZ2UuSW1hZ2VS",
+            "ZXNwb25zZSIAKAEwATJoCg1BdmFpbGFibGVBcmVhElcKEkNoZWNrQXZhaWxh",
+            "YmxlQXJlYRIeLnZwc2ltYWdlLkF2YWlsYWJsZUFyZWFSZXF1ZXN0Gh8udnBz",
+            "aW1hZ2UuQXZhaWxhYmxlQXJlYVJlc3BvbnNlIgBCegoZaW8uZ3JwYy5ncmFm",
+            "Zml0eS52cHNpbWFnZUINVlBTSW1hZ2VQcm90b1ABWkxnaXRodWIuY29tL0dy",
+            "YWZmaXR5LVRlY2hub2xvZ2llcy92aXN1YWwtcG9zaXRpb25pbmctc2Vydmlj",
+            "ZXMvcHJvdG9zL3Zwc2ltYWdlYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::Vpsimage.ImageRequest), global::Vpsimage.ImageRequest.Parser, new[]{ "Message", "BytesImage", "GpsPosition", "CameraInfo", "Id", "Platform" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Vpsimage.LocalizeRequest), global::Vpsimage.LocalizeRequest.Parser, new[]{ "ImageRequest", "AccessTokenDatabaseId" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Vpsimage.ImageResponse), global::Vpsimage.ImageResponse.Parser, new[]{ "Message", "Accuracy", "WorldCoor", "ColmapCoor", "Id" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Vpsimage.ServiceTimeLog), global::Vpsimage.ServiceTimeLog.Parser, new[]{ "FeatureExtraction", "ImageRetrieval", "FeatureMatching", "Sfm", "TimeSum" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Vpsimage.RetrievalLog), global::Vpsimage.RetrievalLog.Parser, new[]{ "Path", "RetrievalList", "RetrievalScore" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Vpsimage.ServiceLog), global::Vpsimage.ServiceLog.Parser, new[]{ "ServiceTime", "RetrievalLog" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Vpsimage.LocalizeResponse), global::Vpsimage.LocalizeResponse.Parser, new[]{ "ImageResponse", "ServiceLog" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Vpsimage.ImageLog), global::Vpsimage.ImageLog.Parser, new[]{ "Request", "Response", "ResponseTimeInSecond", "Timestamp", "AccessTokenDatabaseId", "ServiceLog", "Metrics" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Vpsimage.ImageResponse), global::Vpsimage.ImageResponse.Parser, new[]{ "Message", "Accuracy", "WorldCoor", "ColmapCoor", "Id", "Covariance" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Vpsimage.AvailableAreaRequest), global::Vpsimage.AvailableAreaRequest.Parser, new[]{ "GpsPosition", "MaxDistance", "MinDistance" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Vpsimage.AvailableAreaResponse), global::Vpsimage.AvailableAreaResponse.Parser, new[]{ "Message", "IsAvailable", "GpsPosition" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Vpsimage.Position), global::Vpsimage.Position.Parser, new[]{ "Latitude", "Longitude", "Altitude" }, null, null, null, null),
@@ -488,241 +466,6 @@ namespace Vpsimage {
 
   }
 
-  public sealed partial class LocalizeRequest : pb::IMessage<LocalizeRequest>
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      , pb::IBufferMessage
-  #endif
-  {
-    private static readonly pb::MessageParser<LocalizeRequest> _parser = new pb::MessageParser<LocalizeRequest>(() => new LocalizeRequest());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<LocalizeRequest> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::Vpsimage.VpsimageReflection.Descriptor.MessageTypes[1]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public LocalizeRequest() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public LocalizeRequest(LocalizeRequest other) : this() {
-      imageRequest_ = other.imageRequest_ != null ? other.imageRequest_.Clone() : null;
-      accessTokenDatabaseId_ = other.accessTokenDatabaseId_;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public LocalizeRequest Clone() {
-      return new LocalizeRequest(this);
-    }
-
-    /// <summary>Field number for the "ImageRequest" field.</summary>
-    public const int ImageRequestFieldNumber = 1;
-    private global::Vpsimage.ImageRequest imageRequest_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::Vpsimage.ImageRequest ImageRequest {
-      get { return imageRequest_; }
-      set {
-        imageRequest_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "accessTokenDatabaseId" field.</summary>
-    public const int AccessTokenDatabaseIdFieldNumber = 2;
-    private string accessTokenDatabaseId_ = "";
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public string AccessTokenDatabaseId {
-      get { return accessTokenDatabaseId_; }
-      set {
-        accessTokenDatabaseId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override bool Equals(object other) {
-      return Equals(other as LocalizeRequest);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(LocalizeRequest other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (!object.Equals(ImageRequest, other.ImageRequest)) return false;
-      if (AccessTokenDatabaseId != other.AccessTokenDatabaseId) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (imageRequest_ != null) hash ^= ImageRequest.GetHashCode();
-      if (AccessTokenDatabaseId.Length != 0) hash ^= AccessTokenDatabaseId.GetHashCode();
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void WriteTo(pb::CodedOutputStream output) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      output.WriteRawMessage(this);
-    #else
-      if (imageRequest_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(ImageRequest);
-      }
-      if (AccessTokenDatabaseId.Length != 0) {
-        output.WriteRawTag(18);
-        output.WriteString(AccessTokenDatabaseId);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (imageRequest_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(ImageRequest);
-      }
-      if (AccessTokenDatabaseId.Length != 0) {
-        output.WriteRawTag(18);
-        output.WriteString(AccessTokenDatabaseId);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(ref output);
-      }
-    }
-    #endif
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int CalculateSize() {
-      int size = 0;
-      if (imageRequest_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(ImageRequest);
-      }
-      if (AccessTokenDatabaseId.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(AccessTokenDatabaseId);
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(LocalizeRequest other) {
-      if (other == null) {
-        return;
-      }
-      if (other.imageRequest_ != null) {
-        if (imageRequest_ == null) {
-          ImageRequest = new global::Vpsimage.ImageRequest();
-        }
-        ImageRequest.MergeFrom(other.ImageRequest);
-      }
-      if (other.AccessTokenDatabaseId.Length != 0) {
-        AccessTokenDatabaseId = other.AccessTokenDatabaseId;
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(pb::CodedInputStream input) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      input.ReadRawMessage(this);
-    #else
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 10: {
-            if (imageRequest_ == null) {
-              ImageRequest = new global::Vpsimage.ImageRequest();
-            }
-            input.ReadMessage(ImageRequest);
-            break;
-          }
-          case 18: {
-            AccessTokenDatabaseId = input.ReadString();
-            break;
-          }
-        }
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
-            break;
-          case 10: {
-            if (imageRequest_ == null) {
-              ImageRequest = new global::Vpsimage.ImageRequest();
-            }
-            input.ReadMessage(ImageRequest);
-            break;
-          }
-          case 18: {
-            AccessTokenDatabaseId = input.ReadString();
-            break;
-          }
-        }
-      }
-    }
-    #endif
-
-  }
-
   public sealed partial class ImageResponse : pb::IMessage<ImageResponse>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -737,7 +480,7 @@ namespace Vpsimage {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Vpsimage.VpsimageReflection.Descriptor.MessageTypes[2]; }
+      get { return global::Vpsimage.VpsimageReflection.Descriptor.MessageTypes[1]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -762,6 +505,7 @@ namespace Vpsimage {
       worldCoor_ = other.worldCoor_ != null ? other.worldCoor_.Clone() : null;
       colmapCoor_ = other.colmapCoor_ != null ? other.colmapCoor_.Clone() : null;
       id_ = other.id_;
+      covariance_ = other.covariance_.Clone();
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -831,6 +575,17 @@ namespace Vpsimage {
       }
     }
 
+    /// <summary>Field number for the "covariance" field.</summary>
+    public const int CovarianceFieldNumber = 6;
+    private static readonly pb::FieldCodec<double> _repeated_covariance_codec
+        = pb::FieldCodec.ForDouble(50);
+    private readonly pbc::RepeatedField<double> covariance_ = new pbc::RepeatedField<double>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public pbc::RepeatedField<double> Covariance {
+      get { return covariance_; }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -851,6 +606,7 @@ namespace Vpsimage {
       if (!object.Equals(WorldCoor, other.WorldCoor)) return false;
       if (!object.Equals(ColmapCoor, other.ColmapCoor)) return false;
       if (Id != other.Id) return false;
+      if(!covariance_.Equals(other.covariance_)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -863,6 +619,7 @@ namespace Vpsimage {
       if (worldCoor_ != null) hash ^= WorldCoor.GetHashCode();
       if (colmapCoor_ != null) hash ^= ColmapCoor.GetHashCode();
       if (Id.Length != 0) hash ^= Id.GetHashCode();
+      hash ^= covariance_.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -901,6 +658,7 @@ namespace Vpsimage {
         output.WriteRawTag(42);
         output.WriteString(Id);
       }
+      covariance_.WriteTo(output, _repeated_covariance_codec);
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -931,6 +689,7 @@ namespace Vpsimage {
         output.WriteRawTag(42);
         output.WriteString(Id);
       }
+      covariance_.WriteTo(ref output, _repeated_covariance_codec);
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -956,6 +715,7 @@ namespace Vpsimage {
       if (Id.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Id);
       }
+      size += covariance_.CalculateSize(_repeated_covariance_codec);
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
       }
@@ -989,6 +749,7 @@ namespace Vpsimage {
       if (other.Id.Length != 0) {
         Id = other.Id;
       }
+      covariance_.Add(other.covariance_);
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -1030,6 +791,11 @@ namespace Vpsimage {
             Id = input.ReadString();
             break;
           }
+          case 50:
+          case 49: {
+            covariance_.AddEntriesFrom(input, _repeated_covariance_codec);
+            break;
+          }
         }
       }
     #endif
@@ -1071,1510 +837,9 @@ namespace Vpsimage {
             Id = input.ReadString();
             break;
           }
-        }
-      }
-    }
-    #endif
-
-  }
-
-  public sealed partial class ServiceTimeLog : pb::IMessage<ServiceTimeLog>
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      , pb::IBufferMessage
-  #endif
-  {
-    private static readonly pb::MessageParser<ServiceTimeLog> _parser = new pb::MessageParser<ServiceTimeLog>(() => new ServiceTimeLog());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<ServiceTimeLog> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::Vpsimage.VpsimageReflection.Descriptor.MessageTypes[3]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public ServiceTimeLog() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public ServiceTimeLog(ServiceTimeLog other) : this() {
-      featureExtraction_ = other.featureExtraction_;
-      imageRetrieval_ = other.imageRetrieval_;
-      featureMatching_ = other.featureMatching_;
-      sfm_ = other.sfm_;
-      timeSum_ = other.timeSum_;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public ServiceTimeLog Clone() {
-      return new ServiceTimeLog(this);
-    }
-
-    /// <summary>Field number for the "featureExtraction" field.</summary>
-    public const int FeatureExtractionFieldNumber = 1;
-    private float featureExtraction_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public float FeatureExtraction {
-      get { return featureExtraction_; }
-      set {
-        featureExtraction_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "imageRetrieval" field.</summary>
-    public const int ImageRetrievalFieldNumber = 2;
-    private float imageRetrieval_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public float ImageRetrieval {
-      get { return imageRetrieval_; }
-      set {
-        imageRetrieval_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "featureMatching" field.</summary>
-    public const int FeatureMatchingFieldNumber = 3;
-    private float featureMatching_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public float FeatureMatching {
-      get { return featureMatching_; }
-      set {
-        featureMatching_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "sfm" field.</summary>
-    public const int SfmFieldNumber = 4;
-    private float sfm_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public float Sfm {
-      get { return sfm_; }
-      set {
-        sfm_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "timeSum" field.</summary>
-    public const int TimeSumFieldNumber = 5;
-    private float timeSum_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public float TimeSum {
-      get { return timeSum_; }
-      set {
-        timeSum_ = value;
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override bool Equals(object other) {
-      return Equals(other as ServiceTimeLog);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(ServiceTimeLog other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(FeatureExtraction, other.FeatureExtraction)) return false;
-      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(ImageRetrieval, other.ImageRetrieval)) return false;
-      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(FeatureMatching, other.FeatureMatching)) return false;
-      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(Sfm, other.Sfm)) return false;
-      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(TimeSum, other.TimeSum)) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (FeatureExtraction != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(FeatureExtraction);
-      if (ImageRetrieval != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(ImageRetrieval);
-      if (FeatureMatching != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(FeatureMatching);
-      if (Sfm != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(Sfm);
-      if (TimeSum != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(TimeSum);
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void WriteTo(pb::CodedOutputStream output) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      output.WriteRawMessage(this);
-    #else
-      if (FeatureExtraction != 0F) {
-        output.WriteRawTag(13);
-        output.WriteFloat(FeatureExtraction);
-      }
-      if (ImageRetrieval != 0F) {
-        output.WriteRawTag(21);
-        output.WriteFloat(ImageRetrieval);
-      }
-      if (FeatureMatching != 0F) {
-        output.WriteRawTag(29);
-        output.WriteFloat(FeatureMatching);
-      }
-      if (Sfm != 0F) {
-        output.WriteRawTag(37);
-        output.WriteFloat(Sfm);
-      }
-      if (TimeSum != 0F) {
-        output.WriteRawTag(45);
-        output.WriteFloat(TimeSum);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (FeatureExtraction != 0F) {
-        output.WriteRawTag(13);
-        output.WriteFloat(FeatureExtraction);
-      }
-      if (ImageRetrieval != 0F) {
-        output.WriteRawTag(21);
-        output.WriteFloat(ImageRetrieval);
-      }
-      if (FeatureMatching != 0F) {
-        output.WriteRawTag(29);
-        output.WriteFloat(FeatureMatching);
-      }
-      if (Sfm != 0F) {
-        output.WriteRawTag(37);
-        output.WriteFloat(Sfm);
-      }
-      if (TimeSum != 0F) {
-        output.WriteRawTag(45);
-        output.WriteFloat(TimeSum);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(ref output);
-      }
-    }
-    #endif
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int CalculateSize() {
-      int size = 0;
-      if (FeatureExtraction != 0F) {
-        size += 1 + 4;
-      }
-      if (ImageRetrieval != 0F) {
-        size += 1 + 4;
-      }
-      if (FeatureMatching != 0F) {
-        size += 1 + 4;
-      }
-      if (Sfm != 0F) {
-        size += 1 + 4;
-      }
-      if (TimeSum != 0F) {
-        size += 1 + 4;
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(ServiceTimeLog other) {
-      if (other == null) {
-        return;
-      }
-      if (other.FeatureExtraction != 0F) {
-        FeatureExtraction = other.FeatureExtraction;
-      }
-      if (other.ImageRetrieval != 0F) {
-        ImageRetrieval = other.ImageRetrieval;
-      }
-      if (other.FeatureMatching != 0F) {
-        FeatureMatching = other.FeatureMatching;
-      }
-      if (other.Sfm != 0F) {
-        Sfm = other.Sfm;
-      }
-      if (other.TimeSum != 0F) {
-        TimeSum = other.TimeSum;
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(pb::CodedInputStream input) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      input.ReadRawMessage(this);
-    #else
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 13: {
-            FeatureExtraction = input.ReadFloat();
-            break;
-          }
-          case 21: {
-            ImageRetrieval = input.ReadFloat();
-            break;
-          }
-          case 29: {
-            FeatureMatching = input.ReadFloat();
-            break;
-          }
-          case 37: {
-            Sfm = input.ReadFloat();
-            break;
-          }
-          case 45: {
-            TimeSum = input.ReadFloat();
-            break;
-          }
-        }
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
-            break;
-          case 13: {
-            FeatureExtraction = input.ReadFloat();
-            break;
-          }
-          case 21: {
-            ImageRetrieval = input.ReadFloat();
-            break;
-          }
-          case 29: {
-            FeatureMatching = input.ReadFloat();
-            break;
-          }
-          case 37: {
-            Sfm = input.ReadFloat();
-            break;
-          }
-          case 45: {
-            TimeSum = input.ReadFloat();
-            break;
-          }
-        }
-      }
-    }
-    #endif
-
-  }
-
-  public sealed partial class RetrievalLog : pb::IMessage<RetrievalLog>
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      , pb::IBufferMessage
-  #endif
-  {
-    private static readonly pb::MessageParser<RetrievalLog> _parser = new pb::MessageParser<RetrievalLog>(() => new RetrievalLog());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<RetrievalLog> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::Vpsimage.VpsimageReflection.Descriptor.MessageTypes[4]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public RetrievalLog() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public RetrievalLog(RetrievalLog other) : this() {
-      path_ = other.path_;
-      retrievalList_ = other.retrievalList_.Clone();
-      retrievalScore_ = other.retrievalScore_.Clone();
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public RetrievalLog Clone() {
-      return new RetrievalLog(this);
-    }
-
-    /// <summary>Field number for the "path" field.</summary>
-    public const int PathFieldNumber = 1;
-    private string path_ = "";
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public string Path {
-      get { return path_; }
-      set {
-        path_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
-      }
-    }
-
-    /// <summary>Field number for the "retrievalList" field.</summary>
-    public const int RetrievalListFieldNumber = 2;
-    private static readonly pb::FieldCodec<string> _repeated_retrievalList_codec
-        = pb::FieldCodec.ForString(18);
-    private readonly pbc::RepeatedField<string> retrievalList_ = new pbc::RepeatedField<string>();
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public pbc::RepeatedField<string> RetrievalList {
-      get { return retrievalList_; }
-    }
-
-    /// <summary>Field number for the "retrievalScore" field.</summary>
-    public const int RetrievalScoreFieldNumber = 3;
-    private static readonly pb::FieldCodec<float> _repeated_retrievalScore_codec
-        = pb::FieldCodec.ForFloat(26);
-    private readonly pbc::RepeatedField<float> retrievalScore_ = new pbc::RepeatedField<float>();
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public pbc::RepeatedField<float> RetrievalScore {
-      get { return retrievalScore_; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override bool Equals(object other) {
-      return Equals(other as RetrievalLog);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(RetrievalLog other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (Path != other.Path) return false;
-      if(!retrievalList_.Equals(other.retrievalList_)) return false;
-      if(!retrievalScore_.Equals(other.retrievalScore_)) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (Path.Length != 0) hash ^= Path.GetHashCode();
-      hash ^= retrievalList_.GetHashCode();
-      hash ^= retrievalScore_.GetHashCode();
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void WriteTo(pb::CodedOutputStream output) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      output.WriteRawMessage(this);
-    #else
-      if (Path.Length != 0) {
-        output.WriteRawTag(10);
-        output.WriteString(Path);
-      }
-      retrievalList_.WriteTo(output, _repeated_retrievalList_codec);
-      retrievalScore_.WriteTo(output, _repeated_retrievalScore_codec);
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (Path.Length != 0) {
-        output.WriteRawTag(10);
-        output.WriteString(Path);
-      }
-      retrievalList_.WriteTo(ref output, _repeated_retrievalList_codec);
-      retrievalScore_.WriteTo(ref output, _repeated_retrievalScore_codec);
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(ref output);
-      }
-    }
-    #endif
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int CalculateSize() {
-      int size = 0;
-      if (Path.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(Path);
-      }
-      size += retrievalList_.CalculateSize(_repeated_retrievalList_codec);
-      size += retrievalScore_.CalculateSize(_repeated_retrievalScore_codec);
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(RetrievalLog other) {
-      if (other == null) {
-        return;
-      }
-      if (other.Path.Length != 0) {
-        Path = other.Path;
-      }
-      retrievalList_.Add(other.retrievalList_);
-      retrievalScore_.Add(other.retrievalScore_);
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(pb::CodedInputStream input) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      input.ReadRawMessage(this);
-    #else
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 10: {
-            Path = input.ReadString();
-            break;
-          }
-          case 18: {
-            retrievalList_.AddEntriesFrom(input, _repeated_retrievalList_codec);
-            break;
-          }
-          case 26:
-          case 29: {
-            retrievalScore_.AddEntriesFrom(input, _repeated_retrievalScore_codec);
-            break;
-          }
-        }
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
-            break;
-          case 10: {
-            Path = input.ReadString();
-            break;
-          }
-          case 18: {
-            retrievalList_.AddEntriesFrom(ref input, _repeated_retrievalList_codec);
-            break;
-          }
-          case 26:
-          case 29: {
-            retrievalScore_.AddEntriesFrom(ref input, _repeated_retrievalScore_codec);
-            break;
-          }
-        }
-      }
-    }
-    #endif
-
-  }
-
-  public sealed partial class ServiceLog : pb::IMessage<ServiceLog>
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      , pb::IBufferMessage
-  #endif
-  {
-    private static readonly pb::MessageParser<ServiceLog> _parser = new pb::MessageParser<ServiceLog>(() => new ServiceLog());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<ServiceLog> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::Vpsimage.VpsimageReflection.Descriptor.MessageTypes[5]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public ServiceLog() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public ServiceLog(ServiceLog other) : this() {
-      serviceTime_ = other.serviceTime_ != null ? other.serviceTime_.Clone() : null;
-      retrievalLog_ = other.retrievalLog_ != null ? other.retrievalLog_.Clone() : null;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public ServiceLog Clone() {
-      return new ServiceLog(this);
-    }
-
-    /// <summary>Field number for the "serviceTime" field.</summary>
-    public const int ServiceTimeFieldNumber = 1;
-    private global::Vpsimage.ServiceTimeLog serviceTime_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::Vpsimage.ServiceTimeLog ServiceTime {
-      get { return serviceTime_; }
-      set {
-        serviceTime_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "retrievalLog" field.</summary>
-    public const int RetrievalLogFieldNumber = 2;
-    private global::Vpsimage.RetrievalLog retrievalLog_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::Vpsimage.RetrievalLog RetrievalLog {
-      get { return retrievalLog_; }
-      set {
-        retrievalLog_ = value;
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override bool Equals(object other) {
-      return Equals(other as ServiceLog);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(ServiceLog other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (!object.Equals(ServiceTime, other.ServiceTime)) return false;
-      if (!object.Equals(RetrievalLog, other.RetrievalLog)) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (serviceTime_ != null) hash ^= ServiceTime.GetHashCode();
-      if (retrievalLog_ != null) hash ^= RetrievalLog.GetHashCode();
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void WriteTo(pb::CodedOutputStream output) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      output.WriteRawMessage(this);
-    #else
-      if (serviceTime_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(ServiceTime);
-      }
-      if (retrievalLog_ != null) {
-        output.WriteRawTag(18);
-        output.WriteMessage(RetrievalLog);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (serviceTime_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(ServiceTime);
-      }
-      if (retrievalLog_ != null) {
-        output.WriteRawTag(18);
-        output.WriteMessage(RetrievalLog);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(ref output);
-      }
-    }
-    #endif
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int CalculateSize() {
-      int size = 0;
-      if (serviceTime_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(ServiceTime);
-      }
-      if (retrievalLog_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(RetrievalLog);
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(ServiceLog other) {
-      if (other == null) {
-        return;
-      }
-      if (other.serviceTime_ != null) {
-        if (serviceTime_ == null) {
-          ServiceTime = new global::Vpsimage.ServiceTimeLog();
-        }
-        ServiceTime.MergeFrom(other.ServiceTime);
-      }
-      if (other.retrievalLog_ != null) {
-        if (retrievalLog_ == null) {
-          RetrievalLog = new global::Vpsimage.RetrievalLog();
-        }
-        RetrievalLog.MergeFrom(other.RetrievalLog);
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(pb::CodedInputStream input) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      input.ReadRawMessage(this);
-    #else
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 10: {
-            if (serviceTime_ == null) {
-              ServiceTime = new global::Vpsimage.ServiceTimeLog();
-            }
-            input.ReadMessage(ServiceTime);
-            break;
-          }
-          case 18: {
-            if (retrievalLog_ == null) {
-              RetrievalLog = new global::Vpsimage.RetrievalLog();
-            }
-            input.ReadMessage(RetrievalLog);
-            break;
-          }
-        }
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
-            break;
-          case 10: {
-            if (serviceTime_ == null) {
-              ServiceTime = new global::Vpsimage.ServiceTimeLog();
-            }
-            input.ReadMessage(ServiceTime);
-            break;
-          }
-          case 18: {
-            if (retrievalLog_ == null) {
-              RetrievalLog = new global::Vpsimage.RetrievalLog();
-            }
-            input.ReadMessage(RetrievalLog);
-            break;
-          }
-        }
-      }
-    }
-    #endif
-
-  }
-
-  public sealed partial class LocalizeResponse : pb::IMessage<LocalizeResponse>
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      , pb::IBufferMessage
-  #endif
-  {
-    private static readonly pb::MessageParser<LocalizeResponse> _parser = new pb::MessageParser<LocalizeResponse>(() => new LocalizeResponse());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<LocalizeResponse> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::Vpsimage.VpsimageReflection.Descriptor.MessageTypes[6]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public LocalizeResponse() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public LocalizeResponse(LocalizeResponse other) : this() {
-      imageResponse_ = other.imageResponse_ != null ? other.imageResponse_.Clone() : null;
-      serviceLog_ = other.serviceLog_ != null ? other.serviceLog_.Clone() : null;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public LocalizeResponse Clone() {
-      return new LocalizeResponse(this);
-    }
-
-    /// <summary>Field number for the "imageResponse" field.</summary>
-    public const int ImageResponseFieldNumber = 1;
-    private global::Vpsimage.ImageResponse imageResponse_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::Vpsimage.ImageResponse ImageResponse {
-      get { return imageResponse_; }
-      set {
-        imageResponse_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "serviceLog" field.</summary>
-    public const int ServiceLogFieldNumber = 2;
-    private global::Vpsimage.ServiceLog serviceLog_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::Vpsimage.ServiceLog ServiceLog {
-      get { return serviceLog_; }
-      set {
-        serviceLog_ = value;
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override bool Equals(object other) {
-      return Equals(other as LocalizeResponse);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(LocalizeResponse other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (!object.Equals(ImageResponse, other.ImageResponse)) return false;
-      if (!object.Equals(ServiceLog, other.ServiceLog)) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (imageResponse_ != null) hash ^= ImageResponse.GetHashCode();
-      if (serviceLog_ != null) hash ^= ServiceLog.GetHashCode();
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void WriteTo(pb::CodedOutputStream output) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      output.WriteRawMessage(this);
-    #else
-      if (imageResponse_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(ImageResponse);
-      }
-      if (serviceLog_ != null) {
-        output.WriteRawTag(18);
-        output.WriteMessage(ServiceLog);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (imageResponse_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(ImageResponse);
-      }
-      if (serviceLog_ != null) {
-        output.WriteRawTag(18);
-        output.WriteMessage(ServiceLog);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(ref output);
-      }
-    }
-    #endif
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int CalculateSize() {
-      int size = 0;
-      if (imageResponse_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(ImageResponse);
-      }
-      if (serviceLog_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(ServiceLog);
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(LocalizeResponse other) {
-      if (other == null) {
-        return;
-      }
-      if (other.imageResponse_ != null) {
-        if (imageResponse_ == null) {
-          ImageResponse = new global::Vpsimage.ImageResponse();
-        }
-        ImageResponse.MergeFrom(other.ImageResponse);
-      }
-      if (other.serviceLog_ != null) {
-        if (serviceLog_ == null) {
-          ServiceLog = new global::Vpsimage.ServiceLog();
-        }
-        ServiceLog.MergeFrom(other.ServiceLog);
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(pb::CodedInputStream input) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      input.ReadRawMessage(this);
-    #else
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 10: {
-            if (imageResponse_ == null) {
-              ImageResponse = new global::Vpsimage.ImageResponse();
-            }
-            input.ReadMessage(ImageResponse);
-            break;
-          }
-          case 18: {
-            if (serviceLog_ == null) {
-              ServiceLog = new global::Vpsimage.ServiceLog();
-            }
-            input.ReadMessage(ServiceLog);
-            break;
-          }
-        }
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
-            break;
-          case 10: {
-            if (imageResponse_ == null) {
-              ImageResponse = new global::Vpsimage.ImageResponse();
-            }
-            input.ReadMessage(ImageResponse);
-            break;
-          }
-          case 18: {
-            if (serviceLog_ == null) {
-              ServiceLog = new global::Vpsimage.ServiceLog();
-            }
-            input.ReadMessage(ServiceLog);
-            break;
-          }
-        }
-      }
-    }
-    #endif
-
-  }
-
-  public sealed partial class ImageLog : pb::IMessage<ImageLog>
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      , pb::IBufferMessage
-  #endif
-  {
-    private static readonly pb::MessageParser<ImageLog> _parser = new pb::MessageParser<ImageLog>(() => new ImageLog());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<ImageLog> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::Vpsimage.VpsimageReflection.Descriptor.MessageTypes[7]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public ImageLog() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public ImageLog(ImageLog other) : this() {
-      request_ = other.request_ != null ? other.request_.Clone() : null;
-      response_ = other.response_ != null ? other.response_.Clone() : null;
-      responseTimeInSecond_ = other.responseTimeInSecond_;
-      timestamp_ = other.timestamp_;
-      accessTokenDatabaseId_ = other.accessTokenDatabaseId_;
-      serviceLog_ = other.serviceLog_ != null ? other.serviceLog_.Clone() : null;
-      metrics_ = other.metrics_;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public ImageLog Clone() {
-      return new ImageLog(this);
-    }
-
-    /// <summary>Field number for the "request" field.</summary>
-    public const int RequestFieldNumber = 1;
-    private global::Vpsimage.ImageRequest request_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::Vpsimage.ImageRequest Request {
-      get { return request_; }
-      set {
-        request_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "response" field.</summary>
-    public const int ResponseFieldNumber = 2;
-    private global::Vpsimage.ImageResponse response_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::Vpsimage.ImageResponse Response {
-      get { return response_; }
-      set {
-        response_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "responseTimeInSecond" field.</summary>
-    public const int ResponseTimeInSecondFieldNumber = 3;
-    private float responseTimeInSecond_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public float ResponseTimeInSecond {
-      get { return responseTimeInSecond_; }
-      set {
-        responseTimeInSecond_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "timestamp" field.</summary>
-    public const int TimestampFieldNumber = 4;
-    private int timestamp_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int Timestamp {
-      get { return timestamp_; }
-      set {
-        timestamp_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "accessTokenDatabaseId" field.</summary>
-    public const int AccessTokenDatabaseIdFieldNumber = 5;
-    private string accessTokenDatabaseId_ = "";
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public string AccessTokenDatabaseId {
-      get { return accessTokenDatabaseId_; }
-      set {
-        accessTokenDatabaseId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
-      }
-    }
-
-    /// <summary>Field number for the "serviceLog" field.</summary>
-    public const int ServiceLogFieldNumber = 6;
-    private global::Vpsimage.ServiceLog serviceLog_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::Vpsimage.ServiceLog ServiceLog {
-      get { return serviceLog_; }
-      set {
-        serviceLog_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "metrics" field.</summary>
-    public const int MetricsFieldNumber = 7;
-    private pb::ByteString metrics_ = pb::ByteString.Empty;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public pb::ByteString Metrics {
-      get { return metrics_; }
-      set {
-        metrics_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override bool Equals(object other) {
-      return Equals(other as ImageLog);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(ImageLog other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (!object.Equals(Request, other.Request)) return false;
-      if (!object.Equals(Response, other.Response)) return false;
-      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(ResponseTimeInSecond, other.ResponseTimeInSecond)) return false;
-      if (Timestamp != other.Timestamp) return false;
-      if (AccessTokenDatabaseId != other.AccessTokenDatabaseId) return false;
-      if (!object.Equals(ServiceLog, other.ServiceLog)) return false;
-      if (Metrics != other.Metrics) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (request_ != null) hash ^= Request.GetHashCode();
-      if (response_ != null) hash ^= Response.GetHashCode();
-      if (ResponseTimeInSecond != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(ResponseTimeInSecond);
-      if (Timestamp != 0) hash ^= Timestamp.GetHashCode();
-      if (AccessTokenDatabaseId.Length != 0) hash ^= AccessTokenDatabaseId.GetHashCode();
-      if (serviceLog_ != null) hash ^= ServiceLog.GetHashCode();
-      if (Metrics.Length != 0) hash ^= Metrics.GetHashCode();
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void WriteTo(pb::CodedOutputStream output) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      output.WriteRawMessage(this);
-    #else
-      if (request_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Request);
-      }
-      if (response_ != null) {
-        output.WriteRawTag(18);
-        output.WriteMessage(Response);
-      }
-      if (ResponseTimeInSecond != 0F) {
-        output.WriteRawTag(29);
-        output.WriteFloat(ResponseTimeInSecond);
-      }
-      if (Timestamp != 0) {
-        output.WriteRawTag(32);
-        output.WriteInt32(Timestamp);
-      }
-      if (AccessTokenDatabaseId.Length != 0) {
-        output.WriteRawTag(42);
-        output.WriteString(AccessTokenDatabaseId);
-      }
-      if (serviceLog_ != null) {
-        output.WriteRawTag(50);
-        output.WriteMessage(ServiceLog);
-      }
-      if (Metrics.Length != 0) {
-        output.WriteRawTag(58);
-        output.WriteBytes(Metrics);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (request_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Request);
-      }
-      if (response_ != null) {
-        output.WriteRawTag(18);
-        output.WriteMessage(Response);
-      }
-      if (ResponseTimeInSecond != 0F) {
-        output.WriteRawTag(29);
-        output.WriteFloat(ResponseTimeInSecond);
-      }
-      if (Timestamp != 0) {
-        output.WriteRawTag(32);
-        output.WriteInt32(Timestamp);
-      }
-      if (AccessTokenDatabaseId.Length != 0) {
-        output.WriteRawTag(42);
-        output.WriteString(AccessTokenDatabaseId);
-      }
-      if (serviceLog_ != null) {
-        output.WriteRawTag(50);
-        output.WriteMessage(ServiceLog);
-      }
-      if (Metrics.Length != 0) {
-        output.WriteRawTag(58);
-        output.WriteBytes(Metrics);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(ref output);
-      }
-    }
-    #endif
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int CalculateSize() {
-      int size = 0;
-      if (request_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Request);
-      }
-      if (response_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Response);
-      }
-      if (ResponseTimeInSecond != 0F) {
-        size += 1 + 4;
-      }
-      if (Timestamp != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Timestamp);
-      }
-      if (AccessTokenDatabaseId.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(AccessTokenDatabaseId);
-      }
-      if (serviceLog_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(ServiceLog);
-      }
-      if (Metrics.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeBytesSize(Metrics);
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(ImageLog other) {
-      if (other == null) {
-        return;
-      }
-      if (other.request_ != null) {
-        if (request_ == null) {
-          Request = new global::Vpsimage.ImageRequest();
-        }
-        Request.MergeFrom(other.Request);
-      }
-      if (other.response_ != null) {
-        if (response_ == null) {
-          Response = new global::Vpsimage.ImageResponse();
-        }
-        Response.MergeFrom(other.Response);
-      }
-      if (other.ResponseTimeInSecond != 0F) {
-        ResponseTimeInSecond = other.ResponseTimeInSecond;
-      }
-      if (other.Timestamp != 0) {
-        Timestamp = other.Timestamp;
-      }
-      if (other.AccessTokenDatabaseId.Length != 0) {
-        AccessTokenDatabaseId = other.AccessTokenDatabaseId;
-      }
-      if (other.serviceLog_ != null) {
-        if (serviceLog_ == null) {
-          ServiceLog = new global::Vpsimage.ServiceLog();
-        }
-        ServiceLog.MergeFrom(other.ServiceLog);
-      }
-      if (other.Metrics.Length != 0) {
-        Metrics = other.Metrics;
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(pb::CodedInputStream input) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      input.ReadRawMessage(this);
-    #else
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 10: {
-            if (request_ == null) {
-              Request = new global::Vpsimage.ImageRequest();
-            }
-            input.ReadMessage(Request);
-            break;
-          }
-          case 18: {
-            if (response_ == null) {
-              Response = new global::Vpsimage.ImageResponse();
-            }
-            input.ReadMessage(Response);
-            break;
-          }
-          case 29: {
-            ResponseTimeInSecond = input.ReadFloat();
-            break;
-          }
-          case 32: {
-            Timestamp = input.ReadInt32();
-            break;
-          }
-          case 42: {
-            AccessTokenDatabaseId = input.ReadString();
-            break;
-          }
-          case 50: {
-            if (serviceLog_ == null) {
-              ServiceLog = new global::Vpsimage.ServiceLog();
-            }
-            input.ReadMessage(ServiceLog);
-            break;
-          }
-          case 58: {
-            Metrics = input.ReadBytes();
-            break;
-          }
-        }
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
-            break;
-          case 10: {
-            if (request_ == null) {
-              Request = new global::Vpsimage.ImageRequest();
-            }
-            input.ReadMessage(Request);
-            break;
-          }
-          case 18: {
-            if (response_ == null) {
-              Response = new global::Vpsimage.ImageResponse();
-            }
-            input.ReadMessage(Response);
-            break;
-          }
-          case 29: {
-            ResponseTimeInSecond = input.ReadFloat();
-            break;
-          }
-          case 32: {
-            Timestamp = input.ReadInt32();
-            break;
-          }
-          case 42: {
-            AccessTokenDatabaseId = input.ReadString();
-            break;
-          }
-          case 50: {
-            if (serviceLog_ == null) {
-              ServiceLog = new global::Vpsimage.ServiceLog();
-            }
-            input.ReadMessage(ServiceLog);
-            break;
-          }
-          case 58: {
-            Metrics = input.ReadBytes();
+          case 50:
+          case 49: {
+            covariance_.AddEntriesFrom(ref input, _repeated_covariance_codec);
             break;
           }
         }
@@ -2598,7 +863,7 @@ namespace Vpsimage {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Vpsimage.VpsimageReflection.Descriptor.MessageTypes[8]; }
+      get { return global::Vpsimage.VpsimageReflection.Descriptor.MessageTypes[2]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2870,7 +1135,7 @@ namespace Vpsimage {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Vpsimage.VpsimageReflection.Descriptor.MessageTypes[9]; }
+      get { return global::Vpsimage.VpsimageReflection.Descriptor.MessageTypes[3]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3142,7 +1407,7 @@ namespace Vpsimage {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Vpsimage.VpsimageReflection.Descriptor.MessageTypes[10]; }
+      get { return global::Vpsimage.VpsimageReflection.Descriptor.MessageTypes[4]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3405,7 +1670,7 @@ namespace Vpsimage {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Vpsimage.VpsimageReflection.Descriptor.MessageTypes[11]; }
+      get { return global::Vpsimage.VpsimageReflection.Descriptor.MessageTypes[5]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3742,7 +2007,7 @@ namespace Vpsimage {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Vpsimage.VpsimageReflection.Descriptor.MessageTypes[12]; }
+      get { return global::Vpsimage.VpsimageReflection.Descriptor.MessageTypes[6]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4264,7 +2529,7 @@ namespace Vpsimage {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Vpsimage.VpsimageReflection.Descriptor.MessageTypes[13]; }
+      get { return global::Vpsimage.VpsimageReflection.Descriptor.MessageTypes[7]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

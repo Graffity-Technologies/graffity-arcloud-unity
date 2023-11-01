@@ -23,24 +23,24 @@ namespace UnityEngine.Graffity.ARCloud
             this.apiCredConfig = apiCredConfig;
             availableAreaClient = new GrpcClientAvailableArea(VpsGrpcConstant.IMAGE_HOST_NAME, apiCredConfig.consoleAccessToken);
             imageClient = new GrpcClientImage(VpsGrpcConstant.IMAGE_HOST_NAME, apiCredConfig.consoleAccessToken);
-// #if UNITY_EDITOR
-//             solverClient = new GrpcClientSolver("localhost", apiCredConfig.graffApiKey);
-//             solverCheckClient = new GrpcClientSolverCheck("localhost", apiCredConfig.graffApiKey);
-// #elif UNITY_ANDROID && !UNITY_EDITOR
-//             solverClient = new GrpcClientSolver("192.168.1.101", apiCredConfig.graffApiKey);
-//             solverCheckClient = new GrpcClientSolverCheck("192.168.1.101", apiCredConfig.graffApiKey);
-// #else
+            // #if UNITY_EDITOR
+            //             solverClient = new GrpcClientSolver("localhost", apiCredConfig.graffApiKey);
+            //             solverCheckClient = new GrpcClientSolverCheck("localhost", apiCredConfig.graffApiKey);
+            // #elif UNITY_ANDROID && !UNITY_EDITOR
+            //             solverClient = new GrpcClientSolver("192.168.1.101", apiCredConfig.graffApiKey);
+            //             solverCheckClient = new GrpcClientSolverCheck("192.168.1.101", apiCredConfig.graffApiKey);
+            // #else
             var solverHost = apiCredConfig._useCustomSolverServer
                 ? apiCredConfig._customSolverHost
                 : VpsGrpcConstant.SOLVER_HOST_NAME;
-            
-            
+
+
             if (apiCredConfig._useCustomSolverServer)
                 Debug.LogWarning($"Use custom solver host: {apiCredConfig._customSolverHost}");
-            
+
             solverClient = new GrpcClientSolver(solverHost, apiCredConfig.consoleAccessToken);
             solverCheckClient = new GrpcClientSolverCheck(solverHost, apiCredConfig.consoleAccessToken);
-// #endif
+            // #endif
         }
 
         public void ConnectServers()
@@ -49,28 +49,28 @@ namespace UnityEngine.Graffity.ARCloud
             imageClient.ConnectServer();
 
             var isSolverConnectionSecure = !apiCredConfig._useCustomSolverServer || apiCredConfig._isSecure;
-            
-            solverClient.ConnectServer(secure:isSolverConnectionSecure);
-            solverCheckClient.ConnectServer(secure:isSolverConnectionSecure);
+
+            solverClient.ConnectServer(secure: isSolverConnectionSecure);
+            solverCheckClient.ConnectServer(secure: isSolverConnectionSecure);
         }
 
         public async Task<bool> ValidateConnections()
         {
             var checkImageTask = CheckAvailableAreaAsync(new AvailableAreaRequest()
-                {
-                    GpsPosition = (Position) VALIDATE_CONNECTION_POSITION_GPS,
-                    MinDistance = 0,
-                    MaxDistance = 500
-                }, (response) =>
             {
-                if (!response.IsAvailable)
-                    throw new ARCloudException("Image server validate response is not valid");
-                Debug.Log("Image server validate response is valid");
-            }, (err) =>
-                {
-                    Debug.Log("Image server validate response is not valid");
-                    // throw new ARCloudException("Image server validate response is not valid");
-                }
+                GpsPosition = (Position)VALIDATE_CONNECTION_POSITION_GPS,
+                MinDistance = 0,
+                MaxDistance = 500
+            }, (response) =>
+        {
+            if (!response.IsAvailable)
+                throw new ARCloudException("Image server validate response is not valid");
+            Debug.Log("Image server validate response is valid");
+        }, (err) =>
+            {
+                Debug.Log("Image server validate response is not valid");
+                // throw new ARCloudException("Image server validate response is not valid");
+            }
                 );
             var checkSolverTask = SolverStatusCheckAsync(new Empty(),
                 (response) =>
@@ -92,7 +92,6 @@ namespace UnityEngine.Graffity.ARCloud
             {
                 return false;
             }
-
         }
 
         public void ShutdownServers()
@@ -120,9 +119,9 @@ namespace UnityEngine.Graffity.ARCloud
             }
         }
 
-        
-        public async Task SolverStatusCheckAsync(Empty info, 
-            Action<CheckResponse> onSuccessCb, 
+
+        public async Task SolverStatusCheckAsync(Empty info,
+            Action<CheckResponse> onSuccessCb,
             Action<Exception> onErrorCb = null)
         {
             try
@@ -151,9 +150,9 @@ namespace UnityEngine.Graffity.ARCloud
             var response = await availableAreaClient.SendGrpcAsync(info);
             return response as AvailableAreaResponse;
         }
-        
-        public async Task CheckAvailableAreaAsync(AvailableAreaRequest info, 
-            Action<AvailableAreaResponse> onSuccessCb, 
+
+        public async Task CheckAvailableAreaAsync(AvailableAreaRequest info,
+            Action<AvailableAreaResponse> onSuccessCb,
             Action<Exception> onErrorCb = null)
         {
             try
@@ -172,9 +171,9 @@ namespace UnityEngine.Graffity.ARCloud
                 throw;
             }
         }
-        
-        public async Task SendImageAsync(ImageRequest info, 
-            Action<ImageResponse> onSuccessCb, 
+
+        public async Task SendImageAsync(ImageRequest info,
+            Action<ImageResponse> onSuccessCb,
             Action<Exception> onErrorCb = null)
         {
             try

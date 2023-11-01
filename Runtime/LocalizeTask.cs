@@ -130,12 +130,12 @@ namespace UnityEngine.Graffity.ARCloud
                 missPoint += 1;
                 return;
             }
-            if (response.Accuracy == 0f)
-            {
-                Debug.LogWarning("miss point response accuracy 0");
-                missPoint += 1;
-                return;
-            }
+            // if (response.Accuracy == 0f)
+            // {
+            //     Debug.LogWarning("miss point response accuracy 0");
+            //     missPoint += 1;
+            //     return;
+            // }
 
             var vpsPose = new Pose()
             {
@@ -147,8 +147,18 @@ namespace UnityEngine.Graffity.ARCloud
                     (float)response.ColmapCoor.Qx,
                     (float)response.ColmapCoor.Qy,
                     (float)response.ColmapCoor.Qz,
-                    (float)response.ColmapCoor.Qw)
+                    (float)response.ColmapCoor.Qw),
+                Translation = new Vector3(
+                    (float)response.ColmapCoor.Tx,
+                    (float)response.ColmapCoor.Ty,
+                    (float)response.ColmapCoor.Tz),
+                Timestamp = ARCloudUtils.GetMicroseconds().ToString(),
+                Accuracy = (float)response.Accuracy,
+                Covariance = response.Covariance,
             };
+            // Debug.Log("Accuracy: " + vpsPose.Accuracy.ToString());
+            // Debug.Log("vpsPose.Covariance: " + vpsPose.Covariance.ToString());
+            // Debug.Log("response.Covariance: " + response.Covariance.ToString());
 
             localizeData.Add(key, new PosePair()
             {
@@ -157,7 +167,7 @@ namespace UnityEngine.Graffity.ARCloud
             });
 
             _lastKey = key;
-            if (localizeData.Count >= requirePoint)
+            if (localizeData.Count == requirePoint)
             {
                 state = LocalizeTaskState.CollectingPointFinish;
 

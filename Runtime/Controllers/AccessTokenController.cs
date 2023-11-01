@@ -4,11 +4,11 @@ namespace UnityEngine.Graffity.ARCloud
 {
     public static class AccessTokenController
     {
-        const string GraffityConsoleBackendURL = "https://console-backend-xoeyqjvd6q-as.a.run.app"; // "http://localhost:8080";
+        const string GraffityConsoleBackendURL = "https://console-backend.graffity.tech"; // "http://localhost:8080";
 
         public static async Task<bool> IsValidAccessToken(string rawToken)
         {
-            var url = GraffityConsoleBackendURL + "/api/v1/access-token/validate";
+            var url = GraffityConsoleBackendURL + "/api/v2/access-token/validate";
 
             var httpClient = new HttpClient(new JsonSerializationOption());
             var token = new AccessTokenModel();
@@ -16,9 +16,9 @@ namespace UnityEngine.Graffity.ARCloud
 
             string json = JsonUtility.ToJson(token);
 
-            var result = await httpClient.Post<AccessTokenModel>(url, json);
+            var result = await httpClient.Post<string>(url, json, rawToken);
 
-            if (result == null)
+            if (result == "")
             {
                 Debug.LogError("Wrong Access Token!");
                 return false;
@@ -32,7 +32,7 @@ namespace UnityEngine.Graffity.ARCloud
 
         public async static void TestAccessToken()
         {
-            var a = await IsValidAccessToken("sk.SEMwSGpWZURsbFBocVBTZ3FYWC1LZkFrQlA5ZkdHM09SR1k2ZVZGeHNvWlpQQldNc3Z0T0pUT2JlWTZJUnhxcmNlSERvLUdmcDgzR1hsSzRyUGVFLWJSUkJaVmRzTW1W");
+            var a = await IsValidAccessToken("");
             Debug.Log(a);
         }
     }

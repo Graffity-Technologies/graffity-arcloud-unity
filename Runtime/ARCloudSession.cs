@@ -35,6 +35,8 @@ namespace UnityEngine.Graffity.ARCloud
         public String localizeState => currentLocalizeTask != null ? currentLocalizeTask.state.ToString() : "Deleted";
         public float localizeProgress => currentLocalizeTask?.progress ?? 0f;
         public string localizeProgressMessage => currentLocalizeTask?.progressMessage ?? "N/A";
+        public int frameDrop = 10;
+        public int captureFrameCounter = 0;
 
         private void Awake()
         {
@@ -59,6 +61,7 @@ namespace UnityEngine.Graffity.ARCloud
 
         private void Update()
         {
+            captureFrameCounter += 1;
 #if UNITY_EDITOR
             //TODO add editor t
             LocalizeTaskUpdate();
@@ -74,14 +77,20 @@ namespace UnityEngine.Graffity.ARCloud
                 switch (currentLocalizeTask.state)
                 {
                     case LocalizeTaskState.CollectingPoint:
-                        if (currentLocalizeTask.ShouldAddPoint())
+                        // if (currentLocalizeTask.ShouldAddPoint())
+                        if (captureFrameCounter % frameDrop == 0)
                         {
                             var cameraTf = cameraManager.transform;
                             var arPose = new Pose()
                             {
                                 Position = cameraTf.localPosition,
-                                Rotation = cameraTf.localRotation
+                                Rotation = cameraTf.localRotation,
+                                Translation = cameraTf.localPosition,
+                                Covariance = new Google.Protobuf.Collections.RepeatedField<double>() { 1.0, 1.0 },
+                                Timestamp = ARCloudUtils.GetMicroseconds().ToString(),
+                                Accuracy = 0.0f
                             };
+                            // Debug.Log("arPose Covariance: " + arPose.Covariance.ToString()); // ...
 
                             if (Status != ARCloudSessionStatus.Initialized)
                                 // throw new ARCloudException("ARCloudSession not initialized");
@@ -104,7 +113,7 @@ namespace UnityEngine.Graffity.ARCloud
                             {
                                 downSizeImageFactor = 1;
                             }
-                            Debug.Log($"downSizeImageFactor: {downSizeImageFactor}");
+                            // Debug.Log($"downSizeImageFactor: {downSizeImageFactor}");
                             var byteImage = await XrImageToPngByteString(image, downSizeImageFactor);
                             image.Dispose();
 
@@ -133,13 +142,13 @@ namespace UnityEngine.Graffity.ARCloud
                                 RadialDistortion = 0
                             };
 #endif
-                            Debug.Log(cameraInfo);
+                            // Debug.Log(cameraInfo);
 
                             var sendImageTask = SendImageAsync(byteImage);
                             await currentLocalizeTask.AddPoint(arPose, sendImageTask);
                             sendImageTask.Dispose();
 
-                            Debug.Log("");
+                            // Debug.Log($"arPose timestamp: {arPose.Timestamp}");
                         }
                         break;
                     case LocalizeTaskState.Expire:
@@ -256,7 +265,7 @@ namespace UnityEngine.Graffity.ARCloud
             {
                 return await grpcManager.imageClient.SendGrpcAsync(new ImageRequest
                 {
-                    Message = "Send image to VPS from Unity",
+                    Message = "Send request from Unity",
                     BytesImage = byteImage,
                     GpsPosition = (Position)refModelPositionGps,
                     CameraInfo = cameraInfo,
@@ -305,11 +314,13 @@ namespace UnityEngine.Graffity.ARCloud
                     Rotation = refPointCloudTf.rotation.ToVec4()
                 }
             };
-            request.ArCoordinate.AddRange(arPoses.Select(p => p.ToCoordinate()));
+            request.Platform = "UNITY";
             request.VpsCoordinate.AddRange(vpsPoses.Select(p => p.ToCoordinate()));
+            request.ArCoordinate.AddRange(arPoses.Select(p => p.ToCoordinate()));
+            // Debug.Log("ArCoordinate ToCoordinate Result: " + request.ArCoordinate.ToString());
+
             if (!string.IsNullOrEmpty(message))
                 request.Message = message;
-
             var response = await grpcManager.RequestSolveAsync(request);
             var solveTransformation = new SolveTransformation()
             {

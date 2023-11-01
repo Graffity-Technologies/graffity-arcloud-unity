@@ -17,25 +17,43 @@ namespace UnityEngine.Graffity.ARCloud
             VPS = vps;
         }
     }
-    
+
     public struct Pose
     {
-        public Pose(Vector3 position, Quaternion rotation)
+        public Pose(Vector3 position,
+                    Quaternion rotation,
+                    Vector3 translation,
+                    Google.Protobuf.Collections.RepeatedField<double> covariance, // ICollection<double> covariance = new ICollection(),
+                    string timestamp = "",
+                    float accuracy = 0.0f)
         {
             this.Position = position;
             this.Rotation = rotation;
+            this.Translation = translation;
+            this.Timestamp = timestamp;
+            this.Accuracy = accuracy;
+            this.Covariance = covariance;
         }
 
         public Vector3 Position;
         public Quaternion Rotation;
+        public Vector3 Translation;
+        public string Timestamp;
+        public float Accuracy;
+        public Google.Protobuf.Collections.RepeatedField<double> Covariance;
 
         public Coordinate ToCoordinate()
         {
-            return new Coordinate()
+            var coor = new Coordinate()
             {
                 Position = this.Position.ToVec3(),
-                Rotation = this.Rotation.ToVec4()
+                Rotation = this.Rotation.ToVec4(),
+                Translation = this.Translation.ToVec3(),
+                Covariance = { this.Covariance },
+                Timestamp = this.Timestamp,
+                Accuracy = this.Accuracy
             };
+            return coor;
         }
     }
 
@@ -59,7 +77,7 @@ namespace UnityEngine.Graffity.ARCloud
         public Vector3 Scale;
         public Quaternion Rotation;
     }
-    
+
     public class ARCloudException : Exception
     {
         //

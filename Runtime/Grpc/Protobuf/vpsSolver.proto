@@ -1,5 +1,9 @@
-﻿syntax = "proto3";
+syntax = "proto3";
 package solver;
+
+option java_multiple_files = true;
+option java_package = "io.grpc.graffity.vpssolver";
+option java_outer_classname = "VPSSolverProto";
 
 service StatusCheck {
   rpc Check (Empty) returns (CheckResponse) {}
@@ -17,27 +21,48 @@ service Solver {
   rpc Solve (SolveRequest) returns (SolveResponse);
 }
 
+service PGO {
+  rpc PGO (SolveRequest) returns (SolveResponse);
+}
+
 message SolveRequest {
   string message = 1;
   repeated Coordinate arCoordinate = 2;
   repeated Coordinate vpsCoordinate = 3;
   Transformation refTransform = 4;
+  string platform = 5;
 }
 
 message SolveResponse {
   string message = 1;
   Transformation transform = 2;
+  RawTransformation rawTransform = 3;
 }
 
 message Coordinate {
   Vec3 position = 1;
   Vec4 rotation = 2;
+  Vec3 translation = 3;
+  repeated double covariance = 4;
+  string timestamp = 5;
+  float accuracy = 6;
+}
+
+message Covariance{
+  repeated double covariance = 1;
 }
 
 message Transformation {
   Vec3 translation = 1;
   Vec3 scale = 2;
   Vec4 rotation = 3;
+}
+
+message RawTransformation {
+  Vec4 column0 = 1;
+  Vec4 column1 = 2;
+  Vec4 column2 = 3;
+  Vec4 column3 = 4;
 }
 
 message Vec3 {

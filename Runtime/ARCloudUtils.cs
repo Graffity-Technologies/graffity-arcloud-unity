@@ -8,11 +8,19 @@ using Unity.Collections;
 using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine.Experimental.Rendering;
 using UnityEngine.XR.ARSubsystems;
+using System.Diagnostics;
 
 namespace UnityEngine.Graffity.ARCloud
 {
     public static class ARCloudUtils
     {
+        public static long GetMicroseconds()
+        {
+            double timestamp = Stopwatch.GetTimestamp();
+            double microseconds = 1_000_000.0 * timestamp / Stopwatch.Frequency;
+
+            return (long)microseconds;
+        }
 
         public static unsafe void XrImageToPngBytes(ref XRCpuImage image, out byte[] outBuffer)
         {
