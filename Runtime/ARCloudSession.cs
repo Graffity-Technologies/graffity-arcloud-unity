@@ -35,8 +35,8 @@ namespace UnityEngine.Graffity.ARCloud
         public String localizeState => currentLocalizeTask != null ? currentLocalizeTask.state.ToString() : "Deleted";
         public float localizeProgress => currentLocalizeTask?.progress ?? 0f;
         public string localizeProgressMessage => currentLocalizeTask?.progressMessage ?? "N/A";
-        public int frameDrop = 10;
-        public int captureFrameCounter = 0;
+        private int frameDrop = 10;
+        private int captureFrameCounter = 0;
 
         private void Awake()
         {

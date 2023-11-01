@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17a89cf8bbbbbab489750a68c51ef77d, type: 3}
   m_Name: ApiCredConfig
   m_EditorClassIdentifier: 
-  consoleAccessToken: YOUR_ACCESS_TOKEN_HERE
+  consoleAccessToken: YOUR_ACCESS_TOKEN
