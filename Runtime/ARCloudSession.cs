@@ -26,7 +26,6 @@ namespace UnityEngine.Graffity.ARCloud
         private ARSessionOrigin arSessionOrigin;
 
         private PositionGps refModelPositionGps;
-        private CameraInfo cameraInfo;
 
         // Localization Task Field
         // public float LocalizeProgress;
@@ -35,7 +34,7 @@ namespace UnityEngine.Graffity.ARCloud
         public String localizeState => currentLocalizeTask != null ? currentLocalizeTask.state.ToString() : "Deleted";
         public float localizeProgress => currentLocalizeTask?.progress ?? 0f;
         public string localizeProgressMessage => currentLocalizeTask?.progressMessage ?? "N/A";
-        private int frameDrop = 10;
+        private int frameDrop = 30;
         private int captureFrameCounter = 0;
 
         private void Awake()
@@ -62,66 +61,67 @@ namespace UnityEngine.Graffity.ARCloud
         private void Update()
         {
             captureFrameCounter += 1;
-#if UNITY_EDITOR
-            //TODO add editor t
             LocalizeTaskUpdate();
-#else
-            LocalizeTaskUpdate();
-#endif
         }
 
         private async void LocalizeTaskUpdate()
         {
-            if (currentLocalizeTask != null)
+            if (currentLocalizeTask == null)
             {
-                switch (currentLocalizeTask.state)
-                {
-                    case LocalizeTaskState.CollectingPoint:
-                        // if (currentLocalizeTask.ShouldAddPoint())
-                        if (captureFrameCounter % frameDrop == 0)
-                        {
-                            var cameraTf = cameraManager.transform;
-                            var arPose = new Pose()
-                            {
-                                Position = cameraTf.localPosition,
-                                Rotation = cameraTf.localRotation,
-                                Translation = cameraTf.localPosition,
-                                Covariance = new Google.Protobuf.Collections.RepeatedField<double>() { 1.0, 1.0 },
-                                Timestamp = ARCloudUtils.GetMicroseconds().ToString(),
-                                Accuracy = 0.0f
-                            };
-                            // Debug.Log("arPose Covariance: " + arPose.Covariance.ToString()); // ...
+                return;
+            }
 
-                            if (Status != ARCloudSessionStatus.Initialized)
-                                // throw new ARCloudException("ARCloudSession not initialized");
-                                return;
+            switch (currentLocalizeTask.state)
+            {
+                case LocalizeTaskState.CollectingPoint:
+                    if (currentLocalizeTask.ShouldAddPoint() == false)
+                    // if (captureFrameCounter % frameDrop != 0)
+                    {
+                        return;
+                    }
+                    var cameraTf = cameraManager.transform;
+                    var arPose = new Pose()
+                    {
+                        Position = cameraTf.localPosition,
+                        Rotation = cameraTf.localRotation,
+                        Translation = cameraTf.localPosition,
+                        Covariance = new Google.Protobuf.Collections.RepeatedField<double>() { 1.0, 1.0 },
+                        Timestamp = ARCloudUtils.GetMicroseconds().ToString(),
+                        Accuracy = 0.0f
+                    };
+                    // Debug.Log("arPose Covariance: " + arPose.Covariance.ToString()); // ...
 
-                            if (!cameraManager.TryAcquireLatestCpuImage(out XRCpuImage image))
-                            {
-                                image.Dispose();
-                                // throw new ARCloudException("Cannot get image");
-                                return;
-                            }
+                    if (Status != ARCloudSessionStatus.Initialized)
+                        // throw new ARCloudException("ARCloudSession not initialized");
+                        return;
 
-                            // normally XRCpuImage ratio is 4:3 so scale down to 640:480
-                            var downSizeImageFactor = image.height / 480;
-                            if (image.width < image.height)
-                            {
-                                downSizeImageFactor = image.width / 480;
-                            }
-                            if (downSizeImageFactor < 1) // Downsample only so shouldn't more than 1 https://docs.unity3d.com/Packages/com.unity.xr.arfoundation@4.2/manual/cpu-camera-image.html
-                            {
-                                downSizeImageFactor = 1;
-                            }
-                            // Debug.Log($"downSizeImageFactor: {downSizeImageFactor}");
-                            var byteImage = await XrImageToPngByteString(image, downSizeImageFactor);
-                            image.Dispose();
+                    if (!cameraManager.TryAcquireLatestCpuImage(out XRCpuImage image))
+                    {
+                        image.Dispose();
+                        // throw new ARCloudException("Cannot get image");
+                        return;
+                    }
 
-                            if (byteImage is null)
-                                return;
+                    // normally XRCpuImage ratio is 4:3 so scale down to 640:480
+                    var imageSizeTarget = 480;
+                    var downSizeImageFactor = image.height / imageSizeTarget;
+                    if (image.width < image.height)
+                    {
+                        downSizeImageFactor = image.width / imageSizeTarget;
+                    }
+                    if (downSizeImageFactor < 1) // Downsample only so shouldn't more than 1 https://docs.unity3d.com/Packages/com.unity.xr.arfoundation@4.2/manual/cpu-camera-image.html
+                    {
+                        downSizeImageFactor = 1;
+                    }
+                    // Debug.Log($"downSizeImageFactor: {downSizeImageFactor}");
+                    var byteImage = await XrImageToPngByteString(image, downSizeImageFactor);
+                    image.Dispose();
+
+                    if (byteImage is null)
+                        return;
 
 #if UNITY_EDITOR
-                            cameraInfo = new CameraInfo()
+                            var cameraInfo = new CameraInfo()
                             {
                                 PixelFocalLength = 200,
                                 PrincipalPointX = 320,
@@ -129,33 +129,33 @@ namespace UnityEngine.Graffity.ARCloud
                                 RadialDistortion = 0
                             };
 #else
-                            if (!cameraManager.TryGetIntrinsics(out XRCameraIntrinsics cameraIntrinsics))
-                            {
-                                throw new ARCloudExceptionNotAvailable("Cannot get cameraIntrinsics");
-                            }
+                    if (!cameraManager.TryGetIntrinsics(out XRCameraIntrinsics cameraIntrinsics))
+                    {
+                        throw new ARCloudExceptionNotAvailable("Cannot get cameraIntrinsics");
+                    }
 
-                            cameraInfo = new CameraInfo()
-                            {
-                                PixelFocalLength = ((cameraIntrinsics.focalLength.x + cameraIntrinsics.focalLength.y) / 2) / downSizeImageFactor,
-                                PrincipalPointX = cameraIntrinsics.principalPoint.x / downSizeImageFactor,
-                                PrincipalPointY = cameraIntrinsics.principalPoint.y / downSizeImageFactor,
-                                RadialDistortion = 0
-                            };
+                    var cameraInfo = new CameraInfo()
+                    {
+                        PixelFocalLength = ((cameraIntrinsics.focalLength.x + cameraIntrinsics.focalLength.y) / 2) / downSizeImageFactor,
+                        PrincipalPointX = cameraIntrinsics.principalPoint.x / downSizeImageFactor,
+                        PrincipalPointY = cameraIntrinsics.principalPoint.y / downSizeImageFactor,
+                        RadialDistortion = 0
+                    };
 #endif
-                            // Debug.Log(cameraInfo);
+                    // Debug.Log(cameraInfo);
 
-                            var sendImageTask = SendImageAsync(byteImage);
-                            await currentLocalizeTask.AddPoint(arPose, sendImageTask);
-                            sendImageTask.Dispose();
+                    var sendImageTask = SendImageAsync(byteImage, cameraInfo);
+                    await currentLocalizeTask.AddPoint(arPose, sendImageTask);
+                    sendImageTask.Dispose();
 
-                            // Debug.Log($"arPose timestamp: {arPose.Timestamp}");
-                        }
-                        break;
-                    case LocalizeTaskState.Expire:
-                        currentLocalizeTask = null;
-                        break;
-                }
+                    // Debug.Log($"arPose timestamp: {arPose.Timestamp}");
+
+                    break;
+                case LocalizeTaskState.Expire:
+                    currentLocalizeTask = null;
+                    break;
             }
+
         }
 
         public bool CheckIsAreaAvailable(PositionGps positionGps)
@@ -255,7 +255,7 @@ namespace UnityEngine.Graffity.ARCloud
             };
         }
 
-        public async Task<ImageResponse> SendImageAsync(ByteString byteImage)
+        public async Task<ImageResponse> SendImageAsync(ByteString byteImage, CameraInfo cameraData)
         {
 
             // ImageResponse imageResponse = null;
@@ -268,7 +268,7 @@ namespace UnityEngine.Graffity.ARCloud
                     Message = "Send request from Unity",
                     BytesImage = byteImage,
                     GpsPosition = (Position)refModelPositionGps,
-                    CameraInfo = cameraInfo,
+                    CameraInfo = cameraData,
                     Platform = "UNITY",
                 }) as ImageResponse;
             }

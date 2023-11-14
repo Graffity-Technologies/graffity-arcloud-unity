@@ -44,7 +44,7 @@ namespace UnityEngine.Graffity.ARCloud
                     requirePoint = 20;
                     break;
                 case LocalizeStrategy.LAST_POINT_DIFF_HIGHPRECISION:
-                    requirePoint = 50;
+                    requirePoint = 40;
                     break;
                 case LocalizeStrategy.ANGLE_SOLVER:
                     requirePoint = 10;
@@ -130,12 +130,12 @@ namespace UnityEngine.Graffity.ARCloud
                 missPoint += 1;
                 return;
             }
-            // if (response.Accuracy == 0f)
-            // {
-            //     Debug.LogWarning("miss point response accuracy 0");
-            //     missPoint += 1;
-            //     return;
-            // }
+            if (response.Accuracy == 0f)
+            {
+                Debug.LogWarning("miss point response accuracy 0");
+                missPoint += 1;
+                return;
+            }
 
             var vpsPose = new Pose()
             {
