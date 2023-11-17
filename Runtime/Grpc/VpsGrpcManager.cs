@@ -48,7 +48,7 @@ namespace UnityEngine.Graffity.ARCloud
             availableAreaClient.ConnectServer();
             imageClient.ConnectServer();
 
-            var isSolverConnectionSecure = !apiCredConfig._useCustomSolverServer || apiCredConfig._isSecure;
+            var isSolverConnectionSecure = !apiCredConfig._useCustomSolverServer || apiCredConfig._isSecure; // false;
 
             solverClient.ConnectServer(secure: isSolverConnectionSecure);
             solverCheckClient.ConnectServer(secure: isSolverConnectionSecure);

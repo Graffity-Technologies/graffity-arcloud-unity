@@ -20,8 +20,8 @@ namespace UnityEngine.Graffity.ARCloud
                 {"x-graff-api-key", apiKey}
             };
         }
-        
-        public void ConnectServer(bool secure=true)
+
+        public void ConnectServer(bool secure = true)
         {
             try
             {
@@ -33,11 +33,11 @@ namespace UnityEngine.Graffity.ARCloud
                 if (secure)
                 {
                     sslCredentials = new SslCredentials(null, null);
-                    grpcChannel = new Channel(host, sslCredentials){};
+                    grpcChannel = new Channel(host, sslCredentials) { };
                 }
                 else
                 {
-                    grpcChannel = new Channel(host, 8080, ChannelCredentials.Insecure){};
+                    grpcChannel = new Channel(host, ChannelCredentials.Insecure) { };
                 }
             }
             catch (Exception e)

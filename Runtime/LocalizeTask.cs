@@ -90,8 +90,6 @@ namespace UnityEngine.Graffity.ARCloud
             return false;
         }
 
-
-
         internal async Task AddPoint(Pose arPose, Task<ImageResponse> vpsReqTask)
         {
             var key = HiResDateTime.UtcNowTicks;
@@ -141,9 +139,9 @@ namespace UnityEngine.Graffity.ARCloud
             var vpsPose = new Pose()
             {
                 Position = new Vector3(
-                    (float)response.ColmapCoor.Px,
-                    (float)response.ColmapCoor.Py,
-                    (float)response.ColmapCoor.Pz),
+                    (float)response.ColmapCoor.Tx,
+                    (float)response.ColmapCoor.Ty,
+                    (float)response.ColmapCoor.Tz),
                 Rotation = new Quaternion(
                     (float)response.ColmapCoor.Qx,
                     (float)response.ColmapCoor.Qy,
@@ -153,7 +151,7 @@ namespace UnityEngine.Graffity.ARCloud
                     (float)response.ColmapCoor.Tx,
                     (float)response.ColmapCoor.Ty,
                     (float)response.ColmapCoor.Tz),
-                Timestamp = ARCloudUtils.GetMicroseconds().ToString(),
+                Timestamp = arPose.Timestamp, // ARCloudUtils.GetMicroseconds().ToString(),
                 Accuracy = (float)response.Accuracy,
                 Covariance = response.Covariance,
             };

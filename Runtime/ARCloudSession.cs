@@ -36,6 +36,7 @@ namespace UnityEngine.Graffity.ARCloud
         public string localizeProgressMessage => currentLocalizeTask?.progressMessage ?? "N/A";
         private int frameDrop = 15;
         private int captureFrameCounter = 0;
+        private int capturedFrames = 0;
 
         private void Awake()
         {
@@ -63,7 +64,6 @@ namespace UnityEngine.Graffity.ARCloud
 
         private void Update()
         {
-            captureFrameCounter += 1;
             LocalizeTaskUpdate();
         }
 
@@ -77,11 +77,13 @@ namespace UnityEngine.Graffity.ARCloud
             switch (currentLocalizeTask.state)
             {
                 case LocalizeTaskState.CollectingPoint:
-                    // if (currentLocalizeTask.ShouldAddPoint() == false)
-                    if (captureFrameCounter % frameDrop != 0)
+                    captureFrameCounter += 1;
+                    // if (currentLocalizeTask.ShouldAddPoint())
+                    if ((captureFrameCounter % frameDrop != 0) || (capturedFrames >= currentLocalizeTask.requirePoint) )
                     {
                         return;
                     }
+                    capturedFrames += 1;
                     var cameraTf = cameraManager.transform;
                     var arPose = new Pose()
                     {
