@@ -34,6 +34,7 @@ namespace UnityEngine.Graffity.ARCloud
         public String localizeState => currentLocalizeTask != null ? currentLocalizeTask.state.ToString() : "Deleted";
         public float localizeProgress => currentLocalizeTask?.progress ?? 0f;
         public string localizeProgressMessage => currentLocalizeTask?.progressMessage ?? "N/A";
+        public bool isInitialized = false;
         private int frameDrop = 15;
         private int captureFrameCounter = 0;
         private int capturedFrames = 0;
@@ -226,6 +227,8 @@ namespace UnityEngine.Graffity.ARCloud
             arOriginTf.position = translation;
             arOriginTf.localScale = Scale;
             arOriginTf.rotation = Rotation;
+
+            isInitialized = true;
         }
 
         public async Task<ImageResponse> MockSendImageAsync()

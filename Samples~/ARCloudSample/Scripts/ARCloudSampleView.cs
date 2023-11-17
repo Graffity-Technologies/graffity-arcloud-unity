@@ -44,7 +44,7 @@ public class ARCloudSampleView : MonoBehaviour
     {
         statusText.text = $"A process of {ARCloudSession.instance.localizeProgress * 100}% complete\nPlease walk a bit while scanning";
 
-        if (ARCloudSession.instance.localizeProgress >= 1.0)
+        if (ARCloudSession.instance.isInitialized)
         {
             arContents.SetActive(true);
             arGuidelinePlayer.Stop();
