@@ -130,12 +130,12 @@ namespace UnityEngine.Graffity.ARCloud
                 missPoint += 1;
                 return;
             }
-            if (response.Accuracy == 0f)
-            {
-                Debug.LogWarning("miss point response accuracy 0");
-                missPoint += 1;
-                return;
-            }
+            // if (response.Accuracy == 0f)
+            // {
+            //     Debug.LogWarning("miss point response accuracy 0");
+            //     missPoint += 1;
+            //     return;
+            // }
 
             var vpsPose = new Pose()
             {

@@ -34,7 +34,7 @@ namespace UnityEngine.Graffity.ARCloud
         public String localizeState => currentLocalizeTask != null ? currentLocalizeTask.state.ToString() : "Deleted";
         public float localizeProgress => currentLocalizeTask?.progress ?? 0f;
         public string localizeProgressMessage => currentLocalizeTask?.progressMessage ?? "N/A";
-        private int frameDrop = 30;
+        private int frameDrop = 15;
         private int captureFrameCounter = 0;
 
         private void Awake()
@@ -56,6 +56,9 @@ namespace UnityEngine.Graffity.ARCloud
             arSessionOrigin = gameObject.GetComponent<ARSessionOrigin>();
             Status = ARCloudSessionStatus.Uninitialized;
 
+            #if UNITY_IPHONE
+            frameDrop = 30;
+            #endif
         }
 
         private void Update()
@@ -74,8 +77,8 @@ namespace UnityEngine.Graffity.ARCloud
             switch (currentLocalizeTask.state)
             {
                 case LocalizeTaskState.CollectingPoint:
-                    if (currentLocalizeTask.ShouldAddPoint() == false)
-                    // if (captureFrameCounter % frameDrop != 0)
+                    // if (currentLocalizeTask.ShouldAddPoint() == false)
+                    if (captureFrameCounter % frameDrop != 0)
                     {
                         return;
                     }
@@ -145,7 +148,7 @@ namespace UnityEngine.Graffity.ARCloud
                     // Debug.Log(cameraInfo);
 
                     var sendImageTask = SendImageAsync(byteImage, cameraInfo);
-                    await currentLocalizeTask.AddPoint(arPose, sendImageTask);
+                    currentLocalizeTask.AddPoint(arPose, sendImageTask); // await 
                     sendImageTask.Dispose();
 
                     // Debug.Log($"arPose timestamp: {arPose.Timestamp}");
