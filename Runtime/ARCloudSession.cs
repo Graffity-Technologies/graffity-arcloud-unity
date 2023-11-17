@@ -149,7 +149,7 @@ namespace UnityEngine.Graffity.ARCloud
 
                     var sendImageTask = SendImageAsync(byteImage, cameraInfo);
                     currentLocalizeTask.AddPoint(arPose, sendImageTask); // await 
-                    sendImageTask.Dispose();
+                    // sendImageTask.Dispose();
 
                     // Debug.Log($"arPose timestamp: {arPose.Timestamp}");
 

@@ -104,6 +104,7 @@ namespace UnityEngine.Graffity.ARCloud
             {
                 pendingRequestCount += 1;
                 response = await vpsReqTask;
+                vpsReqTask.Dispose();
             }
             catch (Exception e)
             {
