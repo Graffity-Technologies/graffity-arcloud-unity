@@ -38,23 +38,22 @@ namespace UnityEngine.Graffity.ARCloud
             switch (strategy)
             {
                 case LocalizeStrategy.LAST_POINT_DIFF:
-                    requirePoint = 10;
+                    this.requirePoint = 10;
                     break;
                 case LocalizeStrategy.LAST_POINT_DIFF_MEDPRECISION:
-                    requirePoint = 20;
+                    this.requirePoint = 20;
                     break;
                 case LocalizeStrategy.LAST_POINT_DIFF_HIGHPRECISION:
-                    requirePoint = 40;
+                    this.requirePoint = 40;
                     break;
                 case LocalizeStrategy.ANGLE_SOLVER:
-                    requirePoint = 10;
+                    this.requirePoint = 10;
                     solverGuideMessage = "ANGLE_SOLVER";
                     break;
                 default:
-                    requirePoint = 10;
+                    this.requirePoint = 10;
                     break;
             }
-            this.requirePoint = requirePoint;
             state = LocalizeTaskState.CollectingPoint;
             lastArPosition = Vector3.negativeInfinity;
             lastArRotation = Quaternion.identity;

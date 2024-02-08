@@ -58,9 +58,9 @@ namespace UnityEngine.Graffity.ARCloud
             arSessionOrigin = gameObject.GetComponent<ARSessionOrigin>();
             Status = ARCloudSessionStatus.Uninitialized;
 
-            #if UNITY_IPHONE
+#if UNITY_IPHONE
             frameDrop = 30;
-            #endif
+#endif
         }
 
         private void Update()
@@ -80,10 +80,13 @@ namespace UnityEngine.Graffity.ARCloud
                 case LocalizeTaskState.CollectingPoint:
                     captureFrameCounter += 1;
                     // if (currentLocalizeTask.ShouldAddPoint())
-                    if ((captureFrameCounter % frameDrop != 0) || (capturedFrames >= currentLocalizeTask.requirePoint) )
+                    if ((captureFrameCounter % frameDrop != 0) || (capturedFrames >= currentLocalizeTask.requirePoint))
                     {
                         return;
                     }
+                    // var watch = new System.Diagnostics.Stopwatch();
+                    // watch.Start();
+
                     capturedFrames += 1;
                     var cameraTf = cameraManager.transform;
                     var arPose = new Pose()
@@ -115,12 +118,14 @@ namespace UnityEngine.Graffity.ARCloud
                     {
                         downSizeImageFactor = image.width / imageSizeTarget;
                     }
-                    if (downSizeImageFactor < 1) // Downsample only so shouldn't more than 1 https://docs.unity3d.com/Packages/com.unity.xr.arfoundation@4.2/manual/cpu-camera-image.html
+                    if (downSizeImageFactor < 1) // Downsample only so shouldn't more than 1
                     {
                         downSizeImageFactor = 1;
                     }
-                    // Debug.Log($"downSizeImageFactor: {downSizeImageFactor}");
-                    var byteImage = await XrImageToPngByteString(image, downSizeImageFactor);
+
+                    // https://docs.unity3d.com/Packages/com.unity.xr.arfoundation@5.0/manual/features/Camera/image-capture.html
+                    // 2x faster and 2x smaller than png convertor
+                    var byteImage = await XrImageToJpgByteString(image, downSizeImageFactor); // XrImageToPngByteString
                     image.Dispose();
 
                     if (byteImage is null)
@@ -151,10 +156,12 @@ namespace UnityEngine.Graffity.ARCloud
                     // Debug.Log(cameraInfo);
 
                     var sendImageTask = SendImageAsync(byteImage, cameraInfo);
-                    currentLocalizeTask.AddPoint(arPose, sendImageTask); // await 
+                    // don't await due to we need smooth sequence of images. so, it not block & ignore warning await with _ =
+                    _ = currentLocalizeTask.AddPoint(arPose, sendImageTask);
                     // sendImageTask.Dispose();
 
-                    // Debug.Log($"arPose timestamp: {arPose.Timestamp}");
+                    // watch.Stop();
+                    // Debug.Log("Image proces each frame (s):" + watch.ElapsedMilliseconds.ToString());
 
                     break;
                 case LocalizeTaskState.Expire:

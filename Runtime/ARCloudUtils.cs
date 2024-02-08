@@ -59,9 +59,8 @@ namespace UnityEngine.Graffity.ARCloud
                 // Get the entire image.
                 inputRect = new RectInt(0, 0, image.width, image.height),
                 // Can Downsample here.
-                // https://docs.unity3d.com/Packages/com.unity.xr.arfoundation@4.1/manual/cpu-camera-image.html
                 outputDimensions = new Vector2Int(image.width / downSizeFactor, image.height / downSizeFactor),
-                // outputFormat = TextureFormat.RGBA32,
+                // https://docs.unity3d.com/ScriptReference/TextureFormat.html
                 outputFormat = TextureFormat.RGBA32,
                 // Flip across the vertical axis (mirror image).
                 transformation = XRCpuImage.Transformation.MirrorY
@@ -71,17 +70,13 @@ namespace UnityEngine.Graffity.ARCloud
 
             while (!imageConvertRequest.status.IsDone())
                 await Task.Delay(50);
+            // yield return null;
 
             if (imageConvertRequest.status != XRCpuImage.AsyncConversionStatus.Ready)
             {
                 imageConvertRequest.Dispose();
                 return null;
             }
-
-            // var buffer = imageConvertRequest.GetData<byte>();
-            // var byteArray = ImageConversion.EncodeNativeArrayToPNG(buffer,
-            //     GraphicsFormat.R8G8B8A8_SRGB, (uint)image.width, (uint)image.height, 0).ToArray();
-            // var result = ByteString.CopyFrom(byteArray);
 
             var buffer = imageConvertRequest.GetData<byte>();
 
@@ -93,7 +88,56 @@ namespace UnityEngine.Graffity.ARCloud
 
             texture.LoadRawTextureData(buffer);
             texture.Apply();
+
+            buffer.Dispose();
+
             var result = ByteString.CopyFrom(texture.EncodeToPNG());
+            Texture2D.Destroy(texture);
+
+            imageConvertRequest.Dispose();
+            return result;
+        }
+
+        public static async Task<ByteString> XrImageToJpgByteString(XRCpuImage image, int downSizeFactor)
+        {
+            var conversionParams = new XRCpuImage.ConversionParams
+            {
+                // Get the entire image.
+                inputRect = new RectInt(0, 0, image.width, image.height),
+                // Can Downsample here.
+                outputDimensions = new Vector2Int(image.width / downSizeFactor, image.height / downSizeFactor),
+                // JPG use only RGB https://docs.unity3d.com/ScriptReference/TextureFormat.html
+                outputFormat = TextureFormat.RGB24,
+                // Flip across the vertical axis (mirror image).
+                transformation = XRCpuImage.Transformation.MirrorY
+            };
+
+            var imageConvertRequest = image.ConvertAsync(conversionParams);
+
+            while (!imageConvertRequest.status.IsDone())
+                await Task.Delay(10);
+
+            if (imageConvertRequest.status != XRCpuImage.AsyncConversionStatus.Ready)
+            {
+                imageConvertRequest.Dispose();
+                return null;
+            }
+
+            var buffer = imageConvertRequest.GetData<byte>();
+
+            var texture = new Texture2D(
+                conversionParams.outputDimensions.x,
+                conversionParams.outputDimensions.y,
+                conversionParams.outputFormat,
+                false);
+
+            texture.LoadRawTextureData(buffer);
+            texture.Apply();
+
+            buffer.Dispose();
+
+            // https://docs.unity3d.com/560/Documentation/ScriptReference/Texture2D.html
+            var result = ByteString.CopyFrom(texture.EncodeToJPG(100));
             Texture2D.Destroy(texture);
 
             imageConvertRequest.Dispose();

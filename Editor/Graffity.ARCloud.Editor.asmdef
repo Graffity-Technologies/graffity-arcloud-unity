@@ -1,7 +1,11 @@
 {
     "name": "Graffity.ARCloud.Editor",
-    "references": [],
-    "includePlatforms": [],
+    "references": [
+        "Graffity.ARCloud.Runtime"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,

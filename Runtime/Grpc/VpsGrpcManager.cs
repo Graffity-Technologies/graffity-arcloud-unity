@@ -90,6 +90,7 @@ namespace UnityEngine.Graffity.ARCloud
             }
             catch (Exception e)
             {
+                Debug.LogError(e);
                 return false;
             }
         }
