@@ -24,7 +24,6 @@ namespace UnityEngine.Graffity.ARCloud
         public VpsGrpcManager grpcManager;
         internal ARCameraManager cameraManager;
         private ARSessionOrigin arSessionOrigin;
-
         private PositionGps refModelPositionGps;
 
         // Localization Task Field
@@ -132,13 +131,13 @@ namespace UnityEngine.Graffity.ARCloud
                         return;
 
 #if UNITY_EDITOR
-                            var cameraInfo = new CameraInfo()
-                            {
-                                PixelFocalLength = 200,
-                                PrincipalPointX = 320,
-                                PrincipalPointY = 240,
-                                RadialDistortion = 0
-                            };
+                    var cameraInfo = new CameraInfo()
+                    {
+                        PixelFocalLength = 200,
+                        PrincipalPointX = 320,
+                        PrincipalPointY = 240,
+                        RadialDistortion = 0
+                    };
 #else
                     if (!cameraManager.TryGetIntrinsics(out XRCameraIntrinsics cameraIntrinsics))
                     {
@@ -233,7 +232,12 @@ namespace UnityEngine.Graffity.ARCloud
             var arOriginTf = arSessionOrigin.transform;
             arOriginTf.position = translation;
             arOriginTf.localScale = Scale;
-            arOriginTf.rotation = Rotation;
+            // arOriginTf.rotation = Rotation;
+
+            // change y only due to AR foundation is always align to real world
+            // so, rotate x,z doen't matter and actually make it worst result because angle diff error
+            var resultQuaternion = Quaternion.Euler(0.0f, Rotation.eulerAngles.y, 0.0f);
+            arOriginTf.rotation = resultQuaternion;
 
             isInitialized = true;
         }
