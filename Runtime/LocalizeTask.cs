@@ -13,51 +13,30 @@ namespace UnityEngine.Graffity.ARCloud
         private const float UPDATE_ROT_THRESH = Mathf.PI / 5;
         private const int MAX_PENDING_REQUEST = 4;
 
-        private LocalizeStrategy strategy;
-
         internal Dictionary<long, PosePair> localizeData;
         private long _lastKey;
         private int pendingRequestCount;
-        internal int requirePoint;
         internal LocalizeTaskState state;
         private Vector3 lastArPosition;
         private Quaternion lastArRotation;
         private string solverGuideMessage = null;
+        internal int vpsSolverBatchSize = 5;
+        internal int maxAttemptForSolver = 5;
+        internal int currentAttemptForSolver = 0;
 
         private int missPoint;
 
-        public float progress => (float)localizeData.Count / requirePoint;
-        public string progressMessage => $"{localizeData.Count} / {requirePoint} : {pendingRequestCount} x {missPoint} || {strategy.ToString()}";
+        public float progress => (float)localizeData.Count / vpsSolverBatchSize * (currentAttemptForSolver + 1);
 
-        public LocalizeTask(LocalizeStrategy strategy)
+        public LocalizeTask()
         {
-            this.strategy = strategy;
+            // this.strategy = strategy;
             localizeData = new Dictionary<long, PosePair>();
             _lastKey = -1;
             pendingRequestCount = 0;
-            switch (strategy)
-            {
-                case LocalizeStrategy.LAST_POINT_DIFF:
-                    this.requirePoint = 10;
-                    break;
-                case LocalizeStrategy.LAST_POINT_DIFF_MEDPRECISION:
-                    this.requirePoint = 20;
-                    break;
-                case LocalizeStrategy.LAST_POINT_DIFF_HIGHPRECISION:
-                    this.requirePoint = 40;
-                    break;
-                case LocalizeStrategy.ANGLE_SOLVER:
-                    this.requirePoint = 10;
-                    solverGuideMessage = "ANGLE_SOLVER";
-                    break;
-                default:
-                    this.requirePoint = 10;
-                    break;
-            }
             state = LocalizeTaskState.CollectingPoint;
             lastArPosition = Vector3.negativeInfinity;
             lastArRotation = Quaternion.identity;
-
         }
 
         internal bool ShouldAddPoint()
@@ -79,12 +58,12 @@ namespace UnityEngine.Graffity.ARCloud
             if (localDist >= UPDATE_DISTANCE_THRESH)
                 return true;
 
-            if (strategy == LocalizeStrategy.ANGLE_SOLVER)
-            {
-                var localRotDist = Quaternion.Dot(lastArRotation, arLocalRotation);
-                if (localRotDist >= UPDATE_ROT_THRESH)
-                    return true;
-            }
+            // if (strategy == LocalizeStrategy.ANGLE_SOLVER)
+            // {
+            //     var localRotDist = Quaternion.Dot(lastArRotation, arLocalRotation);
+            //     if (localRotDist >= UPDATE_ROT_THRESH)
+            //         return true;
+            // }
 
             return false;
         }
@@ -95,7 +74,6 @@ namespace UnityEngine.Graffity.ARCloud
             lastArPosition = arPose.Position;
             lastArRotation = arPose.Rotation;
 
-            // TODO
             ImageResponse response;
             try
             {
@@ -153,6 +131,7 @@ namespace UnityEngine.Graffity.ARCloud
                 Timestamp = arPose.Timestamp, // ARCloudUtils.GetMicroseconds().ToString(),
                 Accuracy = (float)response.Accuracy,
                 Covariance = response.Covariance,
+                Id = response.Id,
             };
             // Debug.Log("Accuracy: " + vpsPose.Accuracy.ToString());
             // Debug.Log("vpsPose.Covariance: " + vpsPose.Covariance.ToString());
@@ -165,36 +144,40 @@ namespace UnityEngine.Graffity.ARCloud
             });
 
             _lastKey = key;
-            if (localizeData.Count == requirePoint)
+            if (localizeData.Count == vpsSolverBatchSize * (currentAttemptForSolver + 1))
             {
-                state = LocalizeTaskState.CollectingPointFinish;
-
                 var keys = localizeData.Keys.ToList();
                 keys.Sort();
 
-                var solveTf = await ARCloudSession.instance.RequestSolveTransformationAsync(
+                var solveResponse = await ARCloudSession.instance.RequestSolveTransformationAsync(
                     keys.Select(k => localizeData[k].AR).ToList(),
                     keys.Select(k => localizeData[k].VPS).ToList(),
                     solverGuideMessage
                 );
 
-                if (state != LocalizeTaskState.Expire)
+                currentAttemptForSolver += 1;
+                Debug.Log("currentAttemptForSolver: " + currentAttemptForSolver.ToString());
+
+                if (solveResponse.Success)
                 {
+                    var solveTf = new SolveTransformation()
+                    {
+                        Translation = solveResponse.Transform.Translation.ToVector3(),
+                        Scale = solveResponse.Transform.Scale.ToVector3(),
+                        Rotation = solveResponse.Transform.Rotation.ToVec4()
+                    };
                     ARCloudSession.instance.AdjustOriginPose(solveTf.Translation, solveTf.Scale, solveTf.Rotation);
                 }
 
-                state = LocalizeTaskState.Expire;
+                if (currentAttemptForSolver >= maxAttemptForSolver)
+                {
+                    state = LocalizeTaskState.CollectingPointFinish;
+                    state = LocalizeTaskState.Expire;
+                }
+                Debug.Log("LocalizeTaskState: " + state.ToString());
             }
 
         }
-    }
-
-    public enum LocalizeStrategy
-    {
-        LAST_POINT_DIFF,
-        LAST_POINT_DIFF_MEDPRECISION,
-        LAST_POINT_DIFF_HIGHPRECISION,
-        ANGLE_SOLVER
     }
 
     internal enum LocalizeTaskState

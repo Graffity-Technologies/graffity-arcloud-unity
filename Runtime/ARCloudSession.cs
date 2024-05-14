@@ -25,18 +25,17 @@ namespace UnityEngine.Graffity.ARCloud
         internal ARCameraManager cameraManager;
         private ARSessionOrigin arSessionOrigin;
         private PositionGps refModelPositionGps;
-
-        // Localization Task Field
-        // public float LocalizeProgress;
         private LocalizeTask currentLocalizeTask;
 
         public String localizeState => currentLocalizeTask != null ? currentLocalizeTask.state.ToString() : "Deleted";
         public float localizeProgress => currentLocalizeTask?.progress ?? 0f;
-        public string localizeProgressMessage => currentLocalizeTask?.progressMessage ?? "N/A";
-        public bool isInitialized = false;
         private int frameDrop = 15;
         private int captureFrameCounter = 0;
         private int capturedFrames = 0;
+        private int filterPitchDegree = 45;
+        private int imageSizeTarget = 480;
+        public bool localizedFailedOnAllAttempt = false;
+        public string arSessionId = Guid.NewGuid().ToString();
 
         private void Awake()
         {
@@ -79,89 +78,90 @@ namespace UnityEngine.Graffity.ARCloud
                 case LocalizeTaskState.CollectingPoint:
                     captureFrameCounter += 1;
                     // if (currentLocalizeTask.ShouldAddPoint())
-                    if ((captureFrameCounter % frameDrop != 0) || (capturedFrames >= currentLocalizeTask.requirePoint))
+                    if ((captureFrameCounter % frameDrop != 0) ||
+                        (capturedFrames >= currentLocalizeTask.vpsSolverBatchSize * (currentLocalizeTask.currentAttemptForSolver + 1)))
                     {
                         return;
                     }
                     // var watch = new System.Diagnostics.Stopwatch();
                     // watch.Start();
 
-                    capturedFrames += 1;
-                    var cameraTf = cameraManager.transform;
-                    var arPose = new Pose()
+                    var arPoseRot = cameraManager.transform.localRotation.eulerAngles;
+                    if ((90 - filterPitchDegree > arPoseRot.x & arPoseRot.x > 0) ||
+                        (270 + filterPitchDegree < arPoseRot.x & arPoseRot.x < 360))
                     {
-                        Position = cameraTf.localPosition,
-                        Rotation = cameraTf.localRotation,
-                        Translation = cameraTf.localPosition,
-                        Covariance = new Google.Protobuf.Collections.RepeatedField<double>() { 1.0, 1.0 },
-                        Timestamp = ARCloudUtils.GetMicroseconds().ToString(),
-                        Accuracy = 0.0f
-                    };
-                    // Debug.Log("arPose Covariance: " + arPose.Covariance.ToString()); // ...
+                        capturedFrames += 1;
+                        // Debug.Log("arPoseRot x: " + arPoseRot.x.ToString());
+                        // Debug.Log("capturedFrames: " + capturedFrames.ToString());
+                        var cameraTf = cameraManager.transform;
+                        var imageId = Guid.NewGuid().ToString();
+                        var arPose = new Pose()
+                        {
+                            Position = cameraTf.localPosition,
+                            Rotation = cameraTf.localRotation,
+                            Translation = cameraTf.localPosition,
+                            Covariance = new Google.Protobuf.Collections.RepeatedField<double>() { 1.0, 1.0 },
+                            Timestamp = ARCloudUtils.GetMicroseconds().ToString(),
+                            Accuracy = 0.0f,
+                            Id = imageId,
+                        };
+                        // Debug.Log("arPose cameraTf.localRotation x: " + cameraTf.localRotation.eulerAngles.x.ToString());
 
-                    if (Status != ARCloudSessionStatus.Initialized)
-                        // throw new ARCloudException("ARCloudSession not initialized");
-                        return;
+                        if (Status != ARCloudSessionStatus.Initialized)
+                            // throw new ARCloudException("ARCloudSession not initialized");
+                            return;
 
-                    if (!cameraManager.TryAcquireLatestCpuImage(out XRCpuImage image))
-                    {
+                        if (!cameraManager.TryAcquireLatestCpuImage(out XRCpuImage image))
+                        {
+                            image.Dispose();
+                            // throw new ARCloudException("Cannot get image");
+                            return;
+                        }
+
+                        // normally XRCpuImage ratio is 4:3 so scale down to 640:480
+                        var downSizeImageFactor = image.height / imageSizeTarget;
+                        if (image.width < image.height)
+                        {
+                            downSizeImageFactor = image.width / imageSizeTarget;
+                        }
+                        if (downSizeImageFactor < 1) // Downsample only so shouldn't more than 1
+                        {
+                            downSizeImageFactor = 1;
+                        }
+
+                        // https://docs.unity3d.com/Packages/com.unity.xr.arfoundation@5.0/manual/features/Camera/image-capture.html
+                        // 2x faster and 2x smaller than png convertor
+                        var byteImage = await XrImageToJpgByteString(image, downSizeImageFactor); // XrImageToPngByteString
                         image.Dispose();
-                        // throw new ARCloudException("Cannot get image");
-                        return;
+
+                        if (byteImage is null)
+                            return;
+
+                        if (!cameraManager.TryGetIntrinsics(out XRCameraIntrinsics cameraIntrinsics))
+                        {
+                            throw new ARCloudExceptionNotAvailable("Cannot get cameraIntrinsics");
+                        }
+
+                        var cameraInfo = new CameraInfo()
+                        {
+                            PixelFocalLength = ((cameraIntrinsics.focalLength.x + cameraIntrinsics.focalLength.y) / 2) / downSizeImageFactor,
+                            PrincipalPointX = cameraIntrinsics.principalPoint.x / downSizeImageFactor,
+                            PrincipalPointY = cameraIntrinsics.principalPoint.y / downSizeImageFactor,
+                            RadialDistortion = 0
+                        };
+                        // Debug.Log("downSizeImageFactor: " + downSizeImageFactor.ToString());
+                        // Debug.Log("cameraInfo resolution: " + cameraIntrinsics.resolution.ToString());
+                        // Debug.Log("cameraInfo focalLength: " + cameraIntrinsics.focalLength.ToString());
+                        // Debug.Log("cameraInfo principalPoint: " + cameraIntrinsics.principalPoint.ToString());
+
+                        var sendImageTask = SendImageAsync(byteImage, cameraInfo, arSessionId, imageId);
+                        // don't await due to we need smooth sequence of images. so, it not block & ignore warning await with _ =
+                        _ = currentLocalizeTask.AddPoint(arPose, sendImageTask);
+                        // sendImageTask.Dispose();
+
+                        // watch.Stop();
+                        // Debug.Log("Image proces each frame (s):" + watch.ElapsedMilliseconds.ToString());
                     }
-
-                    // normally XRCpuImage ratio is 4:3 so scale down to 640:480
-                    var imageSizeTarget = 480;
-                    var downSizeImageFactor = image.height / imageSizeTarget;
-                    if (image.width < image.height)
-                    {
-                        downSizeImageFactor = image.width / imageSizeTarget;
-                    }
-                    if (downSizeImageFactor < 1) // Downsample only so shouldn't more than 1
-                    {
-                        downSizeImageFactor = 1;
-                    }
-
-                    // https://docs.unity3d.com/Packages/com.unity.xr.arfoundation@5.0/manual/features/Camera/image-capture.html
-                    // 2x faster and 2x smaller than png convertor
-                    var byteImage = await XrImageToJpgByteString(image, downSizeImageFactor); // XrImageToPngByteString
-                    image.Dispose();
-
-                    if (byteImage is null)
-                        return;
-
-#if UNITY_EDITOR
-                    var cameraInfo = new CameraInfo()
-                    {
-                        PixelFocalLength = 200,
-                        PrincipalPointX = 320,
-                        PrincipalPointY = 240,
-                        RadialDistortion = 0
-                    };
-#else
-                    if (!cameraManager.TryGetIntrinsics(out XRCameraIntrinsics cameraIntrinsics))
-                    {
-                        throw new ARCloudExceptionNotAvailable("Cannot get cameraIntrinsics");
-                    }
-
-                    var cameraInfo = new CameraInfo()
-                    {
-                        PixelFocalLength = ((cameraIntrinsics.focalLength.x + cameraIntrinsics.focalLength.y) / 2) / downSizeImageFactor,
-                        PrincipalPointX = cameraIntrinsics.principalPoint.x / downSizeImageFactor,
-                        PrincipalPointY = cameraIntrinsics.principalPoint.y / downSizeImageFactor,
-                        RadialDistortion = 0
-                    };
-#endif
-                    // Debug.Log(cameraInfo);
-
-                    var sendImageTask = SendImageAsync(byteImage, cameraInfo);
-                    // don't await due to we need smooth sequence of images. so, it not block & ignore warning await with _ =
-                    _ = currentLocalizeTask.AddPoint(arPose, sendImageTask);
-                    // sendImageTask.Dispose();
-
-                    // watch.Stop();
-                    // Debug.Log("Image proces each frame (s):" + watch.ElapsedMilliseconds.ToString());
-
                     break;
                 case LocalizeTaskState.Expire:
                     currentLocalizeTask = null;
@@ -216,7 +216,7 @@ namespace UnityEngine.Graffity.ARCloud
             Status = ARCloudSessionStatus.Initialized;
         }
 
-        public void StartLocalize(LocalizeStrategy strategy = LocalizeStrategy.LAST_POINT_DIFF_MEDPRECISION)
+        public void StartLocalize()
         {
             if (Status != ARCloudSessionStatus.Initialized)
                 throw new ARCloudException("ARCloudSession not initialized");
@@ -224,7 +224,7 @@ namespace UnityEngine.Graffity.ARCloud
             if (currentLocalizeTask != null)
                 currentLocalizeTask.state = LocalizeTaskState.Expire;
 
-            currentLocalizeTask = new LocalizeTask(strategy);
+            currentLocalizeTask = new LocalizeTask();
         }
 
         internal void AdjustOriginPose(Vector3 translation, Vector3 Scale, Quaternion Rotation)
@@ -238,8 +238,6 @@ namespace UnityEngine.Graffity.ARCloud
             // so, rotate x,z doen't matter and actually make it worst result because angle diff error
             var resultQuaternion = Quaternion.Euler(0.0f, Rotation.eulerAngles.y, 0.0f);
             arOriginTf.rotation = resultQuaternion;
-
-            isInitialized = true;
         }
 
         public async Task<ImageResponse> MockSendImageAsync()
@@ -274,7 +272,8 @@ namespace UnityEngine.Graffity.ARCloud
             };
         }
 
-        public async Task<ImageResponse> SendImageAsync(ByteString byteImage, CameraInfo cameraData)
+        public async Task<ImageResponse> SendImageAsync(
+            ByteString byteImage, CameraInfo cameraData, string arSessionId, string imageId)
         {
 
             // ImageResponse imageResponse = null;
@@ -288,7 +287,9 @@ namespace UnityEngine.Graffity.ARCloud
                     BytesImage = byteImage,
                     GpsPosition = (Position)refModelPositionGps,
                     CameraInfo = cameraData,
+                    Id = imageId,
                     Platform = "UNITY",
+                    ArSessionId = arSessionId,
                 }) as ImageResponse;
             }
             catch (Exception e)
@@ -314,12 +315,18 @@ namespace UnityEngine.Graffity.ARCloud
 
         public async Task<bool> MockStartLocalizeAsync(List<Pose> arPoses, List<Pose> vpsPoses)
         {
-            var solveTf = await RequestSolveTransformationAsync(arPoses, vpsPoses);
+            var solveResponse = await RequestSolveTransformationAsync(arPoses, vpsPoses);
+            var solveTf = new SolveTransformation()
+            {
+                Translation = solveResponse.Transform.Translation.ToVector3(),
+                Scale = solveResponse.Transform.Scale.ToVector3(),
+                Rotation = solveResponse.Transform.Rotation.ToVec4()
+            };
             AdjustOriginPose(solveTf.Translation, solveTf.Scale, solveTf.Rotation);
             return true;
         }
 
-        internal async Task<SolveTransformation> RequestSolveTransformationAsync(ICollection<Pose> arPoses, ICollection<Pose> vpsPoses, string message = null)
+        internal async Task<SolveResponse> RequestSolveTransformationAsync(ICollection<Pose> arPoses, ICollection<Pose> vpsPoses, string message = null)
         {
             if (Status != ARCloudSessionStatus.Initialized)
                 throw new ARCloudException("ARCloudSession not initialized");
@@ -334,6 +341,8 @@ namespace UnityEngine.Graffity.ARCloud
                 }
             };
             request.Platform = "UNITY";
+            request.Id = Guid.NewGuid().ToString();
+            request.ArSessionId = arSessionId;
             request.VpsCoordinate.AddRange(vpsPoses.Select(p => p.ToCoordinate()));
             request.ArCoordinate.AddRange(arPoses.Select(p => p.ToCoordinate()));
             // Debug.Log("ArCoordinate ToCoordinate Result: " + request.ArCoordinate.ToString());
@@ -341,14 +350,7 @@ namespace UnityEngine.Graffity.ARCloud
             if (!string.IsNullOrEmpty(message))
                 request.Message = message;
             var response = await grpcManager.RequestSolveAsync(request);
-            var solveTransformation = new SolveTransformation()
-            {
-                Translation = response.Transform.Translation.ToVector3(),
-                Scale = response.Transform.Scale.ToVector3(),
-                Rotation = response.Transform.Rotation.ToVec4()
-            };
-            return solveTransformation;
-
+            return response;
         }
 
         [ContextMenu("Test Validate Access Token")]

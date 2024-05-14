@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option go_package = "github.com/Graffity-Technologies/visual-positioning-services/protos/vpsimage";
+option go_package = "github.com/Graffity-Technologies/graffity-vps-protobuf/vpsimage";
 option java_multiple_files = true;
 option java_package = "io.grpc.graffity.vpsimage";
 option java_outer_classname = "VPSImageProto";
@@ -26,12 +26,13 @@ message ImageRequest {
   CameraInfo cameraInfo = 4;
   string id = 5;
   string platform = 6;
+  string arSessionId = 7;
 }
 
-message LocalizeRequest {
-  ImageRequest ImageRequest = 1;
-  string accessTokenDatabaseId = 2;
-}
+// message LocalizeRequest {
+//   ImageRequest ImageRequest = 1;
+//   string accessTokenDatabaseId = 2;
+// }
 
 message ImageResponse {
   string message = 1;
@@ -39,41 +40,44 @@ message ImageResponse {
   WorldCoordinate worldCoor = 3;
   ColmapCoordinate colmapCoor = 4;
   string id = 5;
+  repeated double covariance = 6;
+  string placeId = 7;
 }
 
-message ServiceTimeLog {
-  float featureExtraction = 1;
-  float imageRetrieval = 2;
-  float featureMatching = 3;
-  float sfm = 4;
-  float timeSum = 5;
-}
+// message ServiceTimeLog {
+//   float featureExtraction = 1;
+//   float imageRetrieval = 2;
+//   float featureMatching = 3;
+//   float sfm = 4;
+//   float timeSum = 5;
+// }
 
-message RetrievalLog{
-  string          path = 1;
-  repeated string retrievalList = 2;
-  repeated float  retrievalScore = 3;
-}
+// message RetrievalLog{
+//   string          path = 1;
+//   repeated string retrievalList = 2;
+//   repeated float  retrievalScore = 3;
+// }
 
-message ServiceLog{
-  ServiceTimeLog  serviceTime = 1;
-  RetrievalLog    retrievalLog = 2;
-}
+// message ServiceLog{
+//   ServiceTimeLog  serviceTime = 1;
+//   RetrievalLog    retrievalLog = 2;
+// }
 
-message LocalizeResponse {
-  ImageResponse imageResponse = 1;
-  ServiceLog    serviceLog = 2;
-}
+// message LocalizeResponse {
+//   ImageResponse imageResponse = 1;
+//   ServiceLog    serviceLog = 2;
+// }
 
-message ImageLog {
-  ImageRequest  request = 1;
-  ImageResponse response = 2;
-  float         responseTimeInSecond = 3;
-  int32         timestamp = 4;
-  string        accessTokenDatabaseId = 5;
-  ServiceLog    serviceLog = 6;
-  bytes         metrics = 7;
-}
+// message ImageLog {
+//   ImageRequest  request = 1;
+//   ImageResponse response = 2;
+//   float         responseTimeInSecond = 3;
+//   int32         timestamp = 4;
+//   string        accessTokenDatabaseId = 5;
+//   ServiceLog    serviceLog = 6;
+//   bytes         metrics = 7;
+//   string        locationName = 8;
+// }
 
 message AvailableAreaRequest {
   Position gpsPosition = 1;
@@ -123,3 +127,36 @@ message CameraInfo {
   float pixelFocalLengthX = 5; // in case X & Y is not equal
   float pixelFocalLengthY = 6; // in case X & Y is not equal
 }
+
+// // Microservice (Ms)
+// service MsRetrieval {
+//   rpc GetRetrieval (DataRetrieval) returns (DataRetrieval) {}
+// }
+
+// service MsExtraction {
+//   rpc GetExtraction (DataExtraction) returns (DataExtraction) {}
+// }
+
+// service MsMatching {
+//   rpc GetMatching (DataMatching) returns (DataMatching) {}
+// }
+
+// service MsSfm {
+//   rpc GetSfm (DataSfm) returns (DataSfm) {}
+// }
+
+// message DataRetrieval{
+//   bytes Data = 1;
+// }
+
+// message DataExtraction{
+//   bytes Data = 1;
+// }
+
+// message DataMatching{
+//   bytes Data = 1;
+// }
+
+// message DataSfm{
+//   bytes Data = 1;
+// }

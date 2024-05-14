@@ -25,7 +25,8 @@ namespace UnityEngine.Graffity.ARCloud
                     Vector3 translation,
                     Google.Protobuf.Collections.RepeatedField<double> covariance, // ICollection<double> covariance = new ICollection(),
                     string timestamp = "",
-                    float accuracy = 0.0f)
+                    float accuracy = 0.0f,
+                    string id = "")
         {
             this.Position = position;
             this.Rotation = rotation;
@@ -33,6 +34,7 @@ namespace UnityEngine.Graffity.ARCloud
             this.Timestamp = timestamp;
             this.Accuracy = accuracy;
             this.Covariance = covariance;
+            this.Id = id;
         }
 
         public Vector3 Position;
@@ -41,6 +43,7 @@ namespace UnityEngine.Graffity.ARCloud
         public string Timestamp;
         public float Accuracy;
         public Google.Protobuf.Collections.RepeatedField<double> Covariance;
+        public string Id;
 
         public Coordinate ToCoordinate()
         {
@@ -51,7 +54,8 @@ namespace UnityEngine.Graffity.ARCloud
                 Translation = this.Translation.ToVec3(),
                 Covariance = { this.Covariance },
                 Timestamp = this.Timestamp,
-                Accuracy = this.Accuracy
+                Accuracy = this.Accuracy,
+                ImageId = this.Id
             };
             return coor;
         }

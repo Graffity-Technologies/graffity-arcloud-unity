@@ -25,40 +25,47 @@ namespace Solver {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "Cg92cHNTb2x2ZXIucHJvdG8SBnNvbHZlciIHCgVFbXB0eSIwCg1DaGVja1Jl",
-            "c3BvbnNlEg8KB21lc3NhZ2UYASABKAkSDgoGc3RhdHVzGAIgASgIIrQBCgxT",
+            "c3BvbnNlEg8KB21lc3NhZ2UYASABKAkSDgoGc3RhdHVzGAIgASgIItUBCgxT",
             "b2x2ZVJlcXVlc3QSDwoHbWVzc2FnZRgBIAEoCRIoCgxhckNvb3JkaW5hdGUY",
             "AiADKAsyEi5zb2x2ZXIuQ29vcmRpbmF0ZRIpCg12cHNDb29yZGluYXRlGAMg",
             "AygLMhIuc29sdmVyLkNvb3JkaW5hdGUSLAoMcmVmVHJhbnNmb3JtGAQgASgL",
-            "MhYuc29sdmVyLlRyYW5zZm9ybWF0aW9uEhAKCHBsYXRmb3JtGAUgASgJInwK",
-            "DVNvbHZlUmVzcG9uc2USDwoHbWVzc2FnZRgBIAEoCRIpCgl0cmFuc2Zvcm0Y",
-            "AiABKAsyFi5zb2x2ZXIuVHJhbnNmb3JtYXRpb24SLwoMcmF3VHJhbnNmb3Jt",
-            "GAMgASgLMhkuc29sdmVyLlJhd1RyYW5zZm9ybWF0aW9uIqgBCgpDb29yZGlu",
-            "YXRlEh4KCHBvc2l0aW9uGAEgASgLMgwuc29sdmVyLlZlYzMSHgoIcm90YXRp",
-            "b24YAiABKAsyDC5zb2x2ZXIuVmVjNBIhCgt0cmFuc2xhdGlvbhgDIAEoCzIM",
-            "LnNvbHZlci5WZWMzEhIKCmNvdmFyaWFuY2UYBCADKAESEQoJdGltZXN0YW1w",
-            "GAUgASgJEhAKCGFjY3VyYWN5GAYgASgCIiAKCkNvdmFyaWFuY2USEgoKY292",
-            "YXJpYW5jZRgBIAMoASJwCg5UcmFuc2Zvcm1hdGlvbhIhCgt0cmFuc2xhdGlv",
-            "bhgBIAEoCzIMLnNvbHZlci5WZWMzEhsKBXNjYWxlGAIgASgLMgwuc29sdmVy",
-            "LlZlYzMSHgoIcm90YXRpb24YAyABKAsyDC5zb2x2ZXIuVmVjNCKPAQoRUmF3",
-            "VHJhbnNmb3JtYXRpb24SHQoHY29sdW1uMBgBIAEoCzIMLnNvbHZlci5WZWM0",
-            "Eh0KB2NvbHVtbjEYAiABKAsyDC5zb2x2ZXIuVmVjNBIdCgdjb2x1bW4yGAMg",
-            "ASgLMgwuc29sdmVyLlZlYzQSHQoHY29sdW1uMxgEIAEoCzIMLnNvbHZlci5W",
-            "ZWM0IicKBFZlYzMSCQoBeBgBIAEoARIJCgF5GAIgASgBEgkKAXoYAyABKAEi",
-            "MgoEVmVjNBIJCgF4GAEgASgBEgkKAXkYAiABKAESCQoBehgDIAEoARIJCgF3",
-            "GAQgASgBMj4KC1N0YXR1c0NoZWNrEi8KBUNoZWNrEg0uc29sdmVyLkVtcHR5",
-            "GhUuc29sdmVyLkNoZWNrUmVzcG9uc2UiADI+CgZTb2x2ZXISNAoFU29sdmUS",
-            "FC5zb2x2ZXIuU29sdmVSZXF1ZXN0GhUuc29sdmVyLlNvbHZlUmVzcG9uc2Uy",
-            "OQoDUEdPEjIKA1BHTxIULnNvbHZlci5Tb2x2ZVJlcXVlc3QaFS5zb2x2ZXIu",
-            "U29sdmVSZXNwb25zZUIuChppby5ncnBjLmdyYWZmaXR5LnZwc3NvbHZlckIO",
-            "VlBTU29sdmVyUHJvdG9QAWIGcHJvdG8z"));
+            "MhYuc29sdmVyLlRyYW5zZm9ybWF0aW9uEhAKCHBsYXRmb3JtGAUgASgJEgoK",
+            "AmlkGAYgASgJEhMKC2FyU2Vzc2lvbklkGAcgASgJIrgBCg1Tb2x2ZVJlc3Bv",
+            "bnNlEg8KB21lc3NhZ2UYASABKAkSKQoJdHJhbnNmb3JtGAIgASgLMhYuc29s",
+            "dmVyLlRyYW5zZm9ybWF0aW9uEi8KDHJhd1RyYW5zZm9ybRgDIAEoCzIZLnNv",
+            "bHZlci5SYXdUcmFuc2Zvcm1hdGlvbhIPCgdzdWNjZXNzGAQgASgIEikKDXBn",
+            "b0Nvb3JkaW5hdGUYBSADKAsyEi5zb2x2ZXIuQ29vcmRpbmF0ZSK5AQoKQ29v",
+            "cmRpbmF0ZRIeCghwb3NpdGlvbhgBIAEoCzIMLnNvbHZlci5WZWMzEh4KCHJv",
+            "dGF0aW9uGAIgASgLMgwuc29sdmVyLlZlYzQSIQoLdHJhbnNsYXRpb24YAyAB",
+            "KAsyDC5zb2x2ZXIuVmVjMxISCgpjb3ZhcmlhbmNlGAQgAygBEhEKCXRpbWVz",
+            "dGFtcBgFIAEoCRIQCghhY2N1cmFjeRgGIAEoAhIPCgdpbWFnZUlkGAcgASgJ",
+            "ImoKCVNvbHZlckxvZxIlCgdyZXF1ZXN0GAEgASgLMhQuc29sdmVyLlNvbHZl",
+            "UmVxdWVzdBInCghyZXNwb25zZRgCIAEoCzIVLnNvbHZlci5Tb2x2ZVJlc3Bv",
+            "bnNlEg0KBXN0YXRzGAMgASgJIiAKCkNvdmFyaWFuY2USEgoKY292YXJpYW5j",
+            "ZRgBIAMoASJwCg5UcmFuc2Zvcm1hdGlvbhIhCgt0cmFuc2xhdGlvbhgBIAEo",
+            "CzIMLnNvbHZlci5WZWMzEhsKBXNjYWxlGAIgASgLMgwuc29sdmVyLlZlYzMS",
+            "HgoIcm90YXRpb24YAyABKAsyDC5zb2x2ZXIuVmVjNCKPAQoRUmF3VHJhbnNm",
+            "b3JtYXRpb24SHQoHY29sdW1uMBgBIAEoCzIMLnNvbHZlci5WZWM0Eh0KB2Nv",
+            "bHVtbjEYAiABKAsyDC5zb2x2ZXIuVmVjNBIdCgdjb2x1bW4yGAMgASgLMgwu",
+            "c29sdmVyLlZlYzQSHQoHY29sdW1uMxgEIAEoCzIMLnNvbHZlci5WZWM0IicK",
+            "BFZlYzMSCQoBeBgBIAEoARIJCgF5GAIgASgBEgkKAXoYAyABKAEiMgoEVmVj",
+            "NBIJCgF4GAEgASgBEgkKAXkYAiABKAESCQoBehgDIAEoARIJCgF3GAQgASgB",
+            "Mj4KC1N0YXR1c0NoZWNrEi8KBUNoZWNrEg0uc29sdmVyLkVtcHR5GhUuc29s",
+            "dmVyLkNoZWNrUmVzcG9uc2UiADI+CgZTb2x2ZXISNAoFU29sdmUSFC5zb2x2",
+            "ZXIuU29sdmVSZXF1ZXN0GhUuc29sdmVyLlNvbHZlUmVzcG9uc2UyOQoDUEdP",
+            "EjIKA1BHTxIULnNvbHZlci5Tb2x2ZVJlcXVlc3QaFS5zb2x2ZXIuU29sdmVS",
+            "ZXNwb25zZUJtChppby5ncnBjLmdyYWZmaXR5LnZwc3NvbHZlckIOVlBTU29s",
+            "dmVyUHJvdG9QAVo9Z2l0aHViLmNvbS9HcmFmZml0eS1UZWNobm9sb2dpZXMv",
+            "Z3JhZmZpdHktdnBzLXByb3RvYnVmL3NvbHZlcmIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::Solver.Empty), global::Solver.Empty.Parser, null, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Solver.CheckResponse), global::Solver.CheckResponse.Parser, new[]{ "Message", "Status" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Solver.SolveRequest), global::Solver.SolveRequest.Parser, new[]{ "Message", "ArCoordinate", "VpsCoordinate", "RefTransform", "Platform" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Solver.SolveResponse), global::Solver.SolveResponse.Parser, new[]{ "Message", "Transform", "RawTransform" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Solver.Coordinate), global::Solver.Coordinate.Parser, new[]{ "Position", "Rotation", "Translation", "Covariance", "Timestamp", "Accuracy" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Solver.SolveRequest), global::Solver.SolveRequest.Parser, new[]{ "Message", "ArCoordinate", "VpsCoordinate", "RefTransform", "Platform", "Id", "ArSessionId" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Solver.SolveResponse), global::Solver.SolveResponse.Parser, new[]{ "Message", "Transform", "RawTransform", "Success", "PgoCoordinate" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Solver.Coordinate), global::Solver.Coordinate.Parser, new[]{ "Position", "Rotation", "Translation", "Covariance", "Timestamp", "Accuracy", "ImageId" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Solver.SolverLog), global::Solver.SolverLog.Parser, new[]{ "Request", "Response", "Stats" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Solver.Covariance), global::Solver.Covariance.Parser, new[]{ "Covariance_" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Solver.Transformation), global::Solver.Transformation.Parser, new[]{ "Translation", "Scale", "Rotation" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Solver.RawTransformation), global::Solver.RawTransformation.Parser, new[]{ "Column0", "Column1", "Column2", "Column3" }, null, null, null, null),
@@ -70,6 +77,7 @@ namespace Solver {
 
   }
   #region Messages
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class Empty : pb::IMessage<Empty>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -222,6 +230,7 @@ namespace Solver {
 
   }
 
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class CheckResponse : pb::IMessage<CheckResponse>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -448,6 +457,7 @@ namespace Solver {
 
   }
 
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class SolveRequest : pb::IMessage<SolveRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -487,6 +497,8 @@ namespace Solver {
       vpsCoordinate_ = other.vpsCoordinate_.Clone();
       refTransform_ = other.refTransform_ != null ? other.refTransform_.Clone() : null;
       platform_ = other.platform_;
+      id_ = other.id_;
+      arSessionId_ = other.arSessionId_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -554,6 +566,30 @@ namespace Solver {
       }
     }
 
+    /// <summary>Field number for the "id" field.</summary>
+    public const int IdFieldNumber = 6;
+    private string id_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string Id {
+      get { return id_; }
+      set {
+        id_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "arSessionId" field.</summary>
+    public const int ArSessionIdFieldNumber = 7;
+    private string arSessionId_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string ArSessionId {
+      get { return arSessionId_; }
+      set {
+        arSessionId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -574,6 +610,8 @@ namespace Solver {
       if(!vpsCoordinate_.Equals(other.vpsCoordinate_)) return false;
       if (!object.Equals(RefTransform, other.RefTransform)) return false;
       if (Platform != other.Platform) return false;
+      if (Id != other.Id) return false;
+      if (ArSessionId != other.ArSessionId) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -586,6 +624,8 @@ namespace Solver {
       hash ^= vpsCoordinate_.GetHashCode();
       if (refTransform_ != null) hash ^= RefTransform.GetHashCode();
       if (Platform.Length != 0) hash ^= Platform.GetHashCode();
+      if (Id.Length != 0) hash ^= Id.GetHashCode();
+      if (ArSessionId.Length != 0) hash ^= ArSessionId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -618,6 +658,14 @@ namespace Solver {
         output.WriteRawTag(42);
         output.WriteString(Platform);
       }
+      if (Id.Length != 0) {
+        output.WriteRawTag(50);
+        output.WriteString(Id);
+      }
+      if (ArSessionId.Length != 0) {
+        output.WriteRawTag(58);
+        output.WriteString(ArSessionId);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -642,6 +690,14 @@ namespace Solver {
         output.WriteRawTag(42);
         output.WriteString(Platform);
       }
+      if (Id.Length != 0) {
+        output.WriteRawTag(50);
+        output.WriteString(Id);
+      }
+      if (ArSessionId.Length != 0) {
+        output.WriteRawTag(58);
+        output.WriteString(ArSessionId);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -662,6 +718,12 @@ namespace Solver {
       }
       if (Platform.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Platform);
+      }
+      if (Id.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Id);
+      }
+      if (ArSessionId.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(ArSessionId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -688,6 +750,12 @@ namespace Solver {
       }
       if (other.Platform.Length != 0) {
         Platform = other.Platform;
+      }
+      if (other.Id.Length != 0) {
+        Id = other.Id;
+      }
+      if (other.ArSessionId.Length != 0) {
+        ArSessionId = other.ArSessionId;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -725,6 +793,14 @@ namespace Solver {
           }
           case 42: {
             Platform = input.ReadString();
+            break;
+          }
+          case 50: {
+            Id = input.ReadString();
+            break;
+          }
+          case 58: {
+            ArSessionId = input.ReadString();
             break;
           }
         }
@@ -765,6 +841,14 @@ namespace Solver {
             Platform = input.ReadString();
             break;
           }
+          case 50: {
+            Id = input.ReadString();
+            break;
+          }
+          case 58: {
+            ArSessionId = input.ReadString();
+            break;
+          }
         }
       }
     }
@@ -772,6 +856,7 @@ namespace Solver {
 
   }
 
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class SolveResponse : pb::IMessage<SolveResponse>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -809,6 +894,8 @@ namespace Solver {
       message_ = other.message_;
       transform_ = other.transform_ != null ? other.transform_.Clone() : null;
       rawTransform_ = other.rawTransform_ != null ? other.rawTransform_.Clone() : null;
+      success_ = other.success_;
+      pgoCoordinate_ = other.pgoCoordinate_.Clone();
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -854,6 +941,29 @@ namespace Solver {
       }
     }
 
+    /// <summary>Field number for the "success" field.</summary>
+    public const int SuccessFieldNumber = 4;
+    private bool success_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Success {
+      get { return success_; }
+      set {
+        success_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "pgoCoordinate" field.</summary>
+    public const int PgoCoordinateFieldNumber = 5;
+    private static readonly pb::FieldCodec<global::Solver.Coordinate> _repeated_pgoCoordinate_codec
+        = pb::FieldCodec.ForMessage(42, global::Solver.Coordinate.Parser);
+    private readonly pbc::RepeatedField<global::Solver.Coordinate> pgoCoordinate_ = new pbc::RepeatedField<global::Solver.Coordinate>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public pbc::RepeatedField<global::Solver.Coordinate> PgoCoordinate {
+      get { return pgoCoordinate_; }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -872,6 +982,8 @@ namespace Solver {
       if (Message != other.Message) return false;
       if (!object.Equals(Transform, other.Transform)) return false;
       if (!object.Equals(RawTransform, other.RawTransform)) return false;
+      if (Success != other.Success) return false;
+      if(!pgoCoordinate_.Equals(other.pgoCoordinate_)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -882,6 +994,8 @@ namespace Solver {
       if (Message.Length != 0) hash ^= Message.GetHashCode();
       if (transform_ != null) hash ^= Transform.GetHashCode();
       if (rawTransform_ != null) hash ^= RawTransform.GetHashCode();
+      if (Success != false) hash ^= Success.GetHashCode();
+      hash ^= pgoCoordinate_.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -912,6 +1026,11 @@ namespace Solver {
         output.WriteRawTag(26);
         output.WriteMessage(RawTransform);
       }
+      if (Success != false) {
+        output.WriteRawTag(32);
+        output.WriteBool(Success);
+      }
+      pgoCoordinate_.WriteTo(output, _repeated_pgoCoordinate_codec);
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -934,6 +1053,11 @@ namespace Solver {
         output.WriteRawTag(26);
         output.WriteMessage(RawTransform);
       }
+      if (Success != false) {
+        output.WriteRawTag(32);
+        output.WriteBool(Success);
+      }
+      pgoCoordinate_.WriteTo(ref output, _repeated_pgoCoordinate_codec);
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -953,6 +1077,10 @@ namespace Solver {
       if (rawTransform_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(RawTransform);
       }
+      if (Success != false) {
+        size += 1 + 1;
+      }
+      size += pgoCoordinate_.CalculateSize(_repeated_pgoCoordinate_codec);
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
       }
@@ -980,6 +1108,10 @@ namespace Solver {
         }
         RawTransform.MergeFrom(other.RawTransform);
       }
+      if (other.Success != false) {
+        Success = other.Success;
+      }
+      pgoCoordinate_.Add(other.pgoCoordinate_);
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -1011,6 +1143,14 @@ namespace Solver {
               RawTransform = new global::Solver.RawTransformation();
             }
             input.ReadMessage(RawTransform);
+            break;
+          }
+          case 32: {
+            Success = input.ReadBool();
+            break;
+          }
+          case 42: {
+            pgoCoordinate_.AddEntriesFrom(input, _repeated_pgoCoordinate_codec);
             break;
           }
         }
@@ -1046,6 +1186,14 @@ namespace Solver {
             input.ReadMessage(RawTransform);
             break;
           }
+          case 32: {
+            Success = input.ReadBool();
+            break;
+          }
+          case 42: {
+            pgoCoordinate_.AddEntriesFrom(ref input, _repeated_pgoCoordinate_codec);
+            break;
+          }
         }
       }
     }
@@ -1053,6 +1201,7 @@ namespace Solver {
 
   }
 
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class Coordinate : pb::IMessage<Coordinate>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -1093,6 +1242,7 @@ namespace Solver {
       covariance_ = other.covariance_.Clone();
       timestamp_ = other.timestamp_;
       accuracy_ = other.accuracy_;
+      imageId_ = other.imageId_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -1173,6 +1323,18 @@ namespace Solver {
       }
     }
 
+    /// <summary>Field number for the "imageId" field.</summary>
+    public const int ImageIdFieldNumber = 7;
+    private string imageId_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string ImageId {
+      get { return imageId_; }
+      set {
+        imageId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -1194,6 +1356,7 @@ namespace Solver {
       if(!covariance_.Equals(other.covariance_)) return false;
       if (Timestamp != other.Timestamp) return false;
       if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(Accuracy, other.Accuracy)) return false;
+      if (ImageId != other.ImageId) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -1207,6 +1370,7 @@ namespace Solver {
       hash ^= covariance_.GetHashCode();
       if (Timestamp.Length != 0) hash ^= Timestamp.GetHashCode();
       if (Accuracy != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(Accuracy);
+      if (ImageId.Length != 0) hash ^= ImageId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -1246,6 +1410,10 @@ namespace Solver {
         output.WriteRawTag(53);
         output.WriteFloat(Accuracy);
       }
+      if (ImageId.Length != 0) {
+        output.WriteRawTag(58);
+        output.WriteString(ImageId);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -1277,6 +1445,10 @@ namespace Solver {
         output.WriteRawTag(53);
         output.WriteFloat(Accuracy);
       }
+      if (ImageId.Length != 0) {
+        output.WriteRawTag(58);
+        output.WriteString(ImageId);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -1302,6 +1474,9 @@ namespace Solver {
       }
       if (Accuracy != 0F) {
         size += 1 + 4;
+      }
+      if (ImageId.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(ImageId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -1339,6 +1514,9 @@ namespace Solver {
       }
       if (other.Accuracy != 0F) {
         Accuracy = other.Accuracy;
+      }
+      if (other.ImageId.Length != 0) {
+        ImageId = other.ImageId;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -1387,6 +1565,10 @@ namespace Solver {
           }
           case 53: {
             Accuracy = input.ReadFloat();
+            break;
+          }
+          case 58: {
+            ImageId = input.ReadString();
             break;
           }
         }
@@ -1438,6 +1620,10 @@ namespace Solver {
             Accuracy = input.ReadFloat();
             break;
           }
+          case 58: {
+            ImageId = input.ReadString();
+            break;
+          }
         }
       }
     }
@@ -1445,6 +1631,289 @@ namespace Solver {
 
   }
 
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class SolverLog : pb::IMessage<SolverLog>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<SolverLog> _parser = new pb::MessageParser<SolverLog>(() => new SolverLog());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<SolverLog> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Solver.VpsSolverReflection.Descriptor.MessageTypes[5]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public SolverLog() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public SolverLog(SolverLog other) : this() {
+      request_ = other.request_ != null ? other.request_.Clone() : null;
+      response_ = other.response_ != null ? other.response_.Clone() : null;
+      stats_ = other.stats_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public SolverLog Clone() {
+      return new SolverLog(this);
+    }
+
+    /// <summary>Field number for the "request" field.</summary>
+    public const int RequestFieldNumber = 1;
+    private global::Solver.SolveRequest request_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::Solver.SolveRequest Request {
+      get { return request_; }
+      set {
+        request_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "response" field.</summary>
+    public const int ResponseFieldNumber = 2;
+    private global::Solver.SolveResponse response_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::Solver.SolveResponse Response {
+      get { return response_; }
+      set {
+        response_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "stats" field.</summary>
+    public const int StatsFieldNumber = 3;
+    private string stats_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string Stats {
+      get { return stats_; }
+      set {
+        stats_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as SolverLog);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(SolverLog other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (!object.Equals(Request, other.Request)) return false;
+      if (!object.Equals(Response, other.Response)) return false;
+      if (Stats != other.Stats) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (request_ != null) hash ^= Request.GetHashCode();
+      if (response_ != null) hash ^= Response.GetHashCode();
+      if (Stats.Length != 0) hash ^= Stats.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (request_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(Request);
+      }
+      if (response_ != null) {
+        output.WriteRawTag(18);
+        output.WriteMessage(Response);
+      }
+      if (Stats.Length != 0) {
+        output.WriteRawTag(26);
+        output.WriteString(Stats);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (request_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(Request);
+      }
+      if (response_ != null) {
+        output.WriteRawTag(18);
+        output.WriteMessage(Response);
+      }
+      if (Stats.Length != 0) {
+        output.WriteRawTag(26);
+        output.WriteString(Stats);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (request_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Request);
+      }
+      if (response_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Response);
+      }
+      if (Stats.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Stats);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(SolverLog other) {
+      if (other == null) {
+        return;
+      }
+      if (other.request_ != null) {
+        if (request_ == null) {
+          Request = new global::Solver.SolveRequest();
+        }
+        Request.MergeFrom(other.Request);
+      }
+      if (other.response_ != null) {
+        if (response_ == null) {
+          Response = new global::Solver.SolveResponse();
+        }
+        Response.MergeFrom(other.Response);
+      }
+      if (other.Stats.Length != 0) {
+        Stats = other.Stats;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            if (request_ == null) {
+              Request = new global::Solver.SolveRequest();
+            }
+            input.ReadMessage(Request);
+            break;
+          }
+          case 18: {
+            if (response_ == null) {
+              Response = new global::Solver.SolveResponse();
+            }
+            input.ReadMessage(Response);
+            break;
+          }
+          case 26: {
+            Stats = input.ReadString();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10: {
+            if (request_ == null) {
+              Request = new global::Solver.SolveRequest();
+            }
+            input.ReadMessage(Request);
+            break;
+          }
+          case 18: {
+            if (response_ == null) {
+              Response = new global::Solver.SolveResponse();
+            }
+            input.ReadMessage(Response);
+            break;
+          }
+          case 26: {
+            Stats = input.ReadString();
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class Covariance : pb::IMessage<Covariance>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -1459,7 +1928,7 @@ namespace Solver {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Solver.VpsSolverReflection.Descriptor.MessageTypes[5]; }
+      get { return global::Solver.VpsSolverReflection.Descriptor.MessageTypes[6]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1625,6 +2094,7 @@ namespace Solver {
 
   }
 
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class Transformation : pb::IMessage<Transformation>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -1639,7 +2109,7 @@ namespace Solver {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Solver.VpsSolverReflection.Descriptor.MessageTypes[6]; }
+      get { return global::Solver.VpsSolverReflection.Descriptor.MessageTypes[7]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1915,6 +2385,7 @@ namespace Solver {
 
   }
 
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class RawTransformation : pb::IMessage<RawTransformation>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -1929,7 +2400,7 @@ namespace Solver {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Solver.VpsSolverReflection.Descriptor.MessageTypes[7]; }
+      get { return global::Solver.VpsSolverReflection.Descriptor.MessageTypes[8]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2251,6 +2722,7 @@ namespace Solver {
 
   }
 
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class Vec3 : pb::IMessage<Vec3>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -2265,7 +2737,7 @@ namespace Solver {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Solver.VpsSolverReflection.Descriptor.MessageTypes[8]; }
+      get { return global::Solver.VpsSolverReflection.Descriptor.MessageTypes[9]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2514,6 +2986,7 @@ namespace Solver {
 
   }
 
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class Vec4 : pb::IMessage<Vec4>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -2528,7 +3001,7 @@ namespace Solver {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Solver.VpsSolverReflection.Descriptor.MessageTypes[9]; }
+      get { return global::Solver.VpsSolverReflection.Descriptor.MessageTypes[10]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

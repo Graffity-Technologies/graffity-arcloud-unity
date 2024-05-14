@@ -36,7 +36,7 @@ public class ARCloudSampleView : MonoBehaviour
                 Altitude = 0.0
             });
 
-            ARCloudSession.instance.StartLocalize(LocalizeStrategy.LAST_POINT_DIFF_MEDPRECISION);
+            ARCloudSession.instance.StartLocalize();
         });
     }
 

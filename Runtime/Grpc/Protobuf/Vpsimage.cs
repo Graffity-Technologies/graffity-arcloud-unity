@@ -24,44 +24,45 @@ namespace Vpsimage {
     static VpsimageReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "Cg52cHNpbWFnZS5wcm90bxIIdnBzaW1hZ2UipAEKDEltYWdlUmVxdWVzdBIP",
+            "Cg52cHNpbWFnZS5wcm90bxIIdnBzaW1hZ2UiuQEKDEltYWdlUmVxdWVzdBIP",
             "CgdtZXNzYWdlGAEgASgJEhIKCmJ5dGVzSW1hZ2UYAiABKAwSJwoLZ3BzUG9z",
             "aXRpb24YAyABKAsyEi52cHNpbWFnZS5Qb3NpdGlvbhIoCgpjYW1lcmFJbmZv",
             "GAQgASgLMhQudnBzaW1hZ2UuQ2FtZXJhSW5mbxIKCgJpZBgFIAEoCRIQCghw",
-            "bGF0Zm9ybRgGIAEoCSKwAQoNSW1hZ2VSZXNwb25zZRIPCgdtZXNzYWdlGAEg",
-            "ASgJEhAKCGFjY3VyYWN5GAIgASgCEiwKCXdvcmxkQ29vchgDIAEoCzIZLnZw",
-            "c2ltYWdlLldvcmxkQ29vcmRpbmF0ZRIuCgpjb2xtYXBDb29yGAQgASgLMhou",
-            "dnBzaW1hZ2UuQ29sbWFwQ29vcmRpbmF0ZRIKCgJpZBgFIAEoCRISCgpjb3Zh",
-            "cmlhbmNlGAYgAygBImkKFEF2YWlsYWJsZUFyZWFSZXF1ZXN0EicKC2dwc1Bv",
-            "c2l0aW9uGAEgASgLMhIudnBzaW1hZ2UuUG9zaXRpb24SEwoLbWF4RGlzdGFu",
-            "Y2UYAiABKAUSEwoLbWluRGlzdGFuY2UYAyABKAUiZgoVQXZhaWxhYmxlQXJl",
-            "YVJlc3BvbnNlEg8KB21lc3NhZ2UYASABKAkSEwoLaXNBdmFpbGFibGUYAiAB",
-            "KAgSJwoLZ3BzUG9zaXRpb24YAyABKAsyEi52cHNpbWFnZS5Qb3NpdGlvbiJB",
-            "CghQb3NpdGlvbhIQCghsYXRpdHVkZRgBIAEoARIRCglsb25naXR1ZGUYAiAB",
-            "KAESEAoIYWx0aXR1ZGUYAyABKAEiZgoPV29ybGRDb29yZGluYXRlEhAKCGxh",
-            "dGl0dWRlGAEgASgBEhEKCWxvbmdpdHVkZRgCIAEoARIQCghhbHRpdHVkZRgD",
-            "IAEoARINCgV1dG1feBgEIAEoARINCgV1dG1feRgFIAEoASKKAQoQQ29sbWFw",
-            "Q29vcmRpbmF0ZRIKCgJxdxgBIAEoARIKCgJxeBgCIAEoARIKCgJxeRgDIAEo",
-            "ARIKCgJxehgEIAEoARIKCgJ0eBgFIAEoARIKCgJ0eRgGIAEoARIKCgJ0ehgH",
-            "IAEoARIKCgJweBgIIAEoARIKCgJweRgJIAEoARIKCgJwehgKIAEoASKoAQoK",
-            "Q2FtZXJhSW5mbxIYChBwaXhlbEZvY2FsTGVuZ3RoGAEgASgCEhcKD3ByaW5j",
-            "aXBhbFBvaW50WBgCIAEoAhIXCg9wcmluY2lwYWxQb2ludFkYAyABKAISGAoQ",
-            "cmFkaWFsRGlzdG9ydGlvbhgEIAEoAhIZChFwaXhlbEZvY2FsTGVuZ3RoWBgF",
-            "IAEoAhIZChFwaXhlbEZvY2FsTGVuZ3RoWRgGIAEoAjJHCgVJbWFnZRI+CglT",
-            "ZW5kSW1hZ2USFi52cHNpbWFnZS5JbWFnZVJlcXVlc3QaFy52cHNpbWFnZS5J",
-            "bWFnZVJlc3BvbnNlIgAyVwoLSW1hZ2VTdHJlYW0SSAoPU2VuZFN0cmVhbUlt",
-            "YWdlEhYudnBzaW1hZ2UuSW1hZ2VSZXF1ZXN0GhcudnBzaW1hZ2UuSW1hZ2VS",
-            "ZXNwb25zZSIAKAEwATJoCg1BdmFpbGFibGVBcmVhElcKEkNoZWNrQXZhaWxh",
-            "YmxlQXJlYRIeLnZwc2ltYWdlLkF2YWlsYWJsZUFyZWFSZXF1ZXN0Gh8udnBz",
-            "aW1hZ2UuQXZhaWxhYmxlQXJlYVJlc3BvbnNlIgBCegoZaW8uZ3JwYy5ncmFm",
-            "Zml0eS52cHNpbWFnZUINVlBTSW1hZ2VQcm90b1ABWkxnaXRodWIuY29tL0dy",
-            "YWZmaXR5LVRlY2hub2xvZ2llcy92aXN1YWwtcG9zaXRpb25pbmctc2Vydmlj",
-            "ZXMvcHJvdG9zL3Zwc2ltYWdlYgZwcm90bzM="));
+            "bGF0Zm9ybRgGIAEoCRITCgthclNlc3Npb25JZBgHIAEoCSLBAQoNSW1hZ2VS",
+            "ZXNwb25zZRIPCgdtZXNzYWdlGAEgASgJEhAKCGFjY3VyYWN5GAIgASgCEiwK",
+            "CXdvcmxkQ29vchgDIAEoCzIZLnZwc2ltYWdlLldvcmxkQ29vcmRpbmF0ZRIu",
+            "Cgpjb2xtYXBDb29yGAQgASgLMhoudnBzaW1hZ2UuQ29sbWFwQ29vcmRpbmF0",
+            "ZRIKCgJpZBgFIAEoCRISCgpjb3ZhcmlhbmNlGAYgAygBEg8KB3BsYWNlSWQY",
+            "ByABKAkiaQoUQXZhaWxhYmxlQXJlYVJlcXVlc3QSJwoLZ3BzUG9zaXRpb24Y",
+            "ASABKAsyEi52cHNpbWFnZS5Qb3NpdGlvbhITCgttYXhEaXN0YW5jZRgCIAEo",
+            "BRITCgttaW5EaXN0YW5jZRgDIAEoBSJmChVBdmFpbGFibGVBcmVhUmVzcG9u",
+            "c2USDwoHbWVzc2FnZRgBIAEoCRITCgtpc0F2YWlsYWJsZRgCIAEoCBInCgtn",
+            "cHNQb3NpdGlvbhgDIAEoCzISLnZwc2ltYWdlLlBvc2l0aW9uIkEKCFBvc2l0",
+            "aW9uEhAKCGxhdGl0dWRlGAEgASgBEhEKCWxvbmdpdHVkZRgCIAEoARIQCghh",
+            "bHRpdHVkZRgDIAEoASJmCg9Xb3JsZENvb3JkaW5hdGUSEAoIbGF0aXR1ZGUY",
+            "ASABKAESEQoJbG9uZ2l0dWRlGAIgASgBEhAKCGFsdGl0dWRlGAMgASgBEg0K",
+            "BXV0bV94GAQgASgBEg0KBXV0bV95GAUgASgBIooBChBDb2xtYXBDb29yZGlu",
+            "YXRlEgoKAnF3GAEgASgBEgoKAnF4GAIgASgBEgoKAnF5GAMgASgBEgoKAnF6",
+            "GAQgASgBEgoKAnR4GAUgASgBEgoKAnR5GAYgASgBEgoKAnR6GAcgASgBEgoK",
+            "AnB4GAggASgBEgoKAnB5GAkgASgBEgoKAnB6GAogASgBIqgBCgpDYW1lcmFJ",
+            "bmZvEhgKEHBpeGVsRm9jYWxMZW5ndGgYASABKAISFwoPcHJpbmNpcGFsUG9p",
+            "bnRYGAIgASgCEhcKD3ByaW5jaXBhbFBvaW50WRgDIAEoAhIYChByYWRpYWxE",
+            "aXN0b3J0aW9uGAQgASgCEhkKEXBpeGVsRm9jYWxMZW5ndGhYGAUgASgCEhkK",
+            "EXBpeGVsRm9jYWxMZW5ndGhZGAYgASgCMkcKBUltYWdlEj4KCVNlbmRJbWFn",
+            "ZRIWLnZwc2ltYWdlLkltYWdlUmVxdWVzdBoXLnZwc2ltYWdlLkltYWdlUmVz",
+            "cG9uc2UiADJXCgtJbWFnZVN0cmVhbRJICg9TZW5kU3RyZWFtSW1hZ2USFi52",
+            "cHNpbWFnZS5JbWFnZVJlcXVlc3QaFy52cHNpbWFnZS5JbWFnZVJlc3BvbnNl",
+            "IgAoATABMmgKDUF2YWlsYWJsZUFyZWESVwoSQ2hlY2tBdmFpbGFibGVBcmVh",
+            "Eh4udnBzaW1hZ2UuQXZhaWxhYmxlQXJlYVJlcXVlc3QaHy52cHNpbWFnZS5B",
+            "dmFpbGFibGVBcmVhUmVzcG9uc2UiAEJtChlpby5ncnBjLmdyYWZmaXR5LnZw",
+            "c2ltYWdlQg1WUFNJbWFnZVByb3RvUAFaP2dpdGh1Yi5jb20vR3JhZmZpdHkt",
+            "VGVjaG5vbG9naWVzL2dyYWZmaXR5LXZwcy1wcm90b2J1Zi92cHNpbWFnZWIG",
+            "cHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Vpsimage.ImageRequest), global::Vpsimage.ImageRequest.Parser, new[]{ "Message", "BytesImage", "GpsPosition", "CameraInfo", "Id", "Platform" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Vpsimage.ImageResponse), global::Vpsimage.ImageResponse.Parser, new[]{ "Message", "Accuracy", "WorldCoor", "ColmapCoor", "Id", "Covariance" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Vpsimage.ImageRequest), global::Vpsimage.ImageRequest.Parser, new[]{ "Message", "BytesImage", "GpsPosition", "CameraInfo", "Id", "Platform", "ArSessionId" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Vpsimage.ImageResponse), global::Vpsimage.ImageResponse.Parser, new[]{ "Message", "Accuracy", "WorldCoor", "ColmapCoor", "Id", "Covariance", "PlaceId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Vpsimage.AvailableAreaRequest), global::Vpsimage.AvailableAreaRequest.Parser, new[]{ "GpsPosition", "MaxDistance", "MinDistance" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Vpsimage.AvailableAreaResponse), global::Vpsimage.AvailableAreaResponse.Parser, new[]{ "Message", "IsAvailable", "GpsPosition" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Vpsimage.Position), global::Vpsimage.Position.Parser, new[]{ "Latitude", "Longitude", "Altitude" }, null, null, null, null),
@@ -74,6 +75,7 @@ namespace Vpsimage {
 
   }
   #region Messages
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class ImageRequest : pb::IMessage<ImageRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -114,6 +116,7 @@ namespace Vpsimage {
       cameraInfo_ = other.cameraInfo_ != null ? other.cameraInfo_.Clone() : null;
       id_ = other.id_;
       platform_ = other.platform_;
+      arSessionId_ = other.arSessionId_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -195,6 +198,18 @@ namespace Vpsimage {
       }
     }
 
+    /// <summary>Field number for the "arSessionId" field.</summary>
+    public const int ArSessionIdFieldNumber = 7;
+    private string arSessionId_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string ArSessionId {
+      get { return arSessionId_; }
+      set {
+        arSessionId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -216,6 +231,7 @@ namespace Vpsimage {
       if (!object.Equals(CameraInfo, other.CameraInfo)) return false;
       if (Id != other.Id) return false;
       if (Platform != other.Platform) return false;
+      if (ArSessionId != other.ArSessionId) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -229,6 +245,7 @@ namespace Vpsimage {
       if (cameraInfo_ != null) hash ^= CameraInfo.GetHashCode();
       if (Id.Length != 0) hash ^= Id.GetHashCode();
       if (Platform.Length != 0) hash ^= Platform.GetHashCode();
+      if (ArSessionId.Length != 0) hash ^= ArSessionId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -271,6 +288,10 @@ namespace Vpsimage {
         output.WriteRawTag(50);
         output.WriteString(Platform);
       }
+      if (ArSessionId.Length != 0) {
+        output.WriteRawTag(58);
+        output.WriteString(ArSessionId);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -305,6 +326,10 @@ namespace Vpsimage {
         output.WriteRawTag(50);
         output.WriteString(Platform);
       }
+      if (ArSessionId.Length != 0) {
+        output.WriteRawTag(58);
+        output.WriteString(ArSessionId);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -332,6 +357,9 @@ namespace Vpsimage {
       }
       if (Platform.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Platform);
+      }
+      if (ArSessionId.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(ArSessionId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -368,6 +396,9 @@ namespace Vpsimage {
       }
       if (other.Platform.Length != 0) {
         Platform = other.Platform;
+      }
+      if (other.ArSessionId.Length != 0) {
+        ArSessionId = other.ArSessionId;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -412,6 +443,10 @@ namespace Vpsimage {
           }
           case 50: {
             Platform = input.ReadString();
+            break;
+          }
+          case 58: {
+            ArSessionId = input.ReadString();
             break;
           }
         }
@@ -459,6 +494,10 @@ namespace Vpsimage {
             Platform = input.ReadString();
             break;
           }
+          case 58: {
+            ArSessionId = input.ReadString();
+            break;
+          }
         }
       }
     }
@@ -466,6 +505,7 @@ namespace Vpsimage {
 
   }
 
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class ImageResponse : pb::IMessage<ImageResponse>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -506,6 +546,7 @@ namespace Vpsimage {
       colmapCoor_ = other.colmapCoor_ != null ? other.colmapCoor_.Clone() : null;
       id_ = other.id_;
       covariance_ = other.covariance_.Clone();
+      placeId_ = other.placeId_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -586,6 +627,18 @@ namespace Vpsimage {
       get { return covariance_; }
     }
 
+    /// <summary>Field number for the "placeId" field.</summary>
+    public const int PlaceIdFieldNumber = 7;
+    private string placeId_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string PlaceId {
+      get { return placeId_; }
+      set {
+        placeId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -607,6 +660,7 @@ namespace Vpsimage {
       if (!object.Equals(ColmapCoor, other.ColmapCoor)) return false;
       if (Id != other.Id) return false;
       if(!covariance_.Equals(other.covariance_)) return false;
+      if (PlaceId != other.PlaceId) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -620,6 +674,7 @@ namespace Vpsimage {
       if (colmapCoor_ != null) hash ^= ColmapCoor.GetHashCode();
       if (Id.Length != 0) hash ^= Id.GetHashCode();
       hash ^= covariance_.GetHashCode();
+      if (PlaceId.Length != 0) hash ^= PlaceId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -659,6 +714,10 @@ namespace Vpsimage {
         output.WriteString(Id);
       }
       covariance_.WriteTo(output, _repeated_covariance_codec);
+      if (PlaceId.Length != 0) {
+        output.WriteRawTag(58);
+        output.WriteString(PlaceId);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -690,6 +749,10 @@ namespace Vpsimage {
         output.WriteString(Id);
       }
       covariance_.WriteTo(ref output, _repeated_covariance_codec);
+      if (PlaceId.Length != 0) {
+        output.WriteRawTag(58);
+        output.WriteString(PlaceId);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -716,6 +779,9 @@ namespace Vpsimage {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Id);
       }
       size += covariance_.CalculateSize(_repeated_covariance_codec);
+      if (PlaceId.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(PlaceId);
+      }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
       }
@@ -750,6 +816,9 @@ namespace Vpsimage {
         Id = other.Id;
       }
       covariance_.Add(other.covariance_);
+      if (other.PlaceId.Length != 0) {
+        PlaceId = other.PlaceId;
+      }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -794,6 +863,10 @@ namespace Vpsimage {
           case 50:
           case 49: {
             covariance_.AddEntriesFrom(input, _repeated_covariance_codec);
+            break;
+          }
+          case 58: {
+            PlaceId = input.ReadString();
             break;
           }
         }
@@ -842,6 +915,10 @@ namespace Vpsimage {
             covariance_.AddEntriesFrom(ref input, _repeated_covariance_codec);
             break;
           }
+          case 58: {
+            PlaceId = input.ReadString();
+            break;
+          }
         }
       }
     }
@@ -849,6 +926,7 @@ namespace Vpsimage {
 
   }
 
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class AvailableAreaRequest : pb::IMessage<AvailableAreaRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -1121,6 +1199,7 @@ namespace Vpsimage {
 
   }
 
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class AvailableAreaResponse : pb::IMessage<AvailableAreaResponse>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -1393,6 +1472,7 @@ namespace Vpsimage {
 
   }
 
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class Position : pb::IMessage<Position>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -1656,6 +1736,7 @@ namespace Vpsimage {
 
   }
 
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class WorldCoordinate : pb::IMessage<WorldCoordinate>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -1993,6 +2074,7 @@ namespace Vpsimage {
 
   }
 
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class ColmapCoordinate : pb::IMessage<ColmapCoordinate>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -2515,6 +2597,7 @@ namespace Vpsimage {
 
   }
 
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class CameraInfo : pb::IMessage<CameraInfo>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage

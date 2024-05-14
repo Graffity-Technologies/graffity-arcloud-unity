@@ -1,6 +1,7 @@
 syntax = "proto3";
 package solver;
 
+option go_package = "github.com/Graffity-Technologies/graffity-vps-protobuf/solver";
 option java_multiple_files = true;
 option java_package = "io.grpc.graffity.vpssolver";
 option java_outer_classname = "VPSSolverProto";
@@ -10,6 +11,7 @@ service StatusCheck {
 }
 
 message Empty {
+
 }
 
 message CheckResponse {
@@ -31,12 +33,16 @@ message SolveRequest {
   repeated Coordinate vpsCoordinate = 3;
   Transformation refTransform = 4;
   string platform = 5;
+  string id = 6;
+  string arSessionId = 7;
 }
 
 message SolveResponse {
   string message = 1;
   Transformation transform = 2;
   RawTransformation rawTransform = 3;
+  bool success = 4;
+  repeated Coordinate pgoCoordinate = 5;
 }
 
 message Coordinate {
@@ -46,6 +52,13 @@ message Coordinate {
   repeated double covariance = 4;
   string timestamp = 5;
   float accuracy = 6;
+  string imageId = 7;
+}
+
+message SolverLog {
+  SolveRequest  request   = 1;
+  SolveResponse response  = 2;
+  string        stats     = 3;         
 }
 
 message Covariance{
