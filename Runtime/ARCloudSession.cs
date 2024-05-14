@@ -29,6 +29,7 @@ namespace UnityEngine.Graffity.ARCloud
 
         public String localizeState => currentLocalizeTask != null ? currentLocalizeTask.state.ToString() : "Deleted";
         public float localizeProgress => currentLocalizeTask?.progress ?? 0f;
+        public bool isInitialized = false;
         private int frameDrop = 15;
         private int captureFrameCounter = 0;
         private int capturedFrames = 0;
@@ -238,6 +239,8 @@ namespace UnityEngine.Graffity.ARCloud
             // so, rotate x,z doen't matter and actually make it worst result because angle diff error
             var resultQuaternion = Quaternion.Euler(0.0f, Rotation.eulerAngles.y, 0.0f);
             arOriginTf.rotation = resultQuaternion;
+
+            isInitialized = true;
         }
 
         public async Task<ImageResponse> MockSendImageAsync()
