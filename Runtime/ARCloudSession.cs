@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Google.Protobuf;
 using Vpsimage;
 using Solver;
+using Unity.XR.CoreUtils;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 using static UnityEngine.Graffity.ARCloud.ARCloudUtils;
@@ -23,7 +24,7 @@ namespace UnityEngine.Graffity.ARCloud
         public ARCloudSessionStatus Status { get; private set; }
         public VpsGrpcManager grpcManager;
         internal ARCameraManager cameraManager;
-        private ARSessionOrigin arSessionOrigin;
+        private XROrigin arSessionOrigin;
         private PositionGps refModelPositionGps;
         private LocalizeTask currentLocalizeTask;
 
@@ -54,7 +55,7 @@ namespace UnityEngine.Graffity.ARCloud
         {
             grpcManager = new VpsGrpcManager(apiCredConfig);
             cameraManager = gameObject.GetComponentInChildren<ARCameraManager>();
-            arSessionOrigin = gameObject.GetComponent<ARSessionOrigin>();
+            arSessionOrigin = gameObject.GetComponent<XROrigin>();
             Status = ARCloudSessionStatus.Uninitialized;
 
 #if UNITY_IPHONE

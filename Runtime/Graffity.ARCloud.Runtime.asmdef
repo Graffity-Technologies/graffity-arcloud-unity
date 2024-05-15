@@ -1,10 +1,9 @@
 {
     "name": "Graffity.ARCloud.Runtime",
     "references": [
-        
         "Unity.XR.ARSubsystems",
-        "NativeGallery.Runtime",
-        "Unity.XR.ARFoundation"
+        "Unity.XR.ARFoundation",
+        "Unity.XR.CoreUtils"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

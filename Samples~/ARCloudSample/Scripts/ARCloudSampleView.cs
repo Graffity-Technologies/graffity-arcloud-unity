@@ -13,7 +13,7 @@ public class ARCloudSampleView : MonoBehaviour
     [SerializeField]
     public Text statusText;
     [SerializeField]
-    public ARSessionOrigin arSessionOrigin;
+    public XROrigin arSessionOrigin;
     [SerializeField]
     public VideoPlayer arGuidelinePlayer;
     [SerializeField]
