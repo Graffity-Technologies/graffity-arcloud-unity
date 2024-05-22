@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Graffity.ARCloud;
 using UnityEngine.UI;
 using UnityEngine.Video;
+using Unity.XR.CoreUtils;
 using UnityEngine.XR.ARFoundation;
 
 public class ARCloudSampleView : MonoBehaviour
