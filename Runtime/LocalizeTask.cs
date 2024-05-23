@@ -20,8 +20,8 @@ namespace UnityEngine.Graffity.ARCloud
         private Vector3 lastArPosition;
         private Quaternion lastArRotation;
         private string solverGuideMessage = null;
-        internal int vpsSolverBatchSize = 5;
-        internal int maxAttemptForSolver = 5;
+        internal int vpsSolverBatchSize = 8;
+        internal int maxAttemptForSolver = 3;
         internal int currentAttemptForSolver = 0;
 
         private int missPoint;
