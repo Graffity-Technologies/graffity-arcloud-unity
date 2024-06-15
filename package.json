@@ -1,6 +1,6 @@
 {
   "name": "com.graffity.unity.arcloud",
-  "version": "3.0.4",
+  "version": "3.0.5",
   "displayName": "Graffity ARCloud",
   "description": "ARCloud SDK in Unity Package",
   "unity": "2021.2",
